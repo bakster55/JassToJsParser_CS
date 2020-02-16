@@ -45,7 +45,12 @@ namespace JassToCsMain
 
         public override string VisitChildren(IRuleNode node)
         {
-            return this.Visit(node);
+            if (node != null)
+            {
+                return base.VisitChildren(node);
+            }
+
+            return string.Empty;
         }
 
         public override string VisitTerminal(ITerminalNode node)
@@ -53,19 +58,26 @@ namespace JassToCsMain
             return node.Symbol.Text;
         }
 
+        protected override string AggregateResult(string aggregate, string nextResult)
+        {
+            return aggregate != null
+                ? aggregate + nextResult
+                : nextResult;
+        }
+
         public override string VisitArgs([NotNull] JassParser.ArgsContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitArgs(context);
         }
 
         public override string VisitArray_ref([NotNull] JassParser.Array_refContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitArray_ref(context);
         }
 
         public override string VisitBoolConst([NotNull] JassParser.BoolConstContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitBoolConst(context);
         }
 
         public override string VisitCall([NotNull] JassParser.CallContext context)
@@ -73,33 +85,33 @@ namespace JassToCsMain
             // Remove call keyword
             context.children?.RemoveAt(0);
 
-            return this.VisitChildrens(context.children);
+            return base.VisitCall(context);
         }
 
         public override string VisitConstant([NotNull] JassParser.ConstantContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitConstant(context);
         }
 
         public override string VisitDebug([NotNull] JassParser.DebugContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitDebug(context);
         }
 
         public override string VisitDeclr([NotNull] JassParser.DeclrContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitDeclr(context);
         }
 
         public override string VisitElse_clause([NotNull] JassParser.Else_clauseContext context)
         {
             if (context.K_ELSEIF() != null)
             {
-                return $"\nelse {{\nif({this.VisitChildren(context.expr())}) {{\n{this.VisitChildren(context.statement_list())}}}{this.VisitChildren(context.else_clause())}\n}}";
+                return $"\nelse {{\nif({this.Visit(context.expr())}) {{\n{this.Visit(context.statement_list())}}}{this.Visit(context.else_clause())}\n}}";
             }
             else
             {
-                return $"\nelse {{\n{this.VisitChildren(context.statement_list())}}}";
+                return $"\nelse {{\n{this.Visit(context.statement_list())}}}";
             }
         }
 
@@ -110,7 +122,7 @@ namespace JassToCsMain
 
         public override string VisitExitwhen([NotNull] JassParser.ExitwhenContext context)
         {
-            return $"if ({this.VisitChildren(context.expr())}) {{ break; }}";
+            return $"if ({this.Visit(context.expr())}) {{ break; }}";
         }
 
         public override string VisitExpr([NotNull] JassParser.ExprContext context)
@@ -120,41 +132,43 @@ namespace JassToCsMain
 
             if (Helper.IsIntegerDivision(context))
             {
-                return $"R2I({this.VisitChildrens(context.children)})";
+                return $"R2I({base.VisitExpr(context)})";
             }
 
             if (Helper.IsStringConcatenation(context))
             {
-                return $"S2S({this.VisitChildrens(context.children)})";
+                return $"S2S({base.VisitExpr(context)})";
             }
 
-            return this.VisitChildrens(context.children);
+            return base.VisitExpr(context);
         }
 
         public override string VisitFile([NotNull] JassParser.FileContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitFile(context);
         }
 
         public override string VisitFunc([NotNull] JassParser.FuncContext context)
         {
             Helper.FillLocalTypes(context);
 
-            var result = this.VisitChildren(context.func_declr()) + this.VisitChildren(context.local_var_list()) + this.VisitChildren(context.statement_list());
+            var func_declr = this.Visit(context.func_declr());
+            var local_var_list = this.Visit(context.local_var_list());
+            var statement_list = this.Visit(context.statement_list());
 
-            return $"function {result}\n}}\n";
+            return $"function {func_declr}{local_var_list}{statement_list}\n}}\n";
         }
 
         public override string VisitFunc_call([NotNull] JassParser.Func_callContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitFunc_call(context);
         }
 
         public override string VisitFunc_declr([NotNull] JassParser.Func_declrContext context)
         {
             Helper.functionTypes.Add(context.ID().GetText(), context.type()?.GetText());
 
-            return $"{context.ID().GetText()}({this.VisitChildren(context.param_list())}) {{\n";
+            return $"{context.ID().GetText()}({this.Visit(context.param_list())}) {{\n";
         }
 
         public override string VisitFunc_ref([NotNull] JassParser.Func_refContext context)
@@ -164,14 +178,14 @@ namespace JassToCsMain
 
         public override string VisitGlobals([NotNull] JassParser.GlobalsContext context)
         {
-            return this.VisitChildren(context.global_var_list());
+            return this.Visit(context.global_var_list());
         }
 
         public override string VisitGlobal_var_list([NotNull] JassParser.Global_var_listContext context)
         {
             Helper.FillGlobalTypes(context);
 
-            return this.VisitChildrens(context.children);
+            return base.VisitGlobal_var_list(context);
         }
 
         public override string VisitGlobal_var_declr([NotNull] Global_var_declrContext context)
@@ -181,24 +195,24 @@ namespace JassToCsMain
                 context.children.RemoveAt(0);
             }
 
-            return $"{this.VisitChildrens(context.children)}\n";
+            return $"{base.VisitGlobal_var_declr(context)}\n";
         }
 
         public override string VisitIfthenelse([NotNull] JassParser.IfthenelseContext context)
         {
-            return $"if ({this.VisitChildren(context.expr())}) {{\n{this.VisitChildren(context.statement_list())}}}{this.VisitChildren(context.else_clause())}"; ;
+            return $"if ({this.Visit(context.expr())}) {{\n{this.Visit(context.statement_list())}}}{this.Visit(context.else_clause())}"; ;
         }
 
         public override string VisitInt_const([NotNull] JassParser.Int_constContext context)
         {
             Helper.ReplaceHex(context);
 
-            return this.VisitChildrens(context.children);
+            return base.VisitInt_const(context);
         }
 
         public override string VisitLocal_var_list([NotNull] JassParser.Local_var_listContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitLocal_var_list(context);
         }
 
         public override string VisitLocal_var_declr([NotNull] JassParser.Local_var_declrContext context)
@@ -206,17 +220,17 @@ namespace JassToCsMain
             // Remove local keyword
             context.children?.RemoveAt(0);
 
-            return $"{this.VisitChildrens(context.children)}\n";
+            return $"{base.VisitLocal_var_declr(context)}\n";
         }
 
         public override string VisitLoop([NotNull] JassParser.LoopContext context)
         {
-            return $"do {{\n{this.VisitChildren(context.statement_list())}}} while(true)";
+            return $"do {{\n{this.Visit(context.statement_list())}}} while(true)";
         }
 
         public override string VisitNative_func([NotNull] JassParser.Native_funcContext context)
         {
-            return $"function {this.VisitChildren(context.func_declr())}\n}}\n";
+            return $"function {this.Visit(context.func_declr())}\n}}\n";
         }
 
         public override string VisitParam_list([NotNull] JassParser.Param_listContext context)
@@ -226,7 +240,7 @@ namespace JassToCsMain
 
         public override string VisitParens([NotNull] JassParser.ParensContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitParens(context);
         }
 
         public override string VisitReturn_stat([NotNull] JassParser.Return_statContext context)
@@ -241,17 +255,17 @@ namespace JassToCsMain
 
             Helper.ReplaceInvalidVariableName(context);
 
-            return this.VisitChildrens(context.children);
+            return base.VisitSet(context);
         }
 
         public override string VisitStatement([NotNull] JassParser.StatementContext context)
         {
-            return $"{this.VisitChildrens(context.children)}\n";
+            return $"{base.VisitStatement(context)}\n";
         }
 
         public override string VisitStatement_list([NotNull] JassParser.Statement_listContext context)
         {
-            return this.VisitChildrens(context.children);
+            return base.VisitStatement_list(context);
         }
 
         public override string VisitType([NotNull] JassParser.TypeContext context)
@@ -273,10 +287,10 @@ namespace JassToCsMain
                 // Remove array keyword
                 context.children?.RemoveAt(1);
 
-                return $"{this.VisitChildrens(context.children)} = []\n";
+                return $"{base.VisitVar_declr(context)} = []\n";
             }
 
-            return $"{this.VisitChildrens(context.children)}\n";
+            return $"{base.VisitVar_declr(context)}\n";
         }
     }
 }

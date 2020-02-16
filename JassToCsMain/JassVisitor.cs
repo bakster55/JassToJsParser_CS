@@ -101,13 +101,17 @@ namespace JassToCsMain
 
         public override string VisitElse_clause([NotNull] JassParser.Else_clauseContext context)
         {
+            var statement_list = this.Visit(context.statement_list());
             if (context.K_ELSEIF() != null)
             {
-                return $"\nelse {{\nif({this.Visit(context.expr())}) {{\n{this.Visit(context.statement_list())}}}{this.Visit(context.else_clause())}\n}}";
+                var expr = this.Visit(context.expr());
+                var else_clause = this.Visit(context.else_clause());
+
+                return $"\nelse {{\nif({expr}) {{\n{statement_list}}}{else_clause}}}";
             }
             else
             {
-                return $"\nelse {{\n{this.Visit(context.statement_list())}}}";
+                return $"\nelse {{\n{statement_list}}}";
             }
         }
 
@@ -151,7 +155,7 @@ namespace JassToCsMain
             var local_var_list = this.Visit(context.local_var_list());
             var statement_list = this.Visit(context.statement_list());
 
-            return $"function {func_declr}{local_var_list}{statement_list}\n}}\n";
+            return $"function {func_declr}{local_var_list}{statement_list}}}\n";
         }
 
         public override string VisitFunc_call([NotNull] JassParser.Func_callContext context)
@@ -190,7 +194,7 @@ namespace JassToCsMain
                 context.children.RemoveAt(0);
             }
 
-            return $"{base.VisitGlobal_var_declr(context)}\n";
+            return base.VisitGlobal_var_declr(context);
         }
 
         public override string VisitIfthenelse([NotNull] JassParser.IfthenelseContext context)
@@ -215,7 +219,7 @@ namespace JassToCsMain
             // Remove local keyword
             context.children?.RemoveAt(0);
 
-            return $"{base.VisitLocal_var_declr(context)}\n";
+            return base.VisitLocal_var_declr(context);
         }
 
         public override string VisitLoop([NotNull] JassParser.LoopContext context)
@@ -225,7 +229,7 @@ namespace JassToCsMain
 
         public override string VisitNative_func([NotNull] JassParser.Native_funcContext context)
         {
-            return $"function {this.Visit(context.func_declr())}\n}}\n";
+            return $"function {this.Visit(context.func_declr())}}}";
         }
 
         public override string VisitParam_list([NotNull] JassParser.Param_listContext context)
@@ -253,7 +257,7 @@ namespace JassToCsMain
 
         public override string VisitStatement([NotNull] JassParser.StatementContext context)
         {
-            return $"{base.VisitStatement(context)}\n";
+            return $"{base.VisitStatement(context)}";
         }
 
         public override string VisitStatement_list([NotNull] JassParser.Statement_listContext context)
@@ -278,10 +282,10 @@ namespace JassToCsMain
                 // Remove array keyword
                 context.children?.RemoveAt(1);
 
-                return $"{base.VisitVar_declr(context)} = []\n";
+                return $"{base.VisitVar_declr(context)} = [];";
             }
 
-            return $"{base.VisitVar_declr(context)}\n";
+            return $"{base.VisitVar_declr(context)};";
         }
 
         public override string VisitStringConst([NotNull] StringConstContext context)

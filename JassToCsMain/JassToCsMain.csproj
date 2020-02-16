@@ -47,31 +47,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Antlr\Jass\JassBaseListener.cs" />
-    <Compile Include="Antlr\Jass\JassBaseVisitor.cs" />
-    <Compile Include="Antlr\Jass\JassLexer.cs" />
-    <Compile Include="Antlr\Jass\JassListener.cs" />
-    <Compile Include="Antlr\Jass\JassParser.cs" />
-    <Compile Include="Antlr\Jass\JassVisitor.cs" />
+    <Compile Include="Antlr\Generated\JassBaseListener.cs" />
+    <Compile Include="Antlr\Generated\JassBaseVisitor.cs" />
+    <Compile Include="Antlr\Generated\JassLexer.cs" />
+    <Compile Include="Antlr\Generated\JassListener.cs" />
+    <Compile Include="Antlr\Generated\JassParser.cs" />
+    <Compile Include="Antlr\Generated\JassVisitor.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="JassVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Antlr\Jass\Jass.g4" />
-    <None Include="Antlr\Jass\Jass.interp" />
-    <None Include="Antlr\Jass\Jass.tokens" />
-    <None Include="Antlr\Jass\JassLexer.interp" />
-    <None Include="Antlr\Jass\JassLexer.tokens" />
+    <None Include="Antlr\Config\Jass.g4" />
+    <None Include="Antlr\Generated\Jass.interp" />
+    <None Include="Antlr\Generated\Jass.tokens" />
+    <None Include="Antlr\Generated\JassLexer.interp" />
+    <None Include="Antlr\Generated\JassLexer.tokens" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="War3Map\blizzard.j" />
     <None Include="War3Map\common.j" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Antlr\antlr-4.7.2-complete.jar" />
-    <Content Include="Antlr\readme.txt" />
+    <Content Include="Antlr\Config\antlr-4.7.2-complete.jar" />
+    <None Include="Antlr\Config\build.cmd" />
     <Content Include="War3Map\blizzard.js" />
     <Content Include="War3Map\common-functions.js" />
     <Content Include="War3Map\common.js" />

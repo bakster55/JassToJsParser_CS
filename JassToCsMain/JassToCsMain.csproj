@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr4.Runtime.Standard, Version=4.7.2.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.2\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
+    <Reference Include="Antlr4.Runtime.Standard, Version=4.8.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr4.Runtime.Standard.4.8.0\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="Antlr\Config\antlr-4.7.2-complete.jar" />
     <None Include="Antlr\Config\build.cmd" />
+    <Content Include="Antlr\Config\antlr-4.8-complete.jar" />
     <Content Include="War3Map\blizzard.js" />
     <Content Include="War3Map\common-functions.js" />
     <Content Include="War3Map\common.js" />

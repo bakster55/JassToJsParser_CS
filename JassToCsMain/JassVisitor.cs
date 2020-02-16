@@ -21,6 +21,38 @@ namespace JassToCsMain
             return string.Empty;
         }
 
+        public string VisitChildrens(IList<IParseTree> nodes, string separator = "")
+        {
+            if (nodes != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder(string.Empty);
+
+                for (int i = 0; i < nodes.Count - 1; i++)
+                {
+                    var node = nodes[i];
+                    stringBuilder.Append($"{this.Visit(node)}{separator}");
+                }
+
+                stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
+
+                return stringBuilder.ToString();
+
+                //return nodes.Aggregate(separator, (accumulator, element) => accumulator + this.Visit(element));
+            }
+
+            return string.Empty;
+        }
+
+        public override string VisitChildren(IRuleNode node)
+        {
+            return this.Visit(node);
+        }
+
+        public override string VisitTerminal(ITerminalNode node)
+        {
+            return node.Symbol.Text;
+        }
+
         public override string VisitArgs([NotNull] JassParser.ArgsContext context)
         {
             return this.VisitChildrens(context.children);
@@ -42,11 +74,6 @@ namespace JassToCsMain
             context.children?.RemoveAt(0);
 
             return this.VisitChildrens(context.children);
-        }
-
-        public override string VisitChildren(IRuleNode node)
-        {
-            return this.Visit(node);
         }
 
         public override string VisitConstant([NotNull] JassParser.ConstantContext context)
@@ -227,11 +254,6 @@ namespace JassToCsMain
             return this.VisitChildrens(context.children);
         }
 
-        public override string VisitTerminal(ITerminalNode node)
-        {
-            return node.Symbol.Text;
-        }
-
         public override string VisitType([NotNull] JassParser.TypeContext context)
         {
             return "var ";
@@ -255,28 +277,6 @@ namespace JassToCsMain
             }
 
             return $"{this.VisitChildrens(context.children)}\n";
-        }
-
-        private string VisitChildrens(IList<IParseTree> nodes, string separator = "")
-        {
-            if (nodes != null)
-            {
-                StringBuilder stringBuilder = new StringBuilder(string.Empty);
-
-                for (int i = 0; i < nodes.Count - 1; i++)
-                {
-                    var node = nodes[i];
-                    stringBuilder.Append($"{this.Visit(node)}{separator}");
-                }
-
-                stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
-
-                return stringBuilder.ToString();
-
-                //return nodes.Aggregate(separator, (accumulator, element) => accumulator + this.Visit(element));
-            }
-
-            return string.Empty;
         }
     }
 }

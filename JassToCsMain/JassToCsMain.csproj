@@ -70,7 +70,6 @@
     <None Include="War3Map\common.j" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Antlr\Config\antlr-4.7.2-complete.jar" />
     <None Include="Antlr\Config\build.cmd" />
     <Content Include="Antlr\Config\antlr-4.8-complete.jar" />
     <Content Include="War3Map\blizzard.js" />

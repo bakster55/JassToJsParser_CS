@@ -1,0 +1,1 @@
+antlr-4.7.2-complete.jar -Dlanguage=CSharp Jass/Jass.g4 -o Jass -visitor

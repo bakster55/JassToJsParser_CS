@@ -3,6 +3,7 @@ using Antlr4.Runtime.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using static JassParser;
 
 namespace JassToCsMain
@@ -17,13 +18,14 @@ namespace JassToCsMain
 
         public static string Parse(string path)
         {
-            ICharStream charStream = CharStreams.fromPath(path);
+            ICharStream charStream = CharStreams.fromPath(path, Encoding.Default);
 
             var lexer = new JassLexer(charStream);
             var tokens = new CommonTokenStream(lexer);
             var parser = new JassParser(tokens);
             parser.BuildParseTree = true;
-            var tree = parser.file();
+
+            FileContext tree = parser.file();
             var visitor = new JassVisitor();
 
             return visitor.Visit(tree);
@@ -174,27 +176,40 @@ namespace JassToCsMain
             return false;
         }
 
+        public static bool IsFourccConcatenation(ExprContext context)
+        {
+            if (context.ADD() != null)
+            {
+                var expressions = context.expr();
+
+                if (expressions != null && expressions.Length > 0 && IsExpressionOfType(expressions[0], "fourcc") && IsExpressionOfType(expressions[1], "fourcc"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static bool IsExpressionOfType(ExprContext exprContext, string exprType)
         {
-            string objectName = null;
-
-            var localFuncName1 = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();
-            if (localFuncName1 == "BBx")
-            {
-
-            }
-
-            if (exprContext?.constant()?.int_const() != null && exprType == "integer")
+            if (exprType == "integer" && exprContext?.constant()?.int_const() != null)
             {
                 return true;
             }
 
-            if (exprContext?.constant()?.stringConst() != null && exprType == "string")
+            if (exprType == "fourcc" && exprContext?.constant()?.int_const()?.FOURCC() != null)
             {
                 return true;
             }
 
-            objectName = exprContext.id()?.GetText();
+            if (exprType == "string" && exprContext?.constant()?.stringConst() != null)
+            {
+                return true;
+            }
+
+            // Not constant value, try to find type by variable declaration
+            string objectName = exprContext.id()?.GetText();
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();

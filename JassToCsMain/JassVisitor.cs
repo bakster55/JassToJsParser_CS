@@ -9,31 +9,13 @@ namespace JassToCsMain
 {
     class JassVisitor : JassBaseVisitor<string>
     {
+        #region Inherited
+
         public override string Visit(IParseTree tree)
         {
             if (tree != null)
             {
                 return tree.Accept(this);
-            }
-
-            return string.Empty;
-        }
-
-        public string VisitChildrens(IList<IParseTree> nodes, string separator = "")
-        {
-            if (nodes != null)
-            {
-                StringBuilder stringBuilder = new StringBuilder(string.Empty);
-
-                for (int i = 0; i < nodes.Count - 1; i++)
-                {
-                    var node = nodes[i];
-                    stringBuilder.Append($"{this.Visit(node)}{separator}");
-                }
-
-                stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
-
-                return stringBuilder.ToString();
             }
 
             return string.Empty;
@@ -59,6 +41,35 @@ namespace JassToCsMain
             return aggregate != null
                 ? aggregate + nextResult
                 : nextResult;
+        }
+
+        public override string VisitErrorNode(IErrorNode node)
+        {
+            return null;
+        }
+
+        #endregion
+
+        #region Custom code
+
+        public string VisitChildrens(IList<IParseTree> nodes, string separator = "")
+        {
+            if (nodes != null)
+            {
+                StringBuilder stringBuilder = new StringBuilder(string.Empty);
+
+                for (int i = 0; i < nodes.Count - 1; i++)
+                {
+                    var node = nodes[i];
+                    stringBuilder.Append($"{this.Visit(node)}{separator}");
+                }
+
+                stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
+
+                return stringBuilder.ToString();
+            }
+
+            return string.Empty;
         }
 
         public override string VisitArgs([NotNull] JassParser.ArgsContext context)
@@ -115,11 +126,6 @@ namespace JassToCsMain
             }
         }
 
-        public override string VisitErrorNode(IErrorNode node)
-        {
-            return this.Visit(node);
-        }
-
         public override string VisitExitwhen([NotNull] JassParser.ExitwhenContext context)
         {
             return $"if ({this.Visit(context.expr())}) {{ break; }}";
@@ -137,6 +143,26 @@ namespace JassToCsMain
             if (Helper.IsStringConcatenation(context))
             {
                 return $"S2S({base.VisitExpr(context)})";
+            }
+
+            // Optional
+            if (Helper.IsFourccConcatenation(context))
+            {
+                var expressions = context.expr();
+                var fourcc1 = expressions[0]?.constant()?.int_const()?.FOURCC().Symbol.Text;
+                var fourcc2 = expressions[1]?.constant()?.int_const()?.FOURCC().Symbol.Text;
+
+                if (fourcc1== "'½·ó4'")
+                {
+
+                }
+
+                // 0 and 5 are parenteses
+                int num1 = (sbyte)fourcc1[1] * 256 * 256 * 256 + (sbyte)fourcc1[2] * 256 * 256 + (sbyte)fourcc1[3] * 256 + (sbyte)fourcc1[4];
+                int num2 = (sbyte)fourcc2[1] * 256 * 256 * 256 + (sbyte)fourcc2[2] * 256 * 256 + (sbyte)fourcc2[3] * 256 + (sbyte)fourcc2[4];
+                int num3 = num1 + num2;
+
+                return num3.ToString();
             }
 
             return base.VisitExpr(context);
@@ -307,5 +333,7 @@ namespace JassToCsMain
 
             return Helper.ReplaceInvalidVariableName(id);
         }
+
+        #endregion
     }
 }

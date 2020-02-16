@@ -18,7 +18,8 @@ namespace JassToCsMain
 
             //File.WriteAllText($@"{basePath}\blizzard.js", Helper.Parse($@"{basePath}\blizzard.j"));
 
-            string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
+            //string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
+            string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\DisRPGv.B1.58u";
 
             File.WriteAllText($@"{baseJassPath}\war3map.js", Helper.Parse($@"{baseJassPath}\war3map.j"));
         }

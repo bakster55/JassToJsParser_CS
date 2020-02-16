@@ -419,6 +419,18 @@ public partial class JassBaseListener : IJassListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBoolConst([NotNull] JassParser.BoolConstContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.stringConst"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterStringConst([NotNull] JassParser.StringConstContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.stringConst"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitStringConst([NotNull] JassParser.StringConstContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -430,6 +442,18 @@ public partial class JassBaseListener : IJassListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitType([NotNull] JassParser.TypeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.id"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterId([NotNull] JassParser.IdContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.id"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitId([NotNull] JassParser.IdContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

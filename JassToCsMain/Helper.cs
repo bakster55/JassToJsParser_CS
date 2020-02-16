@@ -29,7 +29,7 @@ namespace JassToCsMain
             return visitor.Visit(tree);
         }
 
-        public static void ReplaceInvalidVariableName(ParserRuleContext context)
+        public static string ReplaceInvalidVariableName(string id)
         {
             List<string> reservedKeywords = new List<string>()
             {
@@ -37,18 +37,14 @@ namespace JassToCsMain
                 "in"
             };
 
-            var token = context.GetToken(JassLexer.ID, 0);
+            var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id == rk);
 
-            if (token != null)
+            if (reservedKeyword != null)
             {
-                var reservedKeyword = reservedKeywords.FirstOrDefault(rk => token.Symbol.Text == rk);
-
-                if (reservedKeyword != null)
-                {
-                    var index = context.children.IndexOf(token);
-                    context.children[index] = new TerminalNodeImpl(new CommonToken(JassLexer.ID, $"{reservedKeyword}{reservedKeyword}"));
-                }
+                return $"{reservedKeyword}{reservedKeyword}";
             }
+
+            return id;
         }
 
         public static void ReplaceBinaryOperator(ParserRuleContext context)
@@ -91,7 +87,7 @@ namespace JassToCsMain
                 foreach (var varDecl in varDeclContext)
                 {
                     var type = varDecl.type().GetText();
-                    var name = varDecl.ID().Symbol.Text;
+                    var name = varDecl.id().ID().Symbol.Text;
                     globalTypes.Add(name, type);
                 }
             }
@@ -114,7 +110,7 @@ namespace JassToCsMain
 
         public static void FillLocalTypes(FuncContext context)
         {
-            var funcName = context.func_declr().ID().GetText();
+            var funcName = context.func_declr().id().GetText();
             localTypes.Add(funcName, new Dictionary<string, string>());
 
             var localVarDeclContext = context.local_var_list()?.local_var_declr();
@@ -127,12 +123,12 @@ namespace JassToCsMain
                     var varDeclContext = localVarDecl.var_declr();
 
                     var type = varDeclContext.type().GetText();
-                    var name = varDeclContext.ID().GetText();
+                    var name = varDeclContext.id().GetText();
                     localTypes[funcName].Add(name, type);
                 }
             }
 
-            var paramNamesList = context.func_declr()?.param_list()?.ID();
+            var paramNamesList = context.func_declr()?.param_list()?.id();
 
             if (paramNamesList != null && paramNamesList.Length > 0)
             {
@@ -193,25 +189,25 @@ namespace JassToCsMain
                 return true;
             }
 
-            if (exprContext?.constant()?.STRING_CONST() != null && exprType == "string")
+            if (exprContext?.constant()?.stringConst() != null && exprType == "string")
             {
                 return true;
             }
 
-            objectName = exprContext.ID()?.GetText();
+            objectName = exprContext.id()?.GetText();
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();
                 return GetValueOrDefault(globalTypes, objectName) == exprType || GetValueOrDefault(GetValueOrDefault(localTypes, localFuncName), objectName) == exprType;
             }
 
-            objectName = exprContext.func_call()?.ID()?.GetText();
+            objectName = exprContext.func_call()?.id()?.GetText();
             if (objectName != null)
             {
                 return GetValueOrDefault(functionTypes, objectName) == exprType;
             }
 
-            objectName = exprContext.array_ref()?.ID()?.GetText();
+            objectName = exprContext.array_ref()?.id()?.GetText();
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();

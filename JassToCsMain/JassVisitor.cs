@@ -1,10 +1,8 @@
-using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using static JassParser;
 
 namespace JassToCsMain
@@ -36,8 +34,6 @@ namespace JassToCsMain
                 stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
 
                 return stringBuilder.ToString();
-
-                //return nodes.Aggregate(separator, (accumulator, element) => accumulator + this.Visit(element));
             }
 
             return string.Empty;
@@ -127,7 +123,6 @@ namespace JassToCsMain
 
         public override string VisitExpr([NotNull] JassParser.ExprContext context)
         {
-            Helper.ReplaceInvalidVariableName(context);
             Helper.ReplaceBinaryOperator(context);
 
             if (Helper.IsIntegerDivision(context))
@@ -166,14 +161,14 @@ namespace JassToCsMain
 
         public override string VisitFunc_declr([NotNull] JassParser.Func_declrContext context)
         {
-            Helper.functionTypes.Add(context.ID().GetText(), context.type()?.GetText());
+            Helper.functionTypes.Add(context.id().GetText(), context.type()?.GetText());
 
-            return $"{context.ID().GetText()}({this.Visit(context.param_list())}) {{\n";
+            return $"{context.id().GetText()}({this.Visit(context.param_list())}) {{\n";
         }
 
         public override string VisitFunc_ref([NotNull] JassParser.Func_refContext context)
         {
-            return $"{context.ID().GetText()}";
+            return $"{context.id().GetText()}";
         }
 
         public override string VisitGlobals([NotNull] JassParser.GlobalsContext context)
@@ -235,7 +230,7 @@ namespace JassToCsMain
 
         public override string VisitParam_list([NotNull] JassParser.Param_listContext context)
         {
-            return this.VisitChildrens(context.ID(), ",");
+            return this.VisitChildrens(context.id(), ",");
         }
 
         public override string VisitParens([NotNull] JassParser.ParensContext context)
@@ -252,8 +247,6 @@ namespace JassToCsMain
         {
             // Remove set keyword
             context.children?.RemoveAt(0);
-
-            Helper.ReplaceInvalidVariableName(context);
 
             return base.VisitSet(context);
         }
@@ -280,8 +273,6 @@ namespace JassToCsMain
 
         public override string VisitVar_declr([NotNull] JassParser.Var_declrContext context)
         {
-            Helper.ReplaceInvalidVariableName(context);
-
             if (context.K_ARRAY() != null)
             {
                 // Remove array keyword
@@ -291,6 +282,26 @@ namespace JassToCsMain
             }
 
             return $"{base.VisitVar_declr(context)}\n";
+        }
+
+        public override string VisitStringConst([NotNull] StringConstContext context)
+        {
+            var stringConst = base.VisitStringConst(context);
+
+            Regex regex = new Regex("[\r\n]");
+            if (regex.IsMatch(stringConst))
+            {
+                return regex.Replace(stringConst, string.Empty);
+            }
+
+            return stringConst;
+        }
+
+        public override string VisitId([NotNull] IdContext context)
+        {
+            var id = base.VisitId(context);
+
+            return Helper.ReplaceInvalidVariableName(id);
         }
     }
 }

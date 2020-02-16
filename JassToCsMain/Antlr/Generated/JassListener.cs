@@ -351,6 +351,16 @@ public interface IJassListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBoolConst([NotNull] JassParser.BoolConstContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.stringConst"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStringConst([NotNull] JassParser.StringConstContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.stringConst"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStringConst([NotNull] JassParser.StringConstContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -360,4 +370,14 @@ public interface IJassListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitType([NotNull] JassParser.TypeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.id"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterId([NotNull] JassParser.IdContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.id"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitId([NotNull] JassParser.IdContext context);
 }

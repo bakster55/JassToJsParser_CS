@@ -47,7 +47,7 @@ declr
 
 // typedef  ::= 'type' id 'extends' ( 'handle' | id )
 typedef
- : K_TYPE ID K_EXTENDS (K_HANDLE | ID)
+ : K_TYPE id K_EXTENDS (K_HANDLE | id)
  ;
 
 // globals  ::= 'globals' newline global_var_list 'endglobals'
@@ -62,7 +62,7 @@ global_var_list
  ;
 
   global_var_declr
- : K_CONSTANT type ID ASSIGN expr
+ : K_CONSTANT type id ASSIGN expr
  ;
 
 // native_func
@@ -74,13 +74,13 @@ native_func
 // func_declr
 //          ::= id 'takes' ( 'nothing' | param_list ) 'returns' ( type | 'nothing' )
 func_declr
- : ID K_TAKES (K_NOTHING | param_list) K_RETURNS (type | K_NOTHING)
+ : id K_TAKES (K_NOTHING | param_list) K_RETURNS (type | K_NOTHING)
  ;
 
 // param_list
 //          ::= type id ( ',' type id )*
 param_list
- : type ID (COMMA type ID)*
+ : type id (COMMA type id)*
  ;
 
 // func     ::= 'constant'? 'function' func_declr newline local_var_list statement_list 'endfunction' newline
@@ -102,8 +102,8 @@ func
 //          ::= type id ( '=' expr )?
 //            | type 'array' id
 var_declr
- : type ID (ASSIGN expr)?
- | type K_ARRAY ID
+ : type id (ASSIGN expr)?
+ | type K_ARRAY id
  ;
 
 // statement_list
@@ -133,13 +133,13 @@ statement
 // set      ::= 'set' id '=' expr
 //            | 'set' id '[' expr ']' '=' expr
 set
- : K_SET ID ASSIGN expr
- | K_SET ID O_BRACK expr C_BRACK ASSIGN expr
+ : K_SET id ASSIGN expr
+ | K_SET id O_BRACK expr C_BRACK ASSIGN expr
  ;
 
 // call     ::= 'call' id '(' args? ')'
 call
- : K_CALL ID O_PAR args? C_PAR
+ : K_CALL id O_PAR args? C_PAR
  ;
 
 // args     ::= expr ( ',' expr )*
@@ -206,7 +206,7 @@ expr
  | func_call
  | array_ref
  | func_ref
- | ID
+ | id
  | constant
  | parens
  ;
@@ -214,18 +214,18 @@ expr
 // func_call
 //          ::= id '(' args? ')'
 func_call
- : ID O_PAR args? C_PAR
+ : id O_PAR args? C_PAR
  ;
 
 // array_ref
 //          ::= id '[' expr ']'
 array_ref
- : ID O_BRACK expr C_BRACK
+ : id O_BRACK expr C_BRACK
  ;
 
 // func_ref ::= 'function' id
 func_ref
- : K_FUNCTION ID
+ : K_FUNCTION id
  ;
 
 // const    ::= int_const
@@ -237,7 +237,7 @@ constant
  : int_const
  | REAL_CONST
  | boolConst
- | STRING_CONST
+ | stringConst
  | K_NULL
  ;
 
@@ -266,6 +266,12 @@ boolConst
  | K_FALSE
  ;
 
+// string_const
+//          ::= '"' .* '"'
+stringConst
+ : STRING_CONST
+ ;
+
 // type     ::= id
 //            | 'code'
 //            | 'handle'
@@ -274,7 +280,7 @@ boolConst
 //            | 'boolean'
 //            | 'string'
 type
- : ID
+ : id
  | K_CODE
  | K_HANDLE
  | K_INTEGER
@@ -375,6 +381,11 @@ REAL_CONST
 //          ::= '"' .* '"'
 STRING_CONST
  : '"' .*? '"'
+ ;
+
+// id       ::= [a-zA-Z] ( [a-zA-Z0-9_]* [a-zA-Z0-9] )?
+id
+ : ID
  ;
 
 // id       ::= [a-zA-Z] ( [a-zA-Z0-9_]* [a-zA-Z0-9] )?

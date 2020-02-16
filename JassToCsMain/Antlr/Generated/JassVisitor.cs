@@ -224,9 +224,21 @@ public interface IJassVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBoolConst([NotNull] JassParser.BoolConstContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.stringConst"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStringConst([NotNull] JassParser.StringConstContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitType([NotNull] JassParser.TypeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.id"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitId([NotNull] JassParser.IdContext context);
 }

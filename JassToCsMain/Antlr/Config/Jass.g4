@@ -33,7 +33,7 @@ input files.
 
 // file     ::= newline? ( declr newline )* func*
 file
- : NEWLINE? (declr NEWLINE)* func*
+ : (declr)* func*
  ;
 
 // declr    ::= typedef
@@ -52,13 +52,13 @@ typedef
 
 // globals  ::= 'globals' newline global_var_list 'endglobals'
 globals
- : K_GLOBALS NEWLINE global_var_list K_ENDGLOBALS
+ : K_GLOBALS global_var_list K_ENDGLOBALS
  ;
 
 // global_var_list
 //          ::= ( 'constant' type id '=' expr newline | var_declr newline )*
 global_var_list
- : (global_var_declr NEWLINE | var_declr NEWLINE)*
+ : (global_var_declr | var_declr)*
  ;
 
   global_var_declr
@@ -85,7 +85,7 @@ param_list
 
 // func     ::= 'constant'? 'function' func_declr newline local_var_list statement_list 'endfunction' newline
 func
- : K_CONSTANT? K_FUNCTION func_declr NEWLINE local_var_list statement_list K_ENDFUNCTION NEWLINE
+ : K_CONSTANT? K_FUNCTION func_declr local_var_list statement_list K_ENDFUNCTION
  ;
 
 // local_var_list
@@ -95,7 +95,7 @@ func
  ;
 
  local_var_declr
- : K_LOCAL var_declr NEWLINE
+ : K_LOCAL var_declr
  ;
 
 // var_declr
@@ -109,7 +109,7 @@ var_declr
 // statement_list
 //          ::= ( statement newline )*
 statement_list
- : (statement NEWLINE)*
+ : (statement)*
  ;
 
 // statement
@@ -150,20 +150,20 @@ args
 // ifthenelse
 //          ::= 'if' expr 'then' newline statement_list else_clause? 'endif'
 ifthenelse
- : K_IF expr K_THEN NEWLINE statement_list else_clause? K_ENDIF
+ : K_IF expr K_THEN statement_list else_clause? K_ENDIF
  ;
 
 // else_clause
 //          ::= 'else' newline statement_list
 //            | 'elseif' expr 'then' newline statement_list else_clause?
 else_clause
- : K_ELSE NEWLINE statement_list
- | K_ELSEIF expr K_THEN NEWLINE statement_list else_clause?
+ : K_ELSE statement_list
+ | K_ELSEIF expr K_THEN statement_list else_clause?
  ;
 
 // loop     ::= 'loop' newline statement_list 'endloop'
 loop
- : K_LOOP NEWLINE statement_list K_ENDLOOP
+ : K_LOOP statement_list K_ENDLOOP
  ;
 
 // exitwhen ::= 'exitwhen' expr
@@ -396,12 +396,8 @@ ID
  ;
 
 // newline  ::= '\n'+
-NEWLINE
- : [\r\n]+
- ;
-
-SPACE
- : [ \t] -> skip
+WS
+ : [ \t\r\n]+ -> channel(HIDDEN)
  ;
 
 COMMENT

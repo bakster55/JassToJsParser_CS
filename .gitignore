@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 JASS_TO_JS_PARSER/war3map/
+JASS_TO_JS_PARSER/resources/
+JASS_TO_JS_PARSER/test/
 
 # Node.js Tools for Visual Studio
 node_modules/

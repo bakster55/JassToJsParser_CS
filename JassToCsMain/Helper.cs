@@ -46,7 +46,9 @@ namespace JassToCsMain
             List<string> reservedKeywords = new List<string>()
             {
                 "do",
-                "in"
+                "in",
+                "this",
+                "class"
             };
 
             var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id.ToString() == rk);
@@ -100,7 +102,11 @@ namespace JassToCsMain
                 {
                     var type = varDecl.type().GetText();
                     var name = varDecl.id().ID().Symbol.Text;
-                    globalTypes.Add(name, type);
+
+                    if (!globalTypes.ContainsKey(name))
+                    {
+                        globalTypes.Add(name, type);
+                    }
                 }
             }
             else
@@ -123,6 +129,11 @@ namespace JassToCsMain
         public static void FillLocalTypes(FuncContext context)
         {
             var funcName = context.func_declr().id().GetText();
+            if (localTypes.ContainsKey(funcName))
+            {
+                return;
+            }
+
             localTypes.Add(funcName, new Dictionary<string, string>());
 
             var localVarDeclContext = context.local_var_list()?.local_var_declr();

@@ -8,9 +8,9 @@ using System.IO;
 
 namespace JassToCsMain
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             string basePath = @"F:\JassToCsParser\JassToCsMain\JassToCsMain\War3Map";
 
@@ -19,10 +19,29 @@ namespace JassToCsMain
             //File.WriteAllText($@"{basePath}\blizzard.js", Helper.Parse($@"{basePath}\blizzard.j"));
 
             //string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
-            string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\DisRPGv.B1.58u";
+            string baseJassPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map\DisRPGv.B1.58u";
 
-            string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
+            //string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
             //File.WriteAllText($@"{baseJassPath}\war3map111.js", parsed);
+
+            Test();
+        }
+
+        public static void Test()
+        {
+            string baseWar3mapPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map";
+            string baseTestPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\test";
+            string[] subdirectoryPathList = Directory.GetDirectories(baseWar3mapPath);
+
+            foreach(string subdirectoryPath in subdirectoryPathList)
+            {
+                string subdirectoryName = subdirectoryPath.Remove(0, baseWar3mapPath.Length);
+                string fileName = subdirectoryPath + "\\war3map.j";
+                string content = Helper.Parse(fileName);
+
+                string baseTestFilePath = baseTestPath + subdirectoryName + ".js";
+                File.WriteAllText(baseTestFilePath, content);
+            }
         }
     }
 }

@@ -108,7 +108,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitDeclr([NotNull] JassParser.DeclrContext context)
         {
-            return base.VisitDeclr(context);
+            return new StringBuilder($"{base.VisitDeclr(context)}\n");
         }
 
         public override StringBuilder VisitElse_clause([NotNull] JassParser.Else_clauseContext context)
@@ -119,7 +119,7 @@ namespace JassToCsMain
                 var expr = this.Visit(context.expr());
                 var else_clause = this.Visit(context.else_clause());
 
-                return new StringBuilder($"\nelse {{\nif({expr}) {{\n{statement_list}}}{else_clause}}}");
+                return new StringBuilder($"\nelse {{\nif({expr}) {{\n{statement_list}}}{else_clause}\n}}");
             }
             else
             {
@@ -195,7 +195,11 @@ namespace JassToCsMain
 
         public override StringBuilder VisitFunc_declr([NotNull] JassParser.Func_declrContext context)
         {
-            Helper.functionTypes.Add(context.id().GetText(), context.type()?.GetText());
+            string key = context.id().GetText();
+            if (!Helper.functionTypes.ContainsKey(key))
+            {
+                Helper.functionTypes.Add(key, context.type()?.GetText());
+            }
 
             return new StringBuilder($"{context.id().GetText()}({this.Visit(context.param_list())}) {{\n");
         }
@@ -224,7 +228,7 @@ namespace JassToCsMain
                 context.children.RemoveAt(0);
             }
 
-            return base.VisitGlobal_var_declr(context);
+            return new StringBuilder($"{base.VisitGlobal_var_declr(context)}\n");
         }
 
         public override StringBuilder VisitIfthenelse([NotNull] JassParser.IfthenelseContext context)
@@ -249,7 +253,7 @@ namespace JassToCsMain
             // Remove local keyword
             context.children?.RemoveAt(0);
 
-            return base.VisitLocal_var_declr(context);
+            return new StringBuilder($"{base.VisitLocal_var_declr(context)}\n");
         }
 
         public override StringBuilder VisitLoop([NotNull] JassParser.LoopContext context)
@@ -287,7 +291,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitStatement([NotNull] JassParser.StatementContext context)
         {
-            return new StringBuilder($"{base.VisitStatement(context)}");
+            return new StringBuilder($"{base.VisitStatement(context)}\n");
         }
 
         public override StringBuilder VisitStatement_list([NotNull] JassParser.Statement_listContext context)
@@ -312,10 +316,10 @@ namespace JassToCsMain
                 // Remove array keyword
                 context.children?.RemoveAt(1);
 
-                return new StringBuilder($"{base.VisitVar_declr(context)} = [];");
+                return new StringBuilder($"{base.VisitVar_declr(context)} = [];\n");
             }
 
-            return new StringBuilder($"{base.VisitVar_declr(context)};");
+            return new StringBuilder($"{base.VisitVar_declr(context)};\n");
         }
 
         public override StringBuilder VisitStringConst([NotNull] StringConstContext context)

@@ -22,7 +22,7 @@ namespace JassToCsMain
             string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\DisRPGv.B1.58u";
 
             string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
-            File.WriteAllText($@"{baseJassPath}\war3map111.js", parsed);
+            //File.WriteAllText($@"{baseJassPath}\war3map111.js", parsed);
         }
     }
 }

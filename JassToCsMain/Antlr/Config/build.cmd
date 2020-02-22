@@ -1,1 +1,0 @@
-antlr-4.8-complete.jar -Dlanguage=CSharp Jass.g4 -o "../Generated" -visitor

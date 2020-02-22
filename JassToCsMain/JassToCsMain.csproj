@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Antlr\Generated\JassBaseListener.cs" />
-    <Compile Include="Antlr\Generated\JassBaseVisitor.cs" />
-    <Compile Include="Antlr\Generated\JassLexer.cs" />
-    <Compile Include="Antlr\Generated\JassListener.cs" />
-    <Compile Include="Antlr\Generated\JassParser.cs" />
-    <Compile Include="Antlr\Generated\JassVisitor.cs" />
+    <Compile Include="Antlr\CS\JassBaseListener.cs" />
+    <Compile Include="Antlr\CS\JassBaseVisitor.cs" />
+    <Compile Include="Antlr\CS\JassLexer.cs" />
+    <Compile Include="Antlr\CS\JassListener.cs" />
+    <Compile Include="Antlr\CS\JassParser.cs" />
+    <Compile Include="Antlr\CS\JassVisitor.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="JassVisitor.cs" />
     <Compile Include="Program.cs" />
@@ -60,19 +60,28 @@
     <Compile Include="TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Antlr\Config\Build_JS.cmd" />
     <None Include="Antlr\Config\Jass.g4" />
-    <None Include="Antlr\Generated\Jass.interp" />
-    <None Include="Antlr\Generated\Jass.tokens" />
-    <None Include="Antlr\Generated\JassLexer.interp" />
-    <None Include="Antlr\Generated\JassLexer.tokens" />
+    <None Include="Antlr\CS\Jass.interp" />
+    <None Include="Antlr\CS\Jass.tokens" />
+    <None Include="Antlr\CS\JassLexer.interp" />
+    <None Include="Antlr\CS\JassLexer.tokens" />
+    <None Include="Antlr\JS\Jass.interp" />
+    <None Include="Antlr\JS\Jass.tokens" />
+    <None Include="Antlr\JS\JassLexer.interp" />
+    <None Include="Antlr\JS\JassLexer.tokens" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="War3Map\blizzard.j" />
     <None Include="War3Map\common.j" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Antlr\Config\build.cmd" />
+    <None Include="Antlr\Config\Build_CS.cmd" />
     <Content Include="Antlr\Config\antlr-4.8-complete.jar" />
+    <Content Include="Antlr\JS\JassLexer.js" />
+    <Content Include="Antlr\JS\JassListener.js" />
+    <Content Include="Antlr\JS\JassParser.js" />
+    <Content Include="Antlr\JS\JassVisitor.js" />
     <Content Include="War3Map\blizzard.js" />
     <Content Include="War3Map\common-functions.js" />
     <Content Include="War3Map\common.js" />

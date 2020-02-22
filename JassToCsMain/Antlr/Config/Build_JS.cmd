@@ -1,0 +1,1 @@
+antlr-4.8-complete.jar -Dlanguage=JavaScript Jass.g4 -o "../JS" -visitor

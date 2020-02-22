@@ -18,20 +18,30 @@ namespace JassToCsMain
 
         public static string Parse(string path)
         {
-            ICharStream charStream = CharStreams.fromPath(path, Encoding.Default);
+            FileContext tree;
+            using (new TimeTracker("parsing"))
+            {
+                ICharStream charStream = CharStreams.fromPath(path, Encoding.Default);
 
-            var lexer = new JassLexer(charStream);
-            var tokens = new CommonTokenStream(lexer);
-            var parser = new JassParser(tokens);
-            parser.BuildParseTree = true;
+                var lexer = new JassLexer(charStream);
+                var tokens = new CommonTokenStream(lexer);
+                var parser = new JassParser(tokens);
+                parser.BuildParseTree = true;
 
-            FileContext tree = parser.file();
-            var visitor = new JassVisitor();
+                tree = parser.file();
+            }
 
-            return visitor.Visit(tree);
+            string content;
+            using (new TimeTracker("visiting"))
+            {
+                var visitor = new JassVisitor();
+                content = visitor.Visit(tree).ToString();
+            }
+
+            return content;
         }
 
-        public static string ReplaceInvalidVariableName(string id)
+        public static StringBuilder ReplaceInvalidVariableName(StringBuilder id)
         {
             List<string> reservedKeywords = new List<string>()
             {
@@ -39,11 +49,11 @@ namespace JassToCsMain
                 "in"
             };
 
-            var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id == rk);
+            var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id.ToString() == rk);
 
             if (reservedKeyword != null)
             {
-                return $"{reservedKeyword}{reservedKeyword}";
+                return new StringBuilder($"{reservedKeyword}{reservedKeyword}");
             }
 
             return id;

@@ -82,14 +82,15 @@ namespace JassToCsMain
             }
         }
 
-        public static void ReplaceHex(ParserRuleContext context)
+        public static int HexToDecimal(string jassHex)
         {
-            var token = context.GetToken(JassLexer.HEX, 0);
-            if (token != null && token.Symbol.Text[0] == '$')
+            string hex = jassHex;
+            if (jassHex[0] == '$')
             {
-                var index = context.children.IndexOf(token);
-                context.children[index] = new TerminalNodeImpl(new CommonToken(JassLexer.ID, token.Symbol.Text.Replace("$", "0x")));
+                hex = jassHex.Replace("$", "0x");
             }
+
+            return Convert.ToInt32(hex, 16);
         }
 
         public static void FillGlobalTypes(Global_var_listContext context)

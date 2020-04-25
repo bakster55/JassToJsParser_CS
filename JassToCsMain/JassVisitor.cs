@@ -238,7 +238,11 @@ namespace JassToCsMain
 
         public override StringBuilder VisitInt_const([NotNull] JassParser.Int_constContext context)
         {
-            Helper.ReplaceHex(context);
+            ITerminalNode hex = context.HEX();
+            if (hex != null)
+            {
+                return new StringBuilder($"{Helper.HexToDecimal(hex.Symbol.Text)}");
+            }
 
             return base.VisitInt_const(context);
         }

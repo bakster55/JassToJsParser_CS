@@ -53,6 +53,7 @@
     <Compile Include="Antlr\CS\JassListener.cs" />
     <Compile Include="Antlr\CS\JassParser.cs" />
     <Compile Include="Antlr\CS\JassVisitor.cs" />
+    <Compile Include="NumberConvertHelper.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="JassVisitor.cs" />
     <Compile Include="Program.cs" />

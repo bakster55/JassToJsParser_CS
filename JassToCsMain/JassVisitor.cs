@@ -238,12 +238,6 @@ namespace JassToCsMain
 
         public override StringBuilder VisitInt_const([NotNull] JassParser.Int_constContext context)
         {
-            ITerminalNode hex = context.HEX();
-            if (hex != null)
-            {
-                return new StringBuilder($"{Helper.HexToDecimal(hex.Symbol.Text)}");
-            }
-
             return base.VisitInt_const(context);
         }
 
@@ -345,6 +339,25 @@ namespace JassToCsMain
             var id = base.VisitId(context);
 
             return Helper.ReplaceInvalidVariableName(id);
+        }
+
+        public override StringBuilder VisitDecimal([NotNull] DecimalContext context)
+        {
+            string number = base.VisitDecimal(context).ToString();
+
+            return new StringBuilder($"{NumberConvertHelper.GetDecimalOrFourcc(number)}");
+        }
+
+        public override StringBuilder VisitHex([NotNull] HexContext context)
+        {
+            ITerminalNode hex = context.HEX();
+            if (hex != null)
+            {
+                int number = NumberConvertHelper.HexToDecimal(hex.Symbol.Text);
+                return new StringBuilder($"{NumberConvertHelper.GetDecimalOrFourcc(number)}");
+            }
+
+            return base.VisitHex(context);
         }
 
         #endregion

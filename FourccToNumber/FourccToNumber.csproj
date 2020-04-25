@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JassToCsMain\JassToJsMain.csproj">
+      <Project>{e41dbf6d-590b-45b0-8db4-8c43c53c69f0}</Project>
+      <Name>JassToJsMain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

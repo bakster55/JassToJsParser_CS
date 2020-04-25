@@ -82,17 +82,6 @@ namespace JassToCsMain
             }
         }
 
-        public static int HexToDecimal(string jassHex)
-        {
-            string hex = jassHex;
-            if (jassHex[0] == '$')
-            {
-                hex = jassHex.Replace("$", "0x");
-            }
-
-            return Convert.ToInt32(hex, 16);
-        }
-
         public static void FillGlobalTypes(Global_var_listContext context)
         {
             var varDeclContext = context.var_declr();

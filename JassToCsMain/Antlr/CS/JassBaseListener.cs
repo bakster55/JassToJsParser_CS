@@ -395,6 +395,30 @@ public partial class JassBaseListener : IJassListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInt_const([NotNull] JassParser.Int_constContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.decimal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDecimal([NotNull] JassParser.DecimalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.decimal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDecimal([NotNull] JassParser.DecimalContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.hex"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHex([NotNull] JassParser.HexContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.hex"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHex([NotNull] JassParser.HexContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.parens"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

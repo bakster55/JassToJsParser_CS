@@ -212,6 +212,18 @@ public interface IJassVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitInt_const([NotNull] JassParser.Int_constContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.decimal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimal([NotNull] JassParser.DecimalContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.hex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHex([NotNull] JassParser.HexContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.parens"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

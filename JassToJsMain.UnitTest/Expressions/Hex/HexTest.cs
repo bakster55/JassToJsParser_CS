@@ -12,5 +12,11 @@ namespace JassToJsMain.UnitTest.Expressions.Hex
         {
             base.Execute();
         }
+
+        [Test]
+        public void Test2()
+        {
+            base.Execute();
+        }
     }
 }

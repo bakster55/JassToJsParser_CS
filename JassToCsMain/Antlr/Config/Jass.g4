@@ -247,10 +247,18 @@ constant
 //            | hex
 //            | fourcc
 int_const
- : DECIMAL
+ : decimal
  | OCTAL
- | HEX
+ | hex
  | FOURCC
+ ;
+
+decimal
+ : DECIMAL
+ ;
+
+hex
+ : HEX
  ;
 
 // parens   ::= '(' expr ')'
@@ -366,7 +374,7 @@ HEX
 // fourcc   ::= '' ' .{4} ' ''
 //  : ['] . [']
 //  | ['] . . . . [']
-FOURCC 
+FOURCC
  : ['] .*? [']
  ;
 

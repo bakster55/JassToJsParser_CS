@@ -331,6 +331,26 @@ public interface IJassListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInt_const([NotNull] JassParser.Int_constContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.decimal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDecimal([NotNull] JassParser.DecimalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.decimal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDecimal([NotNull] JassParser.DecimalContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.hex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHex([NotNull] JassParser.HexContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.hex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHex([NotNull] JassParser.HexContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.parens"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

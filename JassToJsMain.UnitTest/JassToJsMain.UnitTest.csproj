@@ -50,16 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NameReplacement\Test1\Expected.js" />
     <Content Include="Expressions\Hex\Test1\Expected.js" />
     <Content Include="Expressions\Test2\Expected.js" />
     <Content Include="Expressions\Test1\Expected.js" />
     <Content Include="Globals\Test2\Expected.js" />
     <Content Include="Globals\Test1\Expected.js" />
+    <None Include="NameReplacement\Test1\Example.j" />
     <None Include="Expressions\Hex\Test1\Example.j" />
     <None Include="Expressions\Test2\Example.j" />
     <None Include="Expressions\Test1\Example.j" />
     <None Include="Globals\Test2\Example.j" />
     <None Include="Globals\Test1\Example.j" />
+    <Compile Include="NameReplacement\NameReplacementTest.cs" />
     <Compile Include="Expressions\Hex\HexTest.cs" />
     <Compile Include="Expressions\ExpressionsTest.cs" />
     <Compile Include="TestBase.cs" />

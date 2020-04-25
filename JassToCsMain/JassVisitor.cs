@@ -195,18 +195,18 @@ namespace JassToCsMain
 
         public override StringBuilder VisitFunc_declr([NotNull] JassParser.Func_declrContext context)
         {
-            string key = context.id().GetText();
-            if (!Helper.functionTypes.ContainsKey(key))
+            string funcName = this.Visit(context.id()).ToString();
+            if (!Helper.functionTypes.ContainsKey(funcName))
             {
-                Helper.functionTypes.Add(key, context.type()?.GetText());
+                Helper.functionTypes.Add(funcName, context.type()?.GetText());
             }
 
-            return new StringBuilder($"{context.id().GetText()}({this.Visit(context.param_list())}) {{{Environment.NewLine}");
+            return new StringBuilder($"{funcName}({this.Visit(context.param_list())}) {{{Environment.NewLine}");
         }
 
         public override StringBuilder VisitFunc_ref([NotNull] JassParser.Func_refContext context)
         {
-            return new StringBuilder($"{context.id().GetText()}");
+            return this.Visit(context.id());
         }
 
         public override StringBuilder VisitGlobals([NotNull] JassParser.GlobalsContext context)

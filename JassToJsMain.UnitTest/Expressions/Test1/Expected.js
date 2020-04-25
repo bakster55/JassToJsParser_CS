@@ -1,3 +1,3 @@
-﻿function Trig_Up2500_Func001Func012001() {
+﻿function FuncName() {
 return (GetUnitTypeId(GetEnteringUnit())==(-1564755275))
 }

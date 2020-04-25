@@ -1,0 +1,3 @@
+﻿globals
+boolean udg_saveItem2Hero=false
+endglobals

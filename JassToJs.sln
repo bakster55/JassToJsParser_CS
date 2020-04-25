@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JASS_TO_JS_PARSER", "JASS_T
 		JASS_TO_JS_PARSER\ParseWar3MapResources.js = JASS_TO_JS_PARSER\ParseWar3MapResources.js
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassToJsMain.UnitTest", "JassToJsMain.UnitTest\JassToJsMain.UnitTest.csproj", "{4E956620-1566-4CA0-81DD-F7EA70F6102A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2E2BA5A5-75B7-4034-9A27-0F1BE02BAE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E2BA5A5-75B7-4034-9A27-0F1BE02BAE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E2BA5A5-75B7-4034-9A27-0F1BE02BAE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E956620-1566-4CA0-81DD-F7EA70F6102A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E956620-1566-4CA0-81DD-F7EA70F6102A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E956620-1566-4CA0-81DD-F7EA70F6102A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E956620-1566-4CA0-81DD-F7EA70F6102A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

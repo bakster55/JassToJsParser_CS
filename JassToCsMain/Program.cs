@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Antlr4.Runtime;
-using System.IO;
+﻿using System.IO;
 
 namespace JassToCsMain
 {
@@ -19,12 +13,12 @@ namespace JassToCsMain
             //File.WriteAllText($@"{basePath}\blizzard.js", Helper.Parse($@"{basePath}\blizzard.j"));
 
             //string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
-            string baseJassPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map\DisRPGv.B1.58u";
+            string baseJassPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map\TheBlackRoadv1.38d2";
 
-            //string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
-            //File.WriteAllText($@"{baseJassPath}\war3map111.js", parsed);
+            string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
+            File.WriteAllText($@"{baseJassPath}\war3map.js", parsed);
 
-            Test();
+            //Test();
         }
 
         public static void Test()

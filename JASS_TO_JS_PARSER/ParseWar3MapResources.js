@@ -2,21 +2,21 @@ var fs = require('fs');
 var path = require('path');
 
 var CommonParser = require('./common-parser.js');
-var mapBasePath = "./war3map/DisRPGv.B1.58u";
+var mapBasePath = "./war3map/TheBlackRoadv1.38d2";
 
 (function () {
 
-    var jassFilePath = path.resolve(mapBasePath + '/war3map.j');
-    var commonFilePath = path.resolve('./war3map/common.j');
-    var blizzardFilePath = path.resolve('./war3map/blizzard.j');
+    //var jassFilePath = path.resolve(mapBasePath + '/war3map.j');
+    //var commonFilePath = path.resolve('./war3map/common.j');
+    //var blizzardFilePath = path.resolve('./war3map/blizzard.j');
 
-    var tempCommonPath = path.resolve('./war3map/common.js');
-    var tempBlizzardPath = path.resolve('./war3map/blizzard.js');
-    var tempJassPath = path.resolve('./war3map/war3map.js');
+    //var tempCommonPath = path.resolve('./war3map/common.js');
+    //var tempBlizzardPath = path.resolve('./war3map/blizzard.js');
+    //var tempJassPath = path.resolve('./war3map/war3map.js');
 
-    var commonContent = fs.readFileSync(commonFilePath, 'utf8');
-    var blizzardContent = fs.readFileSync(blizzardFilePath, 'utf8');
-    var jassContent = fs.readFileSync(jassFilePath, 'utf8');
+    //var commonContent = fs.readFileSync(commonFilePath, 'utf8');
+    //var blizzardContent = fs.readFileSync(blizzardFilePath, 'utf8');
+    //var jassContent = fs.readFileSync(jassFilePath, 'utf8');
 
     ParseMapResources();
 
@@ -151,15 +151,15 @@ function ParseMapResources() {
 
     // Units
     // war3mapUnits.doo
-    const war3mapUnitsFilePath = path.resolve(mapBasePath + '/war3mapUnits.doo');
-    fs.readFile(war3mapUnitsFilePath, function (err, data) {
-        if (err) return;
+    // const war3mapUnitsFilePath = path.resolve(mapBasePath + '/war3mapUnits.doo');
+    // fs.readFile(war3mapUnitsFilePath, function (err, data) {
+    //     if (err) return;
 
-        var jsonResult = new Translator.Units.warToJson(data);
+    //     var jsonResult = new Translator.Units.warToJson(data);
 
-        const jsonPath = path.resolve(mapBasePath + '/parsed/war3mapUnits.doo.json');
-        fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
-    });
+    //     const jsonPath = path.resolve(mapBasePath + '/parsed/war3mapUnits.doo.json');
+    //     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
+    // });
 
     // Info File
     // war3map.w3i

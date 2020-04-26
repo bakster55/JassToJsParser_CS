@@ -207,12 +207,12 @@ namespace JassToCsMain
 
         public static bool IsExpressionOfType(ExprContext exprContext, string exprType)
         {
-            if (exprType == "integer" && exprContext?.constant()?.int_const() != null)
+            if (exprType == "integer" && exprContext?.constant()?.intConst() != null)
             {
                 return true;
             }
 
-            if (exprType == "fourcc" && exprContext?.constant()?.int_const()?.FOURCC() != null)
+            if (exprType == "fourcc" && exprContext?.constant()?.intConst()?.FOURCC() != null)
             {
                 return true;
             }
@@ -231,14 +231,14 @@ namespace JassToCsMain
             }
 
             // If expression is function call, get func type
-            objectName = exprContext.func_call()?.id()?.GetText();
+            objectName = exprContext.funcCall()?.id()?.GetText();
             if (objectName != null)
             {
                 return GetValueOrDefault(FunctionTypeByName, objectName) == exprType;
             }
 
             // If expession is array. get its type
-            objectName = exprContext.array_ref()?.id()?.GetText();
+            objectName = exprContext.arrayRef()?.id()?.GetText();
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();

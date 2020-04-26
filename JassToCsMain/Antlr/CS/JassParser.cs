@@ -51,17 +51,17 @@ public partial class JassParser : Parser {
 		RULE_constDeclr = 5, RULE_nativeFunc = 6, RULE_funcDeclr = 7, RULE_paramList = 8, 
 		RULE_func = 9, RULE_localVarList = 10, RULE_localVarDeclr = 11, RULE_varDeclr = 12, 
 		RULE_statementList = 13, RULE_statement = 14, RULE_set = 15, RULE_call = 16, 
-		RULE_args = 17, RULE_ifthenelse = 18, RULE_else_clause = 19, RULE_loop = 20, 
+		RULE_args = 17, RULE_ifthenelse = 18, RULE_elseClause = 19, RULE_loop = 20, 
 		RULE_exitwhen = 21, RULE_returnStat = 22, RULE_debug = 23, RULE_expr = 24, 
-		RULE_func_call = 25, RULE_array_ref = 26, RULE_func_ref = 27, RULE_constant = 28, 
-		RULE_int_const = 29, RULE_decimal = 30, RULE_hex = 31, RULE_parens = 32, 
+		RULE_funcCall = 25, RULE_arrayRef = 26, RULE_funcRef = 27, RULE_constant = 28, 
+		RULE_intConst = 29, RULE_decimal = 30, RULE_hex = 31, RULE_parens = 32, 
 		RULE_boolConst = 33, RULE_stringConst = 34, RULE_type = 35, RULE_id = 36;
 	public static readonly string[] ruleNames = {
 		"file", "declr", "typedef", "globals", "globalVarList", "constDeclr", 
 		"nativeFunc", "funcDeclr", "paramList", "func", "localVarList", "localVarDeclr", 
 		"varDeclr", "statementList", "statement", "set", "call", "args", "ifthenelse", 
-		"else_clause", "loop", "exitwhen", "returnStat", "debug", "expr", "func_call", 
-		"array_ref", "func_ref", "constant", "int_const", "decimal", "hex", "parens", 
+		"elseClause", "loop", "exitwhen", "returnStat", "debug", "expr", "funcCall", 
+		"arrayRef", "funcRef", "constant", "intConst", "decimal", "hex", "parens", 
 		"boolConst", "stringConst", "type", "id"
 	};
 
@@ -1410,8 +1410,8 @@ public partial class JassParser : Parser {
 			return GetRuleContext<StatementListContext>(0);
 		}
 		public ITerminalNode K_ENDIF() { return GetToken(JassParser.K_ENDIF, 0); }
-		public Else_clauseContext else_clause() {
-			return GetRuleContext<Else_clauseContext>(0);
+		public ElseClauseContext elseClause() {
+			return GetRuleContext<ElseClauseContext>(0);
 		}
 		public IfthenelseContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1450,7 +1450,7 @@ public partial class JassParser : Parser {
 			_la = TokenStream.LA(1);
 			if (_la==K_ELSEIF || _la==K_ELSE) {
 				{
-				State = 223; else_clause();
+				State = 223; elseClause();
 				}
 			}
 
@@ -1468,7 +1468,7 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Else_clauseContext : ParserRuleContext {
+	public partial class ElseClauseContext : ParserRuleContext {
 		public ITerminalNode K_ELSE() { return GetToken(JassParser.K_ELSE, 0); }
 		public StatementListContext statementList() {
 			return GetRuleContext<StatementListContext>(0);
@@ -1478,33 +1478,33 @@ public partial class JassParser : Parser {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ITerminalNode K_THEN() { return GetToken(JassParser.K_THEN, 0); }
-		public Else_clauseContext else_clause() {
-			return GetRuleContext<Else_clauseContext>(0);
+		public ElseClauseContext elseClause() {
+			return GetRuleContext<ElseClauseContext>(0);
 		}
-		public Else_clauseContext(ParserRuleContext parent, int invokingState)
+		public ElseClauseContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_else_clause; } }
+		public override int RuleIndex { get { return RULE_elseClause; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterElse_clause(this);
+			if (typedListener != null) typedListener.EnterElseClause(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitElse_clause(this);
+			if (typedListener != null) typedListener.ExitElseClause(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitElse_clause(this);
+			if (typedVisitor != null) return typedVisitor.VisitElseClause(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Else_clauseContext else_clause() {
-		Else_clauseContext _localctx = new Else_clauseContext(Context, State);
-		EnterRule(_localctx, 38, RULE_else_clause);
+	public ElseClauseContext elseClause() {
+		ElseClauseContext _localctx = new ElseClauseContext(Context, State);
+		EnterRule(_localctx, 38, RULE_elseClause);
 		int _la;
 		try {
 			State = 237;
@@ -1529,7 +1529,7 @@ public partial class JassParser : Parser {
 				_la = TokenStream.LA(1);
 				if (_la==K_ELSEIF || _la==K_ELSE) {
 					{
-					State = 234; else_clause();
+					State = 234; elseClause();
 					}
 				}
 
@@ -1793,14 +1793,14 @@ public partial class JassParser : Parser {
 		}
 		public ITerminalNode SUB() { return GetToken(JassParser.SUB, 0); }
 		public ITerminalNode K_NOT() { return GetToken(JassParser.K_NOT, 0); }
-		public Func_callContext func_call() {
-			return GetRuleContext<Func_callContext>(0);
+		public FuncCallContext funcCall() {
+			return GetRuleContext<FuncCallContext>(0);
 		}
-		public Array_refContext array_ref() {
-			return GetRuleContext<Array_refContext>(0);
+		public ArrayRefContext arrayRef() {
+			return GetRuleContext<ArrayRefContext>(0);
 		}
-		public Func_refContext func_ref() {
-			return GetRuleContext<Func_refContext>(0);
+		public FuncRefContext funcRef() {
+			return GetRuleContext<FuncRefContext>(0);
 		}
 		public IdContext id() {
 			return GetRuleContext<IdContext>(0);
@@ -1881,17 +1881,17 @@ public partial class JassParser : Parser {
 				break;
 			case 4:
 				{
-				State = 264; func_call();
+				State = 264; funcCall();
 				}
 				break;
 			case 5:
 				{
-				State = 265; array_ref();
+				State = 265; arrayRef();
 				}
 				break;
 			case 6:
 				{
-				State = 266; func_ref();
+				State = 266; funcRef();
 				}
 				break;
 			case 7:
@@ -2033,7 +2033,7 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Func_callContext : ParserRuleContext {
+	public partial class FuncCallContext : ParserRuleContext {
 		public IdContext id() {
 			return GetRuleContext<IdContext>(0);
 		}
@@ -2042,30 +2042,30 @@ public partial class JassParser : Parser {
 		public ArgsContext args() {
 			return GetRuleContext<ArgsContext>(0);
 		}
-		public Func_callContext(ParserRuleContext parent, int invokingState)
+		public FuncCallContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_func_call; } }
+		public override int RuleIndex { get { return RULE_funcCall; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterFunc_call(this);
+			if (typedListener != null) typedListener.EnterFuncCall(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitFunc_call(this);
+			if (typedListener != null) typedListener.ExitFuncCall(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFunc_call(this);
+			if (typedVisitor != null) return typedVisitor.VisitFuncCall(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Func_callContext func_call() {
-		Func_callContext _localctx = new Func_callContext(Context, State);
-		EnterRule(_localctx, 50, RULE_func_call);
+	public FuncCallContext funcCall() {
+		FuncCallContext _localctx = new FuncCallContext(Context, State);
+		EnterRule(_localctx, 50, RULE_funcCall);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -2095,7 +2095,7 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Array_refContext : ParserRuleContext {
+	public partial class ArrayRefContext : ParserRuleContext {
 		public IdContext id() {
 			return GetRuleContext<IdContext>(0);
 		}
@@ -2104,30 +2104,30 @@ public partial class JassParser : Parser {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ITerminalNode C_BRACK() { return GetToken(JassParser.C_BRACK, 0); }
-		public Array_refContext(ParserRuleContext parent, int invokingState)
+		public ArrayRefContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_array_ref; } }
+		public override int RuleIndex { get { return RULE_arrayRef; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterArray_ref(this);
+			if (typedListener != null) typedListener.EnterArrayRef(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitArray_ref(this);
+			if (typedListener != null) typedListener.ExitArrayRef(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArray_ref(this);
+			if (typedVisitor != null) return typedVisitor.VisitArrayRef(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Array_refContext array_ref() {
-		Array_refContext _localctx = new Array_refContext(Context, State);
-		EnterRule(_localctx, 52, RULE_array_ref);
+	public ArrayRefContext arrayRef() {
+		ArrayRefContext _localctx = new ArrayRefContext(Context, State);
+		EnterRule(_localctx, 52, RULE_arrayRef);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -2148,35 +2148,35 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Func_refContext : ParserRuleContext {
+	public partial class FuncRefContext : ParserRuleContext {
 		public ITerminalNode K_FUNCTION() { return GetToken(JassParser.K_FUNCTION, 0); }
 		public IdContext id() {
 			return GetRuleContext<IdContext>(0);
 		}
-		public Func_refContext(ParserRuleContext parent, int invokingState)
+		public FuncRefContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_func_ref; } }
+		public override int RuleIndex { get { return RULE_funcRef; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterFunc_ref(this);
+			if (typedListener != null) typedListener.EnterFuncRef(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitFunc_ref(this);
+			if (typedListener != null) typedListener.ExitFuncRef(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFunc_ref(this);
+			if (typedVisitor != null) return typedVisitor.VisitFuncRef(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Func_refContext func_ref() {
-		Func_refContext _localctx = new Func_refContext(Context, State);
-		EnterRule(_localctx, 54, RULE_func_ref);
+	public FuncRefContext funcRef() {
+		FuncRefContext _localctx = new FuncRefContext(Context, State);
+		EnterRule(_localctx, 54, RULE_funcRef);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -2196,8 +2196,8 @@ public partial class JassParser : Parser {
 	}
 
 	public partial class ConstantContext : ParserRuleContext {
-		public Int_constContext int_const() {
-			return GetRuleContext<Int_constContext>(0);
+		public IntConstContext intConst() {
+			return GetRuleContext<IntConstContext>(0);
 		}
 		public ITerminalNode REAL_CONST() { return GetToken(JassParser.REAL_CONST, 0); }
 		public BoolConstContext boolConst() {
@@ -2241,7 +2241,7 @@ public partial class JassParser : Parser {
 			case FOURCC:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 307; int_const();
+				State = 307; intConst();
 				}
 				break;
 			case REAL_CONST:
@@ -2284,7 +2284,7 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Int_constContext : ParserRuleContext {
+	public partial class IntConstContext : ParserRuleContext {
 		public DecimalContext @decimal() {
 			return GetRuleContext<DecimalContext>(0);
 		}
@@ -2293,30 +2293,30 @@ public partial class JassParser : Parser {
 			return GetRuleContext<HexContext>(0);
 		}
 		public ITerminalNode FOURCC() { return GetToken(JassParser.FOURCC, 0); }
-		public Int_constContext(ParserRuleContext parent, int invokingState)
+		public IntConstContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_int_const; } }
+		public override int RuleIndex { get { return RULE_intConst; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterInt_const(this);
+			if (typedListener != null) typedListener.EnterIntConst(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitInt_const(this);
+			if (typedListener != null) typedListener.ExitIntConst(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitInt_const(this);
+			if (typedVisitor != null) return typedVisitor.VisitIntConst(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Int_constContext int_const() {
-		Int_constContext _localctx = new Int_constContext(Context, State);
-		EnterRule(_localctx, 58, RULE_int_const);
+	public IntConstContext intConst() {
+		IntConstContext _localctx = new IntConstContext(Context, State);
+		EnterRule(_localctx, 58, RULE_intConst);
 		try {
 			State = 318;
 			ErrorHandler.Sync(this);

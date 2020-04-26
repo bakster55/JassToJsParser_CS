@@ -78,9 +78,9 @@ namespace JassToCsMain
             return base.VisitArgs(context);
         }
 
-        public override StringBuilder VisitArray_ref([NotNull] JassParser.Array_refContext context)
+        public override StringBuilder VisitArrayRef([NotNull] JassParser.ArrayRefContext context)
         {
-            return base.VisitArray_ref(context);
+            return base.VisitArrayRef(context);
         }
 
         public override StringBuilder VisitBoolConst([NotNull] JassParser.BoolConstContext context)
@@ -111,19 +111,19 @@ namespace JassToCsMain
             return new StringBuilder($"{base.VisitDeclr(context)}{Environment.NewLine}");
         }
 
-        public override StringBuilder VisitElse_clause([NotNull] JassParser.Else_clauseContext context)
+        public override StringBuilder VisitElseClause([NotNull] JassParser.ElseClauseContext context)
         {
-            var statement_list = this.Visit(context.statementList());
+            var statementList = this.Visit(context.statementList());
             if (context.K_ELSEIF() != null)
             {
                 var expr = this.Visit(context.expr());
-                var else_clause = this.Visit(context.else_clause());
+                var elseClause = this.Visit(context.elseClause());
 
-                return new StringBuilder($"{Environment.NewLine}else {{{Environment.NewLine}if({expr}) {{{Environment.NewLine}{statement_list}}}{else_clause}{Environment.NewLine}}}");
+                return new StringBuilder($"{Environment.NewLine}else {{{Environment.NewLine}if({expr}) {{{Environment.NewLine}{statementList}}}{elseClause}{Environment.NewLine}}}");
             }
             else
             {
-                return new StringBuilder($"{Environment.NewLine}else {{{Environment.NewLine}{statement_list}}}");
+                return new StringBuilder($"{Environment.NewLine}else {{{Environment.NewLine}{statementList}}}");
             }
         }
 
@@ -150,8 +150,8 @@ namespace JassToCsMain
             if (Helper.IsFourccConcatenation(context))
             {
                 var expressions = context.expr();
-                var fourcc1 = expressions[0]?.constant()?.int_const()?.FOURCC().Symbol.Text;
-                var fourcc2 = expressions[1]?.constant()?.int_const()?.FOURCC().Symbol.Text;
+                var fourcc1 = expressions[0]?.constant()?.intConst()?.FOURCC().Symbol.Text;
+                var fourcc2 = expressions[1]?.constant()?.intConst()?.FOURCC().Symbol.Text;
 
                 if (fourcc1 == "'÷=Å«'")
                 {
@@ -181,16 +181,16 @@ namespace JassToCsMain
         {
             Helper.FillLocalTypes(context);
 
-            var func_declr = this.Visit(context.funcDeclr());
-            var local_var_list = this.Visit(context.localVarList());
-            var statement_list = this.Visit(context.statementList());
+            var funcDeclr = this.Visit(context.funcDeclr());
+            var localVarList = this.Visit(context.localVarList());
+            var statementList = this.Visit(context.statementList());
 
-            return new StringBuilder($"function {func_declr}{local_var_list}{statement_list}}}{Environment.NewLine}");
+            return new StringBuilder($"function {funcDeclr}{localVarList}{statementList}}}{Environment.NewLine}");
         }
 
-        public override StringBuilder VisitFunc_call([NotNull] JassParser.Func_callContext context)
+        public override StringBuilder VisitFuncCall([NotNull] JassParser.FuncCallContext context)
         {
-            return base.VisitFunc_call(context);
+            return base.VisitFuncCall(context);
         }
 
         public override StringBuilder VisitFuncDeclr([NotNull] JassParser.FuncDeclrContext context)
@@ -204,7 +204,7 @@ namespace JassToCsMain
             return new StringBuilder($"{funcName}({this.Visit(context.paramList())}) {{{Environment.NewLine}");
         }
 
-        public override StringBuilder VisitFunc_ref([NotNull] JassParser.Func_refContext context)
+        public override StringBuilder VisitFuncRef([NotNull] JassParser.FuncRefContext context)
         {
             return this.Visit(context.id());
         }
@@ -233,12 +233,12 @@ namespace JassToCsMain
 
         public override StringBuilder VisitIfthenelse([NotNull] JassParser.IfthenelseContext context)
         {
-            return new StringBuilder($"if ({this.Visit(context.expr())}) {{{Environment.NewLine}{this.Visit(context.statementList())}}}{this.Visit(context.else_clause())}");
+            return new StringBuilder($"if ({this.Visit(context.expr())}) {{{Environment.NewLine}{this.Visit(context.statementList())}}}{this.Visit(context.elseClause())}");
         }
 
-        public override StringBuilder VisitInt_const([NotNull] JassParser.Int_constContext context)
+        public override StringBuilder VisitIntConst([NotNull] JassParser.IntConstContext context)
         {
-            return base.VisitInt_const(context);
+            return base.VisitIntConst(context);
         }
 
         public override StringBuilder VisitLocalVarList([NotNull] JassParser.LocalVarListContext context)

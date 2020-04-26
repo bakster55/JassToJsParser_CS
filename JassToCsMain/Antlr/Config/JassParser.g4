@@ -87,12 +87,12 @@ args
  ;
 
 ifthenelse
- : K_IF expr K_THEN statementList else_clause? K_ENDIF
+ : K_IF expr K_THEN statementList elseClause? K_ENDIF
  ;
 
-else_clause
+elseClause
  : K_ELSE statementList
- | K_ELSEIF expr K_THEN statementList else_clause?
+ | K_ELSEIF expr K_THEN statementList elseClause?
  ;
 
 loop
@@ -120,35 +120,35 @@ expr
  | expr (GT | LT | GTEQ | LTEQ) expr
  | expr (EQ | NEQ) expr
  | expr (K_AND | K_OR) expr
- | func_call
- | array_ref
- | func_ref
+ | funcCall
+ | arrayRef
+ | funcRef
  | id
  | constant
  | parens
  ;
 
-func_call
+funcCall
  : id O_PAR args? C_PAR
  ;
 
-array_ref
+arrayRef
  : id O_BRACK expr C_BRACK
  ;
 
-func_ref
+funcRef
  : K_FUNCTION id
  ;
 
 constant
- : int_const
+ : intConst
  | REAL_CONST
  | boolConst
  | stringConst
  | K_NULL
  ;
 
-int_const
+intConst
  : decimal
  | OCTAL
  | hex

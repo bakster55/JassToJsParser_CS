@@ -146,11 +146,11 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIfthenelse([NotNull] JassParser.IfthenelseContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.else_clause"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.elseClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitElse_clause([NotNull] JassParser.Else_clauseContext context);
+	Result VisitElseClause([NotNull] JassParser.ElseClauseContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.loop"/>.
 	/// </summary>
@@ -182,23 +182,23 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExpr([NotNull] JassParser.ExprContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.func_call"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.funcCall"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunc_call([NotNull] JassParser.Func_callContext context);
+	Result VisitFuncCall([NotNull] JassParser.FuncCallContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.array_ref"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.arrayRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArray_ref([NotNull] JassParser.Array_refContext context);
+	Result VisitArrayRef([NotNull] JassParser.ArrayRefContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.func_ref"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.funcRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunc_ref([NotNull] JassParser.Func_refContext context);
+	Result VisitFuncRef([NotNull] JassParser.FuncRefContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.constant"/>.
 	/// </summary>
@@ -206,11 +206,11 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] JassParser.ConstantContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.int_const"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.intConst"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitInt_const([NotNull] JassParser.Int_constContext context);
+	Result VisitIntConst([NotNull] JassParser.IntConstContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.decimal"/>.
 	/// </summary>

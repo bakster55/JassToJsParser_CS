@@ -221,15 +221,15 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIfthenelse([NotNull] JassParser.IfthenelseContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.else_clause"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.elseClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterElse_clause([NotNull] JassParser.Else_clauseContext context);
+	void EnterElseClause([NotNull] JassParser.ElseClauseContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.else_clause"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.elseClause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitElse_clause([NotNull] JassParser.Else_clauseContext context);
+	void ExitElseClause([NotNull] JassParser.ElseClauseContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.loop"/>.
 	/// </summary>
@@ -281,35 +281,35 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpr([NotNull] JassParser.ExprContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.func_call"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.funcCall"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFunc_call([NotNull] JassParser.Func_callContext context);
+	void EnterFuncCall([NotNull] JassParser.FuncCallContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.func_call"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.funcCall"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFunc_call([NotNull] JassParser.Func_callContext context);
+	void ExitFuncCall([NotNull] JassParser.FuncCallContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.array_ref"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.arrayRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterArray_ref([NotNull] JassParser.Array_refContext context);
+	void EnterArrayRef([NotNull] JassParser.ArrayRefContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.array_ref"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.arrayRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitArray_ref([NotNull] JassParser.Array_refContext context);
+	void ExitArrayRef([NotNull] JassParser.ArrayRefContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.func_ref"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.funcRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFunc_ref([NotNull] JassParser.Func_refContext context);
+	void EnterFuncRef([NotNull] JassParser.FuncRefContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.func_ref"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.funcRef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFunc_ref([NotNull] JassParser.Func_refContext context);
+	void ExitFuncRef([NotNull] JassParser.FuncRefContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.constant"/>.
 	/// </summary>
@@ -321,15 +321,15 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] JassParser.ConstantContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.int_const"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.intConst"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterInt_const([NotNull] JassParser.Int_constContext context);
+	void EnterIntConst([NotNull] JassParser.IntConstContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.int_const"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.intConst"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitInt_const([NotNull] JassParser.Int_constContext context);
+	void ExitIntConst([NotNull] JassParser.IntConstContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.decimal"/>.
 	/// </summary>

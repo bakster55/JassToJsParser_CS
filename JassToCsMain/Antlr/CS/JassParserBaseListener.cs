@@ -83,65 +83,65 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitGlobals([NotNull] JassParser.GlobalsContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.global_var_list"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.globalVarList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterGlobal_var_list([NotNull] JassParser.Global_var_listContext context) { }
+	public virtual void EnterGlobalVarList([NotNull] JassParser.GlobalVarListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.global_var_list"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.globalVarList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitGlobal_var_list([NotNull] JassParser.Global_var_listContext context) { }
+	public virtual void ExitGlobalVarList([NotNull] JassParser.GlobalVarListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.const_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.constDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConst_declr([NotNull] JassParser.Const_declrContext context) { }
+	public virtual void EnterConstDeclr([NotNull] JassParser.ConstDeclrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.const_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.constDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConst_declr([NotNull] JassParser.Const_declrContext context) { }
+	public virtual void ExitConstDeclr([NotNull] JassParser.ConstDeclrContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.native_func"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.nativeFunc"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNative_func([NotNull] JassParser.Native_funcContext context) { }
+	public virtual void EnterNativeFunc([NotNull] JassParser.NativeFuncContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.native_func"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.nativeFunc"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNative_func([NotNull] JassParser.Native_funcContext context) { }
+	public virtual void ExitNativeFunc([NotNull] JassParser.NativeFuncContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.func_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.funcDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFunc_declr([NotNull] JassParser.Func_declrContext context) { }
+	public virtual void EnterFuncDeclr([NotNull] JassParser.FuncDeclrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.func_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.funcDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFunc_declr([NotNull] JassParser.Func_declrContext context) { }
+	public virtual void ExitFuncDeclr([NotNull] JassParser.FuncDeclrContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.param_list"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.paramList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterParam_list([NotNull] JassParser.Param_listContext context) { }
+	public virtual void EnterParamList([NotNull] JassParser.ParamListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.param_list"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.paramList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitParam_list([NotNull] JassParser.Param_listContext context) { }
+	public virtual void ExitParamList([NotNull] JassParser.ParamListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.func"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -155,53 +155,53 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunc([NotNull] JassParser.FuncContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.local_var_list"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.localVarList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLocal_var_list([NotNull] JassParser.Local_var_listContext context) { }
+	public virtual void EnterLocalVarList([NotNull] JassParser.LocalVarListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.local_var_list"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.localVarList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLocal_var_list([NotNull] JassParser.Local_var_listContext context) { }
+	public virtual void ExitLocalVarList([NotNull] JassParser.LocalVarListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.local_var_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLocal_var_declr([NotNull] JassParser.Local_var_declrContext context) { }
+	public virtual void EnterLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.local_var_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLocal_var_declr([NotNull] JassParser.Local_var_declrContext context) { }
+	public virtual void ExitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.var_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVar_declr([NotNull] JassParser.Var_declrContext context) { }
+	public virtual void EnterVarDeclr([NotNull] JassParser.VarDeclrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.var_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVar_declr([NotNull] JassParser.Var_declrContext context) { }
+	public virtual void ExitVarDeclr([NotNull] JassParser.VarDeclrContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.statement_list"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.statementList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStatement_list([NotNull] JassParser.Statement_listContext context) { }
+	public virtual void EnterStatementList([NotNull] JassParser.StatementListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.statement_list"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.statementList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStatement_list([NotNull] JassParser.Statement_listContext context) { }
+	public virtual void ExitStatementList([NotNull] JassParser.StatementListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -299,17 +299,17 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExitwhen([NotNull] JassParser.ExitwhenContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.return_stat"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.returnStat"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterReturn_stat([NotNull] JassParser.Return_statContext context) { }
+	public virtual void EnterReturnStat([NotNull] JassParser.ReturnStatContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.return_stat"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.returnStat"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitReturn_stat([NotNull] JassParser.Return_statContext context) { }
+	public virtual void ExitReturnStat([NotNull] JassParser.ReturnStatContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.debug"/>.
 	/// <para>The default implementation does nothing.</para>

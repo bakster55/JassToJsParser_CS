@@ -11,7 +11,7 @@ file
 declr
  : typedef
  | globals
- | native_func
+ | nativeFunc
  ;
 
 typedef
@@ -19,47 +19,47 @@ typedef
  ;
 
 globals
- : K_GLOBALS global_var_list K_ENDGLOBALS
+ : K_GLOBALS globalVarList K_ENDGLOBALS
  ;
 
-global_var_list
- : (const_declr | var_declr)*
+globalVarList
+ : (constDeclr | varDeclr)*
  ;
 
-const_declr
+constDeclr
  : K_CONSTANT type id ASSIGN expr
  ;
 
-native_func
- : K_CONSTANT? K_NATIVE func_declr
+nativeFunc
+ : K_CONSTANT? K_NATIVE funcDeclr
  ;
 
-func_declr
- : id K_TAKES (K_NOTHING | param_list) K_RETURNS (type | K_NOTHING)
+funcDeclr
+ : id K_TAKES (K_NOTHING | paramList) K_RETURNS (type | K_NOTHING)
  ;
 
-param_list
+paramList
  : type id (COMMA type id)*
  ;
 
 func
- : K_CONSTANT? K_FUNCTION func_declr local_var_list statement_list K_ENDFUNCTION
+ : K_CONSTANT? K_FUNCTION funcDeclr localVarList statementList K_ENDFUNCTION
  ;
 
-local_var_list
- : local_var_declr*
+localVarList
+ : localVarDeclr*
  ;
 
-local_var_declr
- : K_LOCAL var_declr
+localVarDeclr
+ : K_LOCAL varDeclr
  ;
 
-var_declr
+varDeclr
  : type id (ASSIGN expr)?
  | type K_ARRAY id
  ;
 
-statement_list
+statementList
  : (statement)*
  ;
 
@@ -69,7 +69,7 @@ statement
  | ifthenelse
  | loop
  | exitwhen
- | return_stat
+ | returnStat
  | debug
  ;
 
@@ -87,23 +87,23 @@ args
  ;
 
 ifthenelse
- : K_IF expr K_THEN statement_list else_clause? K_ENDIF
+ : K_IF expr K_THEN statementList else_clause? K_ENDIF
  ;
 
 else_clause
- : K_ELSE statement_list
- | K_ELSEIF expr K_THEN statement_list else_clause?
+ : K_ELSE statementList
+ | K_ELSEIF expr K_THEN statementList else_clause?
  ;
 
 loop
- : K_LOOP statement_list K_ENDLOOP
+ : K_LOOP statementList K_ENDLOOP
  ;
 
 exitwhen
  : K_EXITWHEN expr
  ;
 
-return_stat
+returnStat
  : K_RETURN expr?
  ;
 

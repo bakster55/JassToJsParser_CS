@@ -56,35 +56,35 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitGlobals([NotNull] JassParser.GlobalsContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.global_var_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.globalVarList"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitGlobal_var_list([NotNull] JassParser.Global_var_listContext context);
+	Result VisitGlobalVarList([NotNull] JassParser.GlobalVarListContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.const_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.constDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitConst_declr([NotNull] JassParser.Const_declrContext context);
+	Result VisitConstDeclr([NotNull] JassParser.ConstDeclrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.native_func"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.nativeFunc"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNative_func([NotNull] JassParser.Native_funcContext context);
+	Result VisitNativeFunc([NotNull] JassParser.NativeFuncContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.func_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.funcDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunc_declr([NotNull] JassParser.Func_declrContext context);
+	Result VisitFuncDeclr([NotNull] JassParser.FuncDeclrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.param_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.paramList"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitParam_list([NotNull] JassParser.Param_listContext context);
+	Result VisitParamList([NotNull] JassParser.ParamListContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.func"/>.
 	/// </summary>
@@ -92,29 +92,29 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunc([NotNull] JassParser.FuncContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.local_var_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.localVarList"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitLocal_var_list([NotNull] JassParser.Local_var_listContext context);
+	Result VisitLocalVarList([NotNull] JassParser.LocalVarListContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.local_var_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitLocal_var_declr([NotNull] JassParser.Local_var_declrContext context);
+	Result VisitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.var_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVar_declr([NotNull] JassParser.Var_declrContext context);
+	Result VisitVarDeclr([NotNull] JassParser.VarDeclrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.statement_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.statementList"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitStatement_list([NotNull] JassParser.Statement_listContext context);
+	Result VisitStatementList([NotNull] JassParser.StatementListContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.statement"/>.
 	/// </summary>
@@ -164,11 +164,11 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExitwhen([NotNull] JassParser.ExitwhenContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.return_stat"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.returnStat"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitReturn_stat([NotNull] JassParser.Return_statContext context);
+	Result VisitReturnStat([NotNull] JassParser.ReturnStatContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.debug"/>.
 	/// </summary>

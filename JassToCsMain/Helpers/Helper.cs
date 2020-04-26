@@ -84,9 +84,9 @@ namespace JassToCsMain
             }
         }
 
-        public static void FillGlobalTypes(Global_var_listContext context)
+        public static void FillGlobalTypes(GlobalVarListContext context)
         {
-            var varDeclContext = context.var_declr();
+            var varDeclContext = context.varDeclr();
 
             if (varDeclContext != null)
             {
@@ -103,7 +103,7 @@ namespace JassToCsMain
             }
             else
             {
-                var constDeclContext = context.const_declr();
+                var constDeclContext = context.constDeclr();
                 ITerminalNode[] nameTokens = context.GetTokens(JassLexer.ID);
 
                 if (constDeclContext.Length != nameTokens.Length) { throw new Exception(); }
@@ -120,7 +120,7 @@ namespace JassToCsMain
 
         public static void FillLocalTypes(FuncContext context)
         {
-            var funcName = context.func_declr().id().GetText();
+            var funcName = context.funcDeclr().id().GetText();
             if (LocalVariableTypeByName.ContainsKey(funcName))
             {
                 return;
@@ -128,14 +128,14 @@ namespace JassToCsMain
 
             LocalVariableTypeByName.Add(funcName, new Dictionary<string, string>());
 
-            var localVarDeclContext = context.local_var_list()?.local_var_declr();
+            var localVarDeclContext = context.localVarList()?.localVarDeclr();
 
             if (localVarDeclContext != null && localVarDeclContext.Length > 0)
             {
                 // Fill function body variables
                 foreach (var localVarDecl in localVarDeclContext)
                 {
-                    var varDeclContext = localVarDecl.var_declr();
+                    var varDeclContext = localVarDecl.varDeclr();
 
                     var type = varDeclContext.type().GetText();
                     var name = varDeclContext.id().GetText();
@@ -144,12 +144,12 @@ namespace JassToCsMain
                 }
             }
 
-            var paramNamesList = context.func_declr()?.param_list()?.id();
+            var paramNamesList = context.funcDeclr()?.paramList()?.id();
 
             if (paramNamesList != null && paramNamesList.Length > 0)
             {
                 // Fill function parameters
-                var paramTypesList = context.func_declr()?.param_list()?.type();
+                var paramTypesList = context.funcDeclr()?.paramList()?.type();
                 for (int i = 0; i < paramNamesList.Length; i++)
                 {
                     var type = paramTypesList[i].GetText();
@@ -226,7 +226,7 @@ namespace JassToCsMain
             string objectName = exprContext.id()?.GetText();
             if (objectName != null)
             {
-                var localFuncName = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();
+                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
                 return GetValueOrDefault(GlobalVariableTypeByName, objectName) == exprType || GetValueOrDefault(GetValueOrDefault(LocalVariableTypeByName, localFuncName), objectName) == exprType;
             }
 
@@ -241,7 +241,7 @@ namespace JassToCsMain
             objectName = exprContext.array_ref()?.id()?.GetText();
             if (objectName != null)
             {
-                var localFuncName = GetParentContext<FuncContext>(exprContext)?.func_declr()?.GetToken(JassLexer.ID, 0)?.GetText();
+                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
                 return GetValueOrDefault(GlobalVariableTypeByName, objectName) == exprType || GetValueOrDefault(GetValueOrDefault(LocalVariableTypeByName, localFuncName), objectName) == exprType;
             }
 

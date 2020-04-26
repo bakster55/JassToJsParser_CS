@@ -74,7 +74,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitGlobals([NotNull] JassParser.GlobalsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.global_var_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.globalVarList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -82,9 +82,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitGlobal_var_list([NotNull] JassParser.Global_var_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitGlobalVarList([NotNull] JassParser.GlobalVarListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.const_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.constDeclr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -92,9 +92,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitConst_declr([NotNull] JassParser.Const_declrContext context) { return VisitChildren(context); }
+	public virtual Result VisitConstDeclr([NotNull] JassParser.ConstDeclrContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.native_func"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.nativeFunc"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -102,9 +102,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNative_func([NotNull] JassParser.Native_funcContext context) { return VisitChildren(context); }
+	public virtual Result VisitNativeFunc([NotNull] JassParser.NativeFuncContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.func_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.funcDeclr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -112,9 +112,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunc_declr([NotNull] JassParser.Func_declrContext context) { return VisitChildren(context); }
+	public virtual Result VisitFuncDeclr([NotNull] JassParser.FuncDeclrContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.param_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.paramList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -122,7 +122,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitParam_list([NotNull] JassParser.Param_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitParamList([NotNull] JassParser.ParamListContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.func"/>.
 	/// <para>
@@ -134,7 +134,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitFunc([NotNull] JassParser.FuncContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.local_var_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.localVarList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -142,9 +142,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLocal_var_list([NotNull] JassParser.Local_var_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitLocalVarList([NotNull] JassParser.LocalVarListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.local_var_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -152,9 +152,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLocal_var_declr([NotNull] JassParser.Local_var_declrContext context) { return VisitChildren(context); }
+	public virtual Result VisitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.var_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -162,9 +162,9 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitVar_declr([NotNull] JassParser.Var_declrContext context) { return VisitChildren(context); }
+	public virtual Result VisitVarDeclr([NotNull] JassParser.VarDeclrContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.statement_list"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.statementList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -172,7 +172,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStatement_list([NotNull] JassParser.Statement_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitStatementList([NotNull] JassParser.StatementListContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.statement"/>.
 	/// <para>
@@ -254,7 +254,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitExitwhen([NotNull] JassParser.ExitwhenContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.return_stat"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.returnStat"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -262,7 +262,7 @@ public partial class JassParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitReturn_stat([NotNull] JassParser.Return_statContext context) { return VisitChildren(context); }
+	public virtual Result VisitReturnStat([NotNull] JassParser.ReturnStatContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.debug"/>.
 	/// <para>

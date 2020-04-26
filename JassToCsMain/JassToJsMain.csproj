@@ -53,12 +53,13 @@
     <Compile Include="Antlr\CS\JassListener.cs" />
     <Compile Include="Antlr\CS\JassParser.cs" />
     <Compile Include="Antlr\CS\JassVisitor.cs" />
-    <Compile Include="NumberConvertHelper.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="Helpers\NumberConvertHelper.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\NameGenerator.cs" />
     <Compile Include="JassVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeTracker.cs" />
+    <Compile Include="Helpers\TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Antlr\Config\Build_JS.cmd" />

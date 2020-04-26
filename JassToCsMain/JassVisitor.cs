@@ -196,9 +196,9 @@ namespace JassToCsMain
         public override StringBuilder VisitFunc_declr([NotNull] JassParser.Func_declrContext context)
         {
             string funcName = this.Visit(context.id()).ToString();
-            if (!Helper.functionTypes.ContainsKey(funcName))
+            if (!Helper.FunctionTypeByName.ContainsKey(funcName))
             {
-                Helper.functionTypes.Add(funcName, context.type()?.GetText());
+                Helper.FunctionTypeByName.Add(funcName, context.type()?.GetText());
             }
 
             return new StringBuilder($"{funcName}({this.Visit(context.param_list())}) {{{Environment.NewLine}");
@@ -350,14 +350,10 @@ namespace JassToCsMain
 
         public override StringBuilder VisitHex([NotNull] HexContext context)
         {
-            ITerminalNode hex = context.HEX();
-            if (hex != null)
-            {
-                int number = NumberConvertHelper.HexToDecimal(hex.Symbol.Text);
-                return new StringBuilder($"{NumberConvertHelper.GetDecimalOrFourcc(number)}");
-            }
+            string hex = base.VisitHex(context).ToString();
+            int number = NumberConvertHelper.HexToDecimal(hex);
 
-            return base.VisitHex(context);
+            return new StringBuilder($"{NumberConvertHelper.GetDecimalOrFourcc(number)}");
         }
 
         #endregion

@@ -42,13 +42,13 @@ namespace JassToCsMain
         {
             // 945821957-256^3*56-256^2*96-256*25-5
             long difference = num;
-            byte x = GetPositiveFuncMinimum(difference, 256 * 256 * 256);
+            byte x = (byte)(difference / (256 * 256 * 256));
             difference -= (long)256 * 256 * 256 * x;
-            byte y = GetPositiveFuncMinimum(difference, 256 * 256);
+            byte y = (byte)(difference / (256 * 256));
             difference -= 256 * 256 * y;
-            byte z = GetPositiveFuncMinimum(difference, 256);
+            byte z = (byte)(difference / 256);
             difference -= 256 * z;
-            byte d = GetPositiveFuncMinimum(difference, 1);
+            byte d = (byte)(difference / 1);
             difference -= d;
 
             if (difference != 0)
@@ -57,32 +57,6 @@ namespace JassToCsMain
             }
 
             return $"\"{Encoding.Default.GetString(new byte[4] { x, y, z, d })}\"";
-        }
-
-        /// <summary>
-        /// MIN(a - bx) > 0
-        /// </summary>
-        public static byte GetPositiveFuncMinimum(long minuend, long subtrahend)
-        {
-            long left = byte.MinValue - 1;
-            long right = byte.MaxValue + 1;
-
-            while (right - left > 1)
-            {
-                long middle = (left + right) / 2;
-
-                long result = minuend - subtrahend * middle;
-                if (result >= 0)
-                {
-                    left = middle;
-                }
-                else
-                {
-                    right = middle;
-                }
-            }
-
-            return (byte)left;
         }
     }
 }

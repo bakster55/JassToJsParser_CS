@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Antlr\CS\JassBaseListener.cs" />
-    <Compile Include="Antlr\CS\JassBaseVisitor.cs" />
     <Compile Include="Antlr\CS\JassLexer.cs" />
-    <Compile Include="Antlr\CS\JassListener.cs" />
     <Compile Include="Antlr\CS\JassParser.cs" />
-    <Compile Include="Antlr\CS\JassVisitor.cs" />
+    <Compile Include="Antlr\CS\JassParserBaseListener.cs" />
+    <Compile Include="Antlr\CS\JassParserBaseVisitor.cs" />
+    <Compile Include="Antlr\CS\JassParserListener.cs" />
+    <Compile Include="Antlr\CS\JassParserVisitor.cs" />
     <Compile Include="Helpers\NumberConvertHelper.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\NameGenerator.cs" />
@@ -62,15 +62,14 @@
     <Compile Include="Helpers\TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Antlr\Config\Build_CS_NEW.cmd" />
+    <None Include="Antlr\Config\Build_CS.cmd" />
     <None Include="Antlr\Config\Build_JS.cmd" />
     <None Include="Antlr\Config\JassLexer.g4" />
     <None Include="Antlr\Config\JassParser.g4" />
-    <None Include="Antlr\Config\Jass.g4" />
-    <None Include="Antlr\CS\Jass.interp" />
-    <None Include="Antlr\CS\Jass.tokens" />
     <None Include="Antlr\CS\JassLexer.interp" />
     <None Include="Antlr\CS\JassLexer.tokens" />
+    <None Include="Antlr\CS\JassParser.interp" />
+    <None Include="Antlr\CS\JassParser.tokens" />
     <None Include="Antlr\JS\Jass.interp" />
     <None Include="Antlr\JS\Jass.tokens" />
     <None Include="Antlr\JS\JassLexer.interp" />
@@ -81,7 +80,6 @@
     <None Include="War3Map\common.j" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Antlr\Config\Build_CS.cmd" />
     <Content Include="Antlr\Config\antlr-4.8-complete.jar" />
     <Content Include="Antlr\JS\JassLexer.js" />
     <Content Include="Antlr\JS\JassListener.js" />

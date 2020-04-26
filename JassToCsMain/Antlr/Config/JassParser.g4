@@ -1,5 +1,9 @@
 parser grammar JassParser;
 
+options {
+    tokenVocab=JassLexer;
+}
+
 file
  : (declr)* func*
  ;

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Jass.g4 by ANTLR 4.8
+// Generated from JassLexer.g4 by ANTLR 4.8
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -105,7 +105,7 @@ public partial class JassLexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "Jass.g4"; } }
+	public override string GrammarFileName { get { return "JassLexer.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Jass.g4 by ANTLR 4.8
+// Generated from JassParser.g4 by ANTLR 4.8
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -98,7 +98,7 @@ public partial class JassParser : Parser {
 		}
 	}
 
-	public override string GrammarFileName { get { return "Jass.g4"; } }
+	public override string GrammarFileName { get { return "JassParser.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
@@ -138,15 +138,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_file; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterFile(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitFile(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFile(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -218,15 +218,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterDeclr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitDeclr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitDeclr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -290,15 +290,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_typedef; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterTypedef(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitTypedef(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTypedef(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -355,15 +355,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_globals; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterGlobals(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitGlobals(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGlobals(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -411,15 +411,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_global_var_list; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterGlobal_var_list(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitGlobal_var_list(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGlobal_var_list(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -496,15 +496,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_global_var_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterGlobal_var_declr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitGlobal_var_declr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGlobal_var_declr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -547,15 +547,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_native_func; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterNative_func(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitNative_func(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNative_func(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -615,15 +615,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_func_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterFunc_declr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitFunc_declr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunc_declr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -719,15 +719,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_param_list; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterParam_list(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitParam_list(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitParam_list(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -790,15 +790,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_func; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterFunc(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitFunc(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunc(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -852,15 +852,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_local_var_list; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterLocal_var_list(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitLocal_var_list(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLocal_var_list(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -911,15 +911,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_local_var_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterLocal_var_declr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitLocal_var_declr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLocal_var_declr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -965,15 +965,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_var_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterVar_declr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitVar_declr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitVar_declr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1039,15 +1039,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_statement_list; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterStatement_list(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitStatement_list(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStatement_list(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1115,15 +1115,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_statement; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterStatement(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitStatement(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStatement(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1214,15 +1214,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_set; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterSet(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitSet(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitSet(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1286,15 +1286,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_call; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterCall(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitCall(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitCall(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1351,15 +1351,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_args; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterArgs(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitArgs(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitArgs(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1420,15 +1420,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_ifthenelse; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterIfthenelse(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitIfthenelse(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitIfthenelse(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1488,15 +1488,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_else_clause; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterElse_clause(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitElse_clause(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitElse_clause(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1563,15 +1563,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_loop; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterLoop(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitLoop(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLoop(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1611,15 +1611,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_exitwhen; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterExitwhen(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitExitwhen(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitExitwhen(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1658,15 +1658,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_return_stat; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterReturn_stat(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitReturn_stat(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitReturn_stat(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1723,15 +1723,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_debug; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterDebug(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitDebug(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitDebug(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1828,15 +1828,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_expr; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterExpr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitExpr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitExpr(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2049,15 +2049,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_func_call; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterFunc_call(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitFunc_call(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunc_call(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2111,15 +2111,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_array_ref; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterArray_ref(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitArray_ref(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitArray_ref(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2160,15 +2160,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_func_ref; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterFunc_ref(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitFunc_ref(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunc_ref(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2214,15 +2214,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_constant; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterConstant(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitConstant(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitConstant(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2300,15 +2300,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_int_const; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterInt_const(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitInt_const(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitInt_const(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2369,15 +2369,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_decimal; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterDecimal(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitDecimal(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitDecimal(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2412,15 +2412,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_hex; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterHex(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitHex(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitHex(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2459,15 +2459,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_parens; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterParens(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitParens(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitParens(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2505,15 +2505,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_boolConst; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterBoolConst(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitBoolConst(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitBoolConst(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2557,15 +2557,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_stringConst; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterStringConst(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitStringConst(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStringConst(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2608,15 +2608,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_type; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterType(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitType(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitType(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2695,15 +2695,15 @@ public partial class JassParser : Parser {
 		}
 		public override int RuleIndex { get { return RULE_id; } }
 		public override void EnterRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.EnterId(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
-			IJassListener typedListener = listener as IJassListener;
+			IJassParserListener typedListener = listener as IJassParserListener;
 			if (typedListener != null) typedListener.ExitId(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IJassVisitor<TResult> typedVisitor = visitor as IJassVisitor<TResult>;
+			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitId(this);
 			else return visitor.VisitChildren(this);
 		}

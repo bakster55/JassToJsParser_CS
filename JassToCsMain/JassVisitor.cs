@@ -8,7 +8,7 @@ using static JassParser;
 
 namespace JassToCsMain
 {
-    class JassVisitor : JassBaseVisitor<StringBuilder>
+    class JassVisitor : JassParserBaseVisitor<StringBuilder>
     {
         #region Inherited
 

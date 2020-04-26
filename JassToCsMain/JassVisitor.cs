@@ -221,14 +221,14 @@ namespace JassToCsMain
             return base.VisitGlobal_var_list(context);
         }
 
-        public override StringBuilder VisitGlobal_var_declr([NotNull] Global_var_declrContext context)
+        public override StringBuilder VisitConst_declr([NotNull] Const_declrContext context)
         {
             if (context.K_CONSTANT() != null)
             {
                 context.children.RemoveAt(0);
             }
 
-            return new StringBuilder($"{base.VisitGlobal_var_declr(context)}{Environment.NewLine}");
+            return new StringBuilder($"{base.VisitConst_declr(context)}{Environment.NewLine}");
         }
 
         public override StringBuilder VisitIfthenelse([NotNull] JassParser.IfthenelseContext context)

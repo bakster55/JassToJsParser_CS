@@ -81,15 +81,15 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitGlobal_var_list([NotNull] JassParser.Global_var_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.global_var_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.const_declr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterGlobal_var_declr([NotNull] JassParser.Global_var_declrContext context);
+	void EnterConst_declr([NotNull] JassParser.Const_declrContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.global_var_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.const_declr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitGlobal_var_declr([NotNull] JassParser.Global_var_declrContext context);
+	void ExitConst_declr([NotNull] JassParser.Const_declrContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.native_func"/>.
 	/// </summary>

@@ -95,17 +95,17 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitGlobal_var_list([NotNull] JassParser.Global_var_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.global_var_declr"/>.
+	/// Enter a parse tree produced by <see cref="JassParser.const_declr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterGlobal_var_declr([NotNull] JassParser.Global_var_declrContext context) { }
+	public virtual void EnterConst_declr([NotNull] JassParser.Const_declrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.global_var_declr"/>.
+	/// Exit a parse tree produced by <see cref="JassParser.const_declr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitGlobal_var_declr([NotNull] JassParser.Global_var_declrContext context) { }
+	public virtual void ExitConst_declr([NotNull] JassParser.Const_declrContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.native_func"/>.
 	/// <para>The default implementation does nothing.</para>

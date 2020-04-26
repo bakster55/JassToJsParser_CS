@@ -23,10 +23,10 @@ globals
  ;
 
 global_var_list
- : (global_var_declr | var_declr)*
+ : (const_declr | var_declr)*
  ;
 
-global_var_declr
+const_declr
  : K_CONSTANT type id ASSIGN expr
  ;
 

@@ -48,17 +48,16 @@ public partial class JassParser : Parser {
 		ID=60, WS=61, COMMENT=62;
 	public const int
 		RULE_file = 0, RULE_declr = 1, RULE_typedef = 2, RULE_globals = 3, RULE_global_var_list = 4, 
-		RULE_global_var_declr = 5, RULE_native_func = 6, RULE_func_declr = 7, 
-		RULE_param_list = 8, RULE_func = 9, RULE_local_var_list = 10, RULE_local_var_declr = 11, 
-		RULE_var_declr = 12, RULE_statement_list = 13, RULE_statement = 14, RULE_set = 15, 
-		RULE_call = 16, RULE_args = 17, RULE_ifthenelse = 18, RULE_else_clause = 19, 
-		RULE_loop = 20, RULE_exitwhen = 21, RULE_return_stat = 22, RULE_debug = 23, 
-		RULE_expr = 24, RULE_func_call = 25, RULE_array_ref = 26, RULE_func_ref = 27, 
-		RULE_constant = 28, RULE_int_const = 29, RULE_decimal = 30, RULE_hex = 31, 
-		RULE_parens = 32, RULE_boolConst = 33, RULE_stringConst = 34, RULE_type = 35, 
-		RULE_id = 36;
+		RULE_const_declr = 5, RULE_native_func = 6, RULE_func_declr = 7, RULE_param_list = 8, 
+		RULE_func = 9, RULE_local_var_list = 10, RULE_local_var_declr = 11, RULE_var_declr = 12, 
+		RULE_statement_list = 13, RULE_statement = 14, RULE_set = 15, RULE_call = 16, 
+		RULE_args = 17, RULE_ifthenelse = 18, RULE_else_clause = 19, RULE_loop = 20, 
+		RULE_exitwhen = 21, RULE_return_stat = 22, RULE_debug = 23, RULE_expr = 24, 
+		RULE_func_call = 25, RULE_array_ref = 26, RULE_func_ref = 27, RULE_constant = 28, 
+		RULE_int_const = 29, RULE_decimal = 30, RULE_hex = 31, RULE_parens = 32, 
+		RULE_boolConst = 33, RULE_stringConst = 34, RULE_type = 35, RULE_id = 36;
 	public static readonly string[] ruleNames = {
-		"file", "declr", "typedef", "globals", "global_var_list", "global_var_declr", 
+		"file", "declr", "typedef", "globals", "global_var_list", "const_declr", 
 		"native_func", "func_declr", "param_list", "func", "local_var_list", "local_var_declr", 
 		"var_declr", "statement_list", "statement", "set", "call", "args", "ifthenelse", 
 		"else_clause", "loop", "exitwhen", "return_stat", "debug", "expr", "func_call", 
@@ -393,11 +392,11 @@ public partial class JassParser : Parser {
 	}
 
 	public partial class Global_var_listContext : ParserRuleContext {
-		public Global_var_declrContext[] global_var_declr() {
-			return GetRuleContexts<Global_var_declrContext>();
+		public Const_declrContext[] const_declr() {
+			return GetRuleContexts<Const_declrContext>();
 		}
-		public Global_var_declrContext global_var_declr(int i) {
-			return GetRuleContext<Global_var_declrContext>(i);
+		public Const_declrContext const_declr(int i) {
+			return GetRuleContext<Const_declrContext>(i);
 		}
 		public Var_declrContext[] var_declr() {
 			return GetRuleContexts<Var_declrContext>();
@@ -443,7 +442,7 @@ public partial class JassParser : Parser {
 				switch (TokenStream.LA(1)) {
 				case K_CONSTANT:
 					{
-					State = 102; global_var_declr();
+					State = 102; const_declr();
 					}
 					break;
 				case K_CODE:
@@ -478,7 +477,7 @@ public partial class JassParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Global_var_declrContext : ParserRuleContext {
+	public partial class Const_declrContext : ParserRuleContext {
 		public ITerminalNode K_CONSTANT() { return GetToken(JassParser.K_CONSTANT, 0); }
 		public TypeContext type() {
 			return GetRuleContext<TypeContext>(0);
@@ -490,30 +489,30 @@ public partial class JassParser : Parser {
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
-		public Global_var_declrContext(ParserRuleContext parent, int invokingState)
+		public Const_declrContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_global_var_declr; } }
+		public override int RuleIndex { get { return RULE_const_declr; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.EnterGlobal_var_declr(this);
+			if (typedListener != null) typedListener.EnterConst_declr(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			IJassParserListener typedListener = listener as IJassParserListener;
-			if (typedListener != null) typedListener.ExitGlobal_var_declr(this);
+			if (typedListener != null) typedListener.ExitConst_declr(this);
 		}
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IJassParserVisitor<TResult> typedVisitor = visitor as IJassParserVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGlobal_var_declr(this);
+			if (typedVisitor != null) return typedVisitor.VisitConst_declr(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Global_var_declrContext global_var_declr() {
-		Global_var_declrContext _localctx = new Global_var_declrContext(Context, State);
-		EnterRule(_localctx, 10, RULE_global_var_declr);
+	public Const_declrContext const_declr() {
+		Const_declrContext _localctx = new Const_declrContext(Context, State);
+		EnterRule(_localctx, 10, RULE_const_declr);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{

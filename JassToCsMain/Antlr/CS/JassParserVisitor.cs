@@ -62,11 +62,11 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitGlobal_var_list([NotNull] JassParser.Global_var_listContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.global_var_declr"/>.
+	/// Visit a parse tree produced by <see cref="JassParser.const_declr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitGlobal_var_declr([NotNull] JassParser.Global_var_declrContext context);
+	Result VisitConst_declr([NotNull] JassParser.Const_declrContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.native_func"/>.
 	/// </summary>

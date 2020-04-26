@@ -103,14 +103,14 @@ namespace JassToCsMain
             }
             else
             {
-                var globalVarDeclContext = context.global_var_declr();
+                var constDeclContext = context.const_declr();
                 ITerminalNode[] nameTokens = context.GetTokens(JassLexer.ID);
 
-                if (globalVarDeclContext.Length != nameTokens.Length) { throw new Exception(); }
+                if (constDeclContext.Length != nameTokens.Length) { throw new Exception(); }
 
-                for (int i = 0; i < globalVarDeclContext.Length; i++)
+                for (int i = 0; i < constDeclContext.Length; i++)
                 {
-                    var type = globalVarDeclContext[i].type().GetText();
+                    var type = constDeclContext[i].type().GetText();
                     var name = nameTokens[i].Symbol.Text;
 
                     GlobalVariableTypeByName.Add(name, type);

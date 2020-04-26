@@ -134,7 +134,7 @@ declr
 typedef
 globals
 global_var_list
-global_var_declr
+const_declr
 native_func
 func_declr
 param_list

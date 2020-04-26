@@ -98,12 +98,6 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLocalVarList([NotNull] JassParser.LocalVarListContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

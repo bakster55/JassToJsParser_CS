@@ -104,16 +104,16 @@ namespace JassToCsMain
             else
             {
                 var constDeclContext = context.constDeclr();
-                ITerminalNode[] nameTokens = context.GetTokens(JassLexer.ID);
 
-                if (constDeclContext.Length != nameTokens.Length) { throw new Exception(); }
-
-                for (int i = 0; i < constDeclContext.Length; i++)
+                if (constDeclContext != null)
                 {
-                    var type = constDeclContext[i].type().GetText();
-                    var name = nameTokens[i].Symbol.Text;
+                    foreach (var constDecl in constDeclContext)
+                    {
+                        var type = constDecl.type().GetText();
+                        var name = constDecl.id().ID().Symbol.Text;
 
-                    GlobalVariableTypeByName.Add(name, type);
+                        GlobalVariableTypeByName.Add(name, type);
+                    }
                 }
             }
         }
@@ -128,17 +128,15 @@ namespace JassToCsMain
 
             LocalVariableTypeByName.Add(funcName, new Dictionary<string, string>());
 
-            var localVarDeclContext = context.localVarList()?.localVarDeclr();
+            var varDeclContext = context.localVarList()?.varDeclr();
 
-            if (localVarDeclContext != null && localVarDeclContext.Length > 0)
+            if (varDeclContext != null)
             {
                 // Fill function body variables
-                foreach (var localVarDecl in localVarDeclContext)
+                foreach (var varDecl in varDeclContext)
                 {
-                    var varDeclContext = localVarDecl.varDeclr();
-
-                    var type = varDeclContext.type().GetText();
-                    var name = varDeclContext.id().GetText();
+                    var type = varDecl.type().GetText();
+                    var name = varDecl.id().GetText();
 
                     LocalVariableTypeByName[funcName].Add(name, type);
                 }

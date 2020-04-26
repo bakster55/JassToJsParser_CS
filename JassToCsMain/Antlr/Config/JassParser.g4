@@ -5,7 +5,7 @@ options {
 }
 
 file
- : (declr)* func*
+ : declr* func*
  ;
 
 declr
@@ -47,11 +47,7 @@ func
  ;
 
 localVarList
- : localVarDeclr*
- ;
-
-localVarDeclr
- : K_LOCAL varDeclr
+ : (K_LOCAL varDeclr)*
  ;
 
 varDeclr

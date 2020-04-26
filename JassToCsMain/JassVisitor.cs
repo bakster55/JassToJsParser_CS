@@ -46,7 +46,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitErrorNode(IErrorNode node)
         {
-            return null;
+            throw new Exception();
         }
 
         #endregion
@@ -65,7 +65,10 @@ namespace JassToCsMain
                     stringBuilder.Append($"{this.Visit(node)}{separator}");
                 }
 
-                stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
+                if (nodes.Count > 0)
+                {
+                    stringBuilder.Append($"{this.Visit(nodes[nodes.Count - 1])}");
+                }
 
                 return stringBuilder;
             }
@@ -243,15 +246,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitLocalVarList([NotNull] JassParser.LocalVarListContext context)
         {
-            return base.VisitLocalVarList(context);
-        }
-
-        public override StringBuilder VisitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context)
-        {
-            // Remove local keyword
-            context.children?.RemoveAt(0);
-
-            return new StringBuilder($"{base.VisitLocalVarDeclr(context)}{Environment.NewLine}");
+            return this.VisitChildrens(context.varDeclr());
         }
 
         public override StringBuilder VisitLoop([NotNull] JassParser.LoopContext context)

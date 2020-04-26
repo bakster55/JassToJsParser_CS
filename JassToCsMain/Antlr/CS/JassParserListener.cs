@@ -141,16 +141,6 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLocalVarList([NotNull] JassParser.LocalVarListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="JassParser.localVarDeclr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLocalVarDeclr([NotNull] JassParser.LocalVarDeclrContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.varDeclr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

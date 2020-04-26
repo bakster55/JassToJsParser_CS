@@ -62,7 +62,10 @@
     <Compile Include="Helpers\TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Antlr\Config\Build_CS_NEW.cmd" />
     <None Include="Antlr\Config\Build_JS.cmd" />
+    <None Include="Antlr\Config\JassLexer.g4" />
+    <None Include="Antlr\Config\JassParser.g4" />
     <None Include="Antlr\Config\Jass.g4" />
     <None Include="Antlr\CS\Jass.interp" />
     <None Include="Antlr\CS\Jass.tokens" />

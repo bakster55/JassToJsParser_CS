@@ -331,9 +331,9 @@ namespace JassToCsMain
 
         public override StringBuilder VisitId([NotNull] IdContext context)
         {
-            var id = base.VisitId(context);
+            var id = base.VisitId(context).ToString();
 
-            return Helper.ReplaceInvalidVariableName(id);
+            return new StringBuilder(Helper.GetNewName(id));
         }
 
         public override StringBuilder VisitDecimal([NotNull] DecimalContext context)

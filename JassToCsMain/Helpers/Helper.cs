@@ -18,6 +18,8 @@ namespace JassToCsMain
 
         public static Dictionary<string, Dictionary<string, string>> LocalVariableTypeByName = new Dictionary<string, Dictionary<string, string>>();
 
+        public static Dictionary<string, string> NewNameByOldName = new Dictionary<string, string>();
+
         public static string Parse(string path)
         {
             FileContext tree;
@@ -43,25 +45,37 @@ namespace JassToCsMain
             return content;
         }
 
-        public static StringBuilder ReplaceInvalidVariableName(StringBuilder id)
+        public static string GetNewName(string oldName)
         {
-            List<string> reservedKeywords = new List<string>()
+            string newName = GetValueOrDefault(NewNameByOldName, oldName);
+            if (newName == null)
             {
-                "do",
-                "in",
-                "this",
-                "class"
-            };
-
-            var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id.ToString() == rk);
-
-            if (reservedKeyword != null)
-            {
-                return new StringBuilder($"{reservedKeyword}{reservedKeyword}");
+                newName = NameGenerator.GetNext();
+                NewNameByOldName.Add(oldName, newName);
             }
 
-            return id;
+            return newName;
         }
+
+        //public static StringBuilder ReplaceInvalidVariableName(StringBuilder id)
+        //{
+        //    List<string> reservedKeywords = new List<string>()
+        //    {
+        //        "do",
+        //        "in",
+        //        "this",
+        //        "class"
+        //    };
+
+        //    var reservedKeyword = reservedKeywords.FirstOrDefault(rk => id.ToString() == rk);
+
+        //    if (reservedKeyword != null)
+        //    {
+        //        return new StringBuilder($"{reservedKeyword}{reservedKeyword}");
+        //    }
+
+        //    return id;
+        //}
 
         public static void ReplaceBinaryOperator(ParserRuleContext context)
         {

@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Array\Test1\Expected.js" />
     <Content Include="NameReplacement\Test2\Expected.js" />
     <Content Include="Operations\IntegerDivision\Test1\Expected.js" />
     <Content Include="Expressions\Hex\Test2\Expected.js" />
@@ -62,6 +63,7 @@
     <Content Include="Expressions\Test1\Expected.js" />
     <Content Include="Globals\Test2\Expected.js" />
     <Content Include="Globals\Test1\Expected.js" />
+    <None Include="Array\Test1\Example.j" />
     <None Include="NameReplacement\Test2\Example.j" />
     <None Include="Operations\IntegerDivision\Test1\Example.j" />
     <None Include="Expressions\Hex\Test2\Example.j" />
@@ -71,6 +73,7 @@
     <None Include="Expressions\Test1\Example.j" />
     <None Include="Globals\Test2\Example.j" />
     <None Include="Globals\Test1\Example.j" />
+    <Compile Include="Array\ArrayTest.cs" />
     <Compile Include="Operations\IntegerDivision\IntegerDivision.cs" />
     <Compile Include="NameReplacement\NameReplacementTest.cs" />
     <Compile Include="Expressions\Hex\HexTest.cs" />

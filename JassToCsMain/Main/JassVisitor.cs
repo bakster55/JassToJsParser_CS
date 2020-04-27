@@ -91,6 +91,12 @@ namespace JassToCsMain
 
         public override StringBuilder VisitArrayRef([NotNull] JassParser.ArrayRefContext context)
         {
+            if (Helper.GetVariableType(context.id()) == "integer" && context.Parent.GetType() == typeof(ExprContext))
+            {
+                // jass integer arrays have default value 0 instead of js undefined value if element not found
+                return new StringBuilder($"{this.Visit(context.id())}.getInt({this.Visit(context.expr())})");
+            }
+
             return base.VisitArrayRef(context);
         }
 
@@ -161,8 +167,8 @@ namespace JassToCsMain
             if (Helper.IsFourccConcatenation(context))
             {
                 var expressions = context.expr();
-                var fourcc1 = expressions[0]?.constant()?.intConst()?.FOURCC().Symbol.Text;
-                var fourcc2 = expressions[1]?.constant()?.intConst()?.FOURCC().Symbol.Text;
+                var fourcc1 = expressions[0]?.constant()?.intConst()?.fourcc().FOURCC().Symbol.Text;
+                var fourcc2 = expressions[1]?.constant()?.intConst()?.fourcc().FOURCC().Symbol.Text;
 
                 if (fourcc1 == "'÷=Å«'")
                 {
@@ -258,6 +264,20 @@ namespace JassToCsMain
             return base.VisitIntConst(context);
         }
 
+        public override StringBuilder VisitFourcc([NotNull] FourccContext context)
+        {
+            string fourcc = base.VisitFourcc(context).ToString();
+
+            // Replace string with number
+            int bracketsLength = 2;
+            if (fourcc.Length - bracketsLength == 1)
+            {
+                return new StringBuilder(Encoding.Default.GetBytes(fourcc)[1].ToString());
+            }
+
+            return new StringBuilder(fourcc);
+        }
+
         public override StringBuilder VisitLocalVarList([NotNull] JassParser.LocalVarListContext context)
         {
             return this.VisitChildrens(context.varDeclr());
@@ -327,13 +347,6 @@ namespace JassToCsMain
         public override StringBuilder VisitStringConst([NotNull] StringConstContext context)
         {
             string stringConst = base.VisitStringConst(context).ToString();
-
-            // Replace string with number
-            int bracketsLength = 2;
-            if (stringConst.Length - bracketsLength == 1)
-            {
-                return new StringBuilder(Encoding.Default.GetBytes(stringConst)[1].ToString());
-            }
 
             // JS does not allow lune breaks in string
             Regex regex = new Regex("[\r\n]");

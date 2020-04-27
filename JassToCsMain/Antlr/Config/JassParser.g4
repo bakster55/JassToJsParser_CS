@@ -152,7 +152,11 @@ intConst
  : decimal
  | OCTAL
  | hex
- | FOURCC
+ | fourcc
+ ;
+
+fourcc
+ : FOURCC
  ;
 
 decimal

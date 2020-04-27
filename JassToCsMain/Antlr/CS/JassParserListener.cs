@@ -331,6 +331,16 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIntConst([NotNull] JassParser.IntConstContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.fourcc"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFourcc([NotNull] JassParser.FourccContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.fourcc"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFourcc([NotNull] JassParser.FourccContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.decimal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

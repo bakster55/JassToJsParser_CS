@@ -395,6 +395,18 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIntConst([NotNull] JassParser.IntConstContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.fourcc"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFourcc([NotNull] JassParser.FourccContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.fourcc"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFourcc([NotNull] JassParser.FourccContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.decimal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

@@ -1047,24 +1047,24 @@ function f_aru() {
 }
 function f_arx() {
   var lv_ary;
-  if (gv_aqj[0] == 0) {
+  if (gv_aqj.getInt(0) == 0) {
     gv_aqi = gv_aqi + 1;
     lv_ary = gv_aqi;
   } else {
-    lv_ary = gv_aqj[0];
-    gv_aqj[0] = gv_aqj[gv_aqj[0]];
+    lv_ary = gv_aqj.getInt(0);
+    gv_aqj[0] = gv_aqj.getInt(gv_aqj.getInt(0));
   }
   return lv_ary;
 }
 function f_arz(lv_arA) {
-  gv_aqj[lv_arA] = gv_aqj[0];
+  gv_aqj[lv_arA] = gv_aqj.getInt(0);
   gv_aqj[0] = lv_arA;
 }
 function f_arB(lv_arC) {
   SaveInteger(gv_aac, gv_aqa, GetHandleId(gv_aqd[lv_arC]), 0);
   gv_apZ = gv_apZ - 1;
-  gv_apY[gv_aqf[lv_arC]] = gv_apY[gv_apZ];
-  gv_aqf[gv_apY[gv_aqf[lv_arC]]] = gv_aqf[lv_arC];
+  gv_apY[gv_aqf.getInt(lv_arC)] = gv_apY.getInt(gv_apZ);
+  gv_aqf[gv_apY.getInt(gv_aqf.getInt(lv_arC))] = gv_aqf.getInt(lv_arC);
   f_arz(lv_arC);
   if (gv_apZ == 0) {
     PauseTimer(gv_aqc);
@@ -1119,7 +1119,7 @@ function f_arG() {
           gv_aqg[lv_arK] = GetItemX(lv_arJ);
           gv_aqh[lv_arK] = GetItemY(lv_arJ);
         }
-        lv_arH = "d";
+        lv_arH = 100;
       }
       lv_arH = lv_arH + 1;
     } while (true);
@@ -1170,7 +1170,7 @@ function f_arU() {
     if (lv_arY >= gv_apZ) {
       break;
     }
-    lv_asa = gv_apY[lv_arY];
+    lv_asa = gv_apY.getInt(lv_arY);
     lv_arV = GetItemX(gv_aqe[lv_asa]) - GetUnitX(gv_aqd[lv_asa]);
     lv_arW = GetItemY(gv_aqe[lv_asa]) - GetUnitY(gv_aqd[lv_asa]);
     if (
@@ -1292,7 +1292,7 @@ function f_ass(lv_ast) {
     if (lv_asu > gv_aaF) {
       break;
     }
-    if (lv_ast == gv_aaE[lv_asu]) {
+    if (lv_ast == gv_aaE.getInt(lv_asu)) {
       return lv_asu;
     }
     lv_asu = lv_asu + 1;
@@ -1305,7 +1305,7 @@ function f_asv(lv_asw) {
     if (lv_asx > gv_aaB) {
       break;
     }
-    if (lv_asw == gv_aaA[lv_asx]) {
+    if (lv_asw == gv_aaA.getInt(lv_asx)) {
       return lv_asx;
     }
     lv_asx = lv_asx + 1;
@@ -1511,7 +1511,7 @@ function f_atq() {
     if (lv_atr > gv_aaM) {
       break;
     }
-    lv_atv = f_asy(gv_aaO[lv_atr]);
+    lv_atv = f_asy(gv_aaO.getInt(lv_atr));
     lv_ats = StringLength(lv_atv);
     if (lv_ats > 1) {
       lv_att = S2S(lv_att + gv_aaJ[lv_ats - 1]);
@@ -1610,9 +1610,9 @@ function f_atG() {
     GetRectCenter(gv_ajp),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1620,9 +1620,9 @@ function f_atG() {
     GetRectCenter(gv_akK),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1630,9 +1630,9 @@ function f_atG() {
     GetRectCenter(gv_ajl),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1640,9 +1640,9 @@ function f_atG() {
     GetRectCenter(gv_ajH),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1650,9 +1650,9 @@ function f_atG() {
     GetRectCenter(gv_ajk),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1660,9 +1660,9 @@ function f_atG() {
     GetRectCenter(gv_ajS),
     0,
     8.5,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1670,9 +1670,9 @@ function f_atG() {
     GetRectCenter(gv_ajY),
     0,
     10,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1680,9 +1680,9 @@ function f_atG() {
     GetRectCenter(gv_ajN),
     0,
     10,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1690,9 +1690,9 @@ function f_atG() {
     GetRectCenter(gv_akc),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1700,9 +1700,9 @@ function f_atG() {
     GetRectCenter(gv_akB),
     0,
     10,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1710,9 +1710,9 @@ function f_atG() {
     GetRectCenter(gv_akF),
     0,
     10,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1720,9 +1720,9 @@ function f_atG() {
     GetRectCenter(gv_aju),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1730,9 +1730,9 @@ function f_atG() {
     GetRectCenter(gv_ajo),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1740,9 +1740,9 @@ function f_atG() {
     GetRectCenter(gv_akA),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1750,9 +1750,9 @@ function f_atG() {
     GetRectCenter(gv_ajX),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   CreateTextTagLocBJ(
@@ -1760,9 +1760,9 @@ function f_atG() {
     GetRectCenter(gv_ajE),
     0,
     13,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   AddSpecialEffectTargetUnitBJ(
@@ -2060,32 +2060,32 @@ function f_atG() {
   gv_aaj[97] = "I03S";
   gv_aaj[98] = "I03L";
   gv_aaj[99] = "I03F";
-  gv_aaj["d"] = "I03M";
-  gv_aaj["e"] = "I03G";
-  gv_aaj["f"] = "I03N";
-  gv_aaj["g"] = "I03H";
-  gv_aaj["h"] = "I046";
-  gv_aaj["i"] = "I040";
-  gv_aaj["j"] = "I041";
-  gv_aaj["k"] = "I045";
-  gv_aaj["l"] = "I042";
-  gv_aaj["m"] = "I047";
-  gv_aaj["n"] = "I03X";
-  gv_aaj["o"] = "I049";
-  gv_aaj["p"] = "I03Y";
-  gv_aaj["q"] = "I048";
-  gv_aaj["r"] = "I03Z";
-  gv_aaj["s"] = "I04C";
-  gv_aaj["t"] = "I044";
-  gv_aaj["u"] = "I043";
-  gv_aaj["v"] = "I04W";
-  gv_aaj["w"] = "I04T";
-  gv_aaj["x"] = "I04U";
-  gv_aaj["y"] = "I04X";
-  gv_aaj["z"] = "I04V";
-  gv_aaj["{"] = "I04Y";
-  gv_aaj["|"] = "I03V";
-  gv_aaj["}"] = "I050";
+  gv_aaj[100] = "I03M";
+  gv_aaj[101] = "I03G";
+  gv_aaj[102] = "I03N";
+  gv_aaj[103] = "I03H";
+  gv_aaj[104] = "I046";
+  gv_aaj[105] = "I040";
+  gv_aaj[106] = "I041";
+  gv_aaj[107] = "I045";
+  gv_aaj[108] = "I042";
+  gv_aaj[109] = "I047";
+  gv_aaj[110] = "I03X";
+  gv_aaj[111] = "I049";
+  gv_aaj[112] = "I03Y";
+  gv_aaj[113] = "I048";
+  gv_aaj[114] = "I03Z";
+  gv_aaj[115] = "I04C";
+  gv_aaj[116] = "I044";
+  gv_aaj[117] = "I043";
+  gv_aaj[118] = "I04W";
+  gv_aaj[119] = "I04T";
+  gv_aaj[120] = "I04U";
+  gv_aaj[121] = "I04X";
+  gv_aaj[122] = "I04V";
+  gv_aaj[123] = "I04Y";
+  gv_aaj[124] = "I03V";
+  gv_aaj[125] = "I050";
   gv_aaj[126] = "I03W";
   gv_aaj[127] = "I04Z";
   gv_aaj[128] = "I04J";
@@ -2345,63 +2345,63 @@ function f_atG() {
   gv_aak[53] = 99;
   gv_aal[53] = 88;
   gv_aaW[53] = 98;
-  gv_aak[54] = "e";
+  gv_aak[54] = 101;
   gv_aal[54] = 90;
-  gv_aaW[54] = "d";
-  gv_aak[55] = "g";
+  gv_aaW[54] = 100;
+  gv_aak[55] = 103;
   gv_aal[55] = 92;
-  gv_aaW[55] = "f";
-  gv_aak[56] = "i";
+  gv_aaW[55] = 102;
+  gv_aak[56] = 105;
   gv_aal[56] = 94;
-  gv_aaW[56] = "h";
-  gv_aak[57] = "j";
+  gv_aaW[56] = 104;
+  gv_aak[57] = 106;
   gv_aal[57] = 95;
-  gv_aaW[57] = "h";
-  gv_aak[58] = "l";
+  gv_aaW[57] = 104;
+  gv_aak[58] = 108;
   gv_aal[58] = 97;
-  gv_aaW[58] = "k";
-  gv_aak[59] = "n";
+  gv_aaW[58] = 107;
+  gv_aak[59] = 110;
   gv_aal[59] = 99;
-  gv_aaW[59] = "m";
-  gv_aak[60] = "p";
-  gv_aal[60] = "e";
-  gv_aaW[60] = "o";
-  gv_aak[61] = "r";
-  gv_aal[61] = "g";
-  gv_aaW[61] = "q";
-  gv_aak[62] = "u";
+  gv_aaW[59] = 109;
+  gv_aak[60] = 112;
+  gv_aal[60] = 101;
+  gv_aaW[60] = 111;
+  gv_aak[61] = 114;
+  gv_aal[61] = 103;
+  gv_aaW[61] = 113;
+  gv_aak[62] = 117;
   gv_aal[62] = 70;
-  gv_aaW[62] = "s";
-  gv_aam[62] = "t";
-  gv_aak[63] = "w";
-  gv_aal[63] = "i";
-  gv_aaW[63] = "v";
-  gv_aak[64] = "x";
-  gv_aal[64] = "j";
-  gv_aaW[64] = "v";
-  gv_aak[65] = "z";
-  gv_aal[65] = "l";
-  gv_aaW[65] = "y";
-  gv_aak[66] = "|";
-  gv_aal[66] = "n";
-  gv_aaW[66] = "{";
+  gv_aaW[62] = 115;
+  gv_aam[62] = 116;
+  gv_aak[63] = 119;
+  gv_aal[63] = 105;
+  gv_aaW[63] = 118;
+  gv_aak[64] = 120;
+  gv_aal[64] = 106;
+  gv_aaW[64] = 118;
+  gv_aak[65] = 122;
+  gv_aal[65] = 108;
+  gv_aaW[65] = 121;
+  gv_aak[66] = 124;
+  gv_aal[66] = 110;
+  gv_aaW[66] = 123;
   gv_aak[67] = 126;
-  gv_aal[67] = "p";
-  gv_aaW[67] = "}";
+  gv_aal[67] = 112;
+  gv_aaW[67] = 125;
   gv_aak[68] = 128;
-  gv_aal[68] = "r";
+  gv_aal[68] = 114;
   gv_aaW[68] = 127;
   gv_aak[69] = 130;
-  gv_aal[69] = "w";
+  gv_aal[69] = 119;
   gv_aaW[69] = 129;
   gv_aak[70] = 131;
-  gv_aal[70] = "x";
+  gv_aal[70] = 120;
   gv_aaW[70] = 129;
   gv_aak[71] = 133;
-  gv_aal[71] = "z";
+  gv_aal[71] = 122;
   gv_aaW[71] = 132;
   gv_aak[72] = 135;
-  gv_aal[72] = "|";
+  gv_aal[72] = 124;
   gv_aaW[72] = 134;
   gv_aak[73] = 137;
   gv_aal[73] = 126;
@@ -2484,76 +2484,76 @@ function f_atG() {
   gv_aak[99] = 185;
   gv_aal[99] = 174;
   gv_aaW[99] = 184;
-  gv_aak["d"] = 186;
-  gv_aal["d"] = 175;
-  gv_aaW["d"] = 184;
-  gv_aak["e"] = 188;
-  gv_aal["e"] = 177;
-  gv_aaW["e"] = 187;
-  gv_aak["f"] = 190;
-  gv_aal["f"] = 179;
-  gv_aaW["f"] = 189;
-  gv_aak["g"] = 192;
-  gv_aal["g"] = 181;
-  gv_aaW["g"] = 191;
-  gv_aak["h"] = 194;
-  gv_aal["h"] = 183;
-  gv_aaW["h"] = 193;
-  gv_aak["i"] = 196;
-  gv_aal["i"] = 185;
-  gv_aaW["i"] = 195;
-  gv_aak["j"] = 197;
-  gv_aal["j"] = 186;
-  gv_aaW["j"] = 195;
-  gv_aak["k"] = 199;
-  gv_aal["k"] = 188;
-  gv_aaW["k"] = 198;
-  gv_aak["l"] = 201;
-  gv_aal["l"] = 190;
-  gv_aaW["l"] = 200;
-  gv_aak["m"] = 203;
-  gv_aal["m"] = 192;
-  gv_aaW["m"] = 202;
-  gv_aak["n"] = 205;
-  gv_aal["n"] = 194;
-  gv_aaW["n"] = 204;
-  gv_aak["o"] = 207;
-  gv_aal["o"] = 196;
-  gv_aaW["o"] = 206;
-  gv_aak["p"] = 208;
-  gv_aal["p"] = 197;
-  gv_aaW["p"] = 206;
-  gv_aak["q"] = 210;
-  gv_aal["q"] = 196;
-  gv_aaW["q"] = 209;
-  gv_aak["r"] = 211;
-  gv_aal["r"] = 197;
-  gv_aaW["r"] = 209;
-  gv_aak["s"] = 213;
-  gv_aal["s"] = 207;
-  gv_aaW["s"] = 212;
-  gv_aak["t"] = 214;
-  gv_aal["t"] = 208;
-  gv_aaW["t"] = 212;
-  gv_aak["u"] = 216;
-  gv_aal["u"] = 210;
-  gv_aaW["u"] = 215;
-  gv_aak["v"] = 217;
-  gv_aal["v"] = 211;
-  gv_aaW["v"] = 215;
-  gv_aak["w"] = 219;
-  gv_aal["w"] = 199;
-  gv_aaW["w"] = 218;
-  gv_aak["x"] = 221;
-  gv_aal["x"] = 201;
-  gv_aaW["x"] = 220;
-  gv_aak["y"] = 223;
-  gv_aal["y"] = 203;
-  gv_aaW["y"] = 222;
-  gv_aak["z"] = 225;
-  gv_aal["z"] = 205;
-  gv_aaW["z"] = 224;
-  gv_aan = "z";
+  gv_aak[100] = 186;
+  gv_aal[100] = 175;
+  gv_aaW[100] = 184;
+  gv_aak[101] = 188;
+  gv_aal[101] = 177;
+  gv_aaW[101] = 187;
+  gv_aak[102] = 190;
+  gv_aal[102] = 179;
+  gv_aaW[102] = 189;
+  gv_aak[103] = 192;
+  gv_aal[103] = 181;
+  gv_aaW[103] = 191;
+  gv_aak[104] = 194;
+  gv_aal[104] = 183;
+  gv_aaW[104] = 193;
+  gv_aak[105] = 196;
+  gv_aal[105] = 185;
+  gv_aaW[105] = 195;
+  gv_aak[106] = 197;
+  gv_aal[106] = 186;
+  gv_aaW[106] = 195;
+  gv_aak[107] = 199;
+  gv_aal[107] = 188;
+  gv_aaW[107] = 198;
+  gv_aak[108] = 201;
+  gv_aal[108] = 190;
+  gv_aaW[108] = 200;
+  gv_aak[109] = 203;
+  gv_aal[109] = 192;
+  gv_aaW[109] = 202;
+  gv_aak[110] = 205;
+  gv_aal[110] = 194;
+  gv_aaW[110] = 204;
+  gv_aak[111] = 207;
+  gv_aal[111] = 196;
+  gv_aaW[111] = 206;
+  gv_aak[112] = 208;
+  gv_aal[112] = 197;
+  gv_aaW[112] = 206;
+  gv_aak[113] = 210;
+  gv_aal[113] = 196;
+  gv_aaW[113] = 209;
+  gv_aak[114] = 211;
+  gv_aal[114] = 197;
+  gv_aaW[114] = 209;
+  gv_aak[115] = 213;
+  gv_aal[115] = 207;
+  gv_aaW[115] = 212;
+  gv_aak[116] = 214;
+  gv_aal[116] = 208;
+  gv_aaW[116] = 212;
+  gv_aak[117] = 216;
+  gv_aal[117] = 210;
+  gv_aaW[117] = 215;
+  gv_aak[118] = 217;
+  gv_aal[118] = 211;
+  gv_aaW[118] = 215;
+  gv_aak[119] = 219;
+  gv_aal[119] = 199;
+  gv_aaW[119] = 218;
+  gv_aak[120] = 221;
+  gv_aal[120] = 201;
+  gv_aaW[120] = 220;
+  gv_aak[121] = 223;
+  gv_aal[121] = 203;
+  gv_aaW[121] = 222;
+  gv_aak[122] = 225;
+  gv_aal[122] = 205;
+  gv_aaW[122] = 224;
+  gv_aan = 122;
 }
 function f_atH() {
   var lv_atI = GetDyingDestructable();
@@ -2892,7 +2892,7 @@ function f_auj() {
 function f_auk() {
   gv_agf = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 70));
   if (f_auj()) {
-    gv_agf = "d";
+    gv_agf = 100;
   }
   gv_agg = GetRandomInt(1, gv_agf);
   DisplayTextToForce(
@@ -3002,9 +3002,9 @@ function f_auv() {
     GetAttacker(),
     0,
     9,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   SetTextTagPermanentBJ(bj_lastCreatedTextTag, false);
@@ -3160,31 +3160,31 @@ function f_auy() {
   gv_aaE[97] = "I06E";
   gv_aaE[98] = "I06K";
   gv_aaE[99] = "I06M";
-  gv_aaE["d"] = "I06L";
-  gv_aaE["e"] = "I04A";
-  gv_aaE["f"] = "I06I";
-  gv_aaE["g"] = "I06J";
-  gv_aaE["h"] = "I06Q";
-  gv_aaE["i"] = "I06S";
-  gv_aaE["j"] = "I06R";
-  gv_aaE["k"] = "I06N";
-  gv_aaE["l"] = "I06O";
-  gv_aaE["m"] = "I06P";
-  gv_aaE["n"] = "I07A";
-  gv_aaE["o"] = "I07B";
-  gv_aaE["p"] = "I079";
-  gv_aaE["q"] = "I06T";
-  gv_aaE["r"] = "I06U";
-  gv_aaE["s"] = "I06V";
-  gv_aaE["t"] = "I07C";
-  gv_aaE["u"] = "I07E";
-  gv_aaE["v"] = "I07D";
-  gv_aaE["w"] = "I07F";
-  gv_aaE["x"] = "I07K";
-  gv_aaE["y"] = "I07J";
-  gv_aaE["{"] = "I07N";
-  gv_aaE["|"] = "I07M";
-  gv_aaE["}"] = "I07L";
+  gv_aaE[100] = "I06L";
+  gv_aaE[101] = "I04A";
+  gv_aaE[102] = "I06I";
+  gv_aaE[103] = "I06J";
+  gv_aaE[104] = "I06Q";
+  gv_aaE[105] = "I06S";
+  gv_aaE[106] = "I06R";
+  gv_aaE[107] = "I06N";
+  gv_aaE[108] = "I06O";
+  gv_aaE[109] = "I06P";
+  gv_aaE[110] = "I07A";
+  gv_aaE[111] = "I07B";
+  gv_aaE[112] = "I079";
+  gv_aaE[113] = "I06T";
+  gv_aaE[114] = "I06U";
+  gv_aaE[115] = "I06V";
+  gv_aaE[116] = "I07C";
+  gv_aaE[117] = "I07E";
+  gv_aaE[118] = "I07D";
+  gv_aaE[119] = "I07F";
+  gv_aaE[120] = "I07K";
+  gv_aaE[121] = "I07J";
+  gv_aaE[123] = "I07N";
+  gv_aaE[124] = "I07M";
+  gv_aaE[125] = "I07L";
   gv_aaE[126] = "I07G";
   gv_aaE[127] = "I07H";
   gv_aaE[128] = "I07I";
@@ -3275,7 +3275,7 @@ function f_auG() {
   ForGroupBJ(f_aqR(GetTriggerPlayer(), Condition(f_auE)), f_auF);
   CreateNUnitsAtLoc(
     1,
-    gv_aaA[gv_aaK[gv_aaL]],
+    gv_aaA.getInt(gv_aaK.getInt(gv_aaL)),
     GetTriggerPlayer(),
     GetRectCenter(gv_ajw),
     bj_UNIT_FACING
@@ -3283,26 +3283,26 @@ function f_auG() {
   gv_aaN = bj_lastCreatedUnit;
   SelectUnitForPlayerSingle(bj_lastCreatedUnit, GetTriggerPlayer());
   gv_aaL = gv_aaL + 1;
-  SetHeroLevelBJ(bj_lastCreatedUnit, gv_aaK[gv_aaL], false);
+  SetHeroLevelBJ(bj_lastCreatedUnit, gv_aaK.getInt(gv_aaL), false);
   gv_aaL = gv_aaL + 1;
-  SetHeroXP(bj_lastCreatedUnit, gv_aaK[gv_aaL], false);
+  SetHeroXP(bj_lastCreatedUnit, gv_aaK.getInt(gv_aaL), false);
   gv_aaL = gv_aaL + 1;
-  ModifyHeroStat(0, gv_aaN, 2, gv_aaK[gv_aaL]);
+  ModifyHeroStat(0, gv_aaN, 2, gv_aaK.getInt(gv_aaL));
   gv_aaL = gv_aaL + 1;
-  ModifyHeroStat(1, gv_aaN, 2, gv_aaK[gv_aaL]);
+  ModifyHeroStat(1, gv_aaN, 2, gv_aaK.getInt(gv_aaL));
   gv_aaL = gv_aaL + 1;
-  ModifyHeroStat(2, gv_aaN, 2, gv_aaK[gv_aaL]);
+  ModifyHeroStat(2, gv_aaN, 2, gv_aaK.getInt(gv_aaL));
   gv_aaL = gv_aaL + 1;
   SetPlayerStateBJ(
     GetTriggerPlayer(),
     PLAYER_STATE_RESOURCE_GOLD,
-    gv_aaK[gv_aaL]
+    gv_aaK.getInt(gv_aaL)
   );
   gv_aaL = gv_aaL + 1;
   SetPlayerStateBJ(
     GetTriggerPlayer(),
     PLAYER_STATE_RESOURCE_LUMBER,
-    gv_aaK[gv_aaL]
+    gv_aaK.getInt(gv_aaL)
   );
   bj_forLoopAIndex = 1;
   bj_forLoopAIndexEnd = 6;
@@ -3311,7 +3311,7 @@ function f_auG() {
       break;
     }
     gv_aaL = gv_aaL + 1;
-    UnitAddItemByIdSwapped(gv_aaE[gv_aaK[gv_aaL]], gv_aaN);
+    UnitAddItemByIdSwapped(gv_aaE.getInt(gv_aaK.getInt(gv_aaL)), gv_aaN);
     bj_forLoopAIndex = bj_forLoopAIndex + 1;
   } while (true);
   gv_aaS[1 + GetPlayerId(GetTriggerPlayer())] = true;
@@ -3326,9 +3326,9 @@ function f_auI() {
     GetTriggerUnit(),
     0,
     9,
-    "d",
-    "d",
-    "d",
+    100,
+    100,
+    100,
     0
   );
   SetTextTagPermanentBJ(bj_lastCreatedTextTag, false);
@@ -3359,7 +3359,7 @@ function f_auL() {
         0,
         10,
         100,
-        "d",
+        100,
         100,
         0
       );
@@ -4680,21 +4680,24 @@ function f_awn() {
   gv_afm[1 + GetPlayerId(GetTriggerPlayer())] = GetTriggerUnit();
 }
 function f_awo() {
-  return gv_aaW[gv_afn] != 0;
+  return gv_aaW.getInt(gv_afn) != 0;
 }
 function f_awp() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aal[gv_afn]]) || gv_aal[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aal.getInt(gv_afn))) ||
+    gv_aal.getInt(gv_afn) == 0
   );
 }
 function f_awq() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aaW[gv_afn]]) || gv_aaW[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aaW.getInt(gv_afn))) ||
+    gv_aaW.getInt(gv_afn) == 0
   );
 }
 function f_awr() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aam[gv_afn]]) || gv_aam[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aam.getInt(gv_afn))) ||
+    gv_aam.getInt(gv_afn) == 0
   );
 }
 function f_aws() {
@@ -4708,27 +4711,30 @@ function f_awt() {
   );
 }
 function f_awu() {
-  return gv_aal[gv_afn] != 0;
+  return gv_aal.getInt(gv_afn) != 0;
 }
 function f_awv() {
-  return gv_aaW[gv_afn] != 0;
+  return gv_aaW.getInt(gv_afn) != 0;
 }
 function f_aww() {
-  return gv_aam[gv_afn] != 0;
+  return gv_aam.getInt(gv_afn) != 0;
 }
 function f_awx() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aal[gv_afn]]) || gv_aal[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aal.getInt(gv_afn))) ||
+    gv_aal.getInt(gv_afn) == 0
   );
 }
 function f_awy() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aaW[gv_afn]]) || gv_aaW[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aaW.getInt(gv_afn))) ||
+    gv_aaW.getInt(gv_afn) == 0
   );
 }
 function f_awz() {
   return (
-    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj[gv_aam[gv_afn]]) || gv_aam[gv_afn] == 0
+    UnitHasItemOfTypeBJ(gv_aaU, gv_aaj.getInt(gv_aam.getInt(gv_afn))) ||
+    gv_aam.getInt(gv_afn) == 0
   );
 }
 function f_awA() {
@@ -4742,7 +4748,7 @@ function f_awB() {
   );
 }
 function f_awC() {
-  gv_aaV = GetRandomInt(1, "d");
+  gv_aaV = GetRandomInt(1, 100);
   gv_aaU = gv_afm[1 + GetPlayerId(GetTriggerPlayer())];
   if (f_awB()) {
     gv_afn = 1;
@@ -4752,15 +4758,30 @@ function f_awC() {
       }
       if (f_awA()) {
         if (f_awu()) {
-          RemoveItem(GetItemOfTypeFromUnitBJ(gv_aaU, gv_aaj[gv_aal[gv_afn]]));
+          RemoveItem(
+            GetItemOfTypeFromUnitBJ(
+              gv_aaU,
+              gv_aaj.getInt(gv_aal.getInt(gv_afn))
+            )
+          );
         }
         if (f_awv()) {
-          RemoveItem(GetItemOfTypeFromUnitBJ(gv_aaU, gv_aaj[gv_aaW[gv_afn]]));
+          RemoveItem(
+            GetItemOfTypeFromUnitBJ(
+              gv_aaU,
+              gv_aaj.getInt(gv_aaW.getInt(gv_afn))
+            )
+          );
         }
         if (f_aww()) {
-          RemoveItem(GetItemOfTypeFromUnitBJ(gv_aaU, gv_aaj[gv_aam[gv_afn]]));
+          RemoveItem(
+            GetItemOfTypeFromUnitBJ(
+              gv_aaU,
+              gv_aaj.getInt(gv_aam.getInt(gv_afn))
+            )
+          );
         }
-        UnitAddItemByIdSwapped(gv_aaj[gv_aak[gv_afn]], gv_aaU);
+        UnitAddItemByIdSwapped(gv_aaj.getInt(gv_aak.getInt(gv_afn)), gv_aaU);
         DisplayTextToForce(
           bj_FORCE_ALL_PLAYERS,
           gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_aaU))] +
@@ -4781,8 +4802,18 @@ function f_awC() {
         }
         if (f_aws()) {
           if (f_awo()) {
-            RemoveItem(GetItemOfTypeFromUnitBJ(gv_aaU, gv_aaj[gv_aaW[gv_afn]]));
-            RemoveItem(GetItemOfTypeFromUnitBJ(gv_aaU, gv_aaj[gv_aam[gv_afn]]));
+            RemoveItem(
+              GetItemOfTypeFromUnitBJ(
+                gv_aaU,
+                gv_aaj.getInt(gv_aaW.getInt(gv_afn))
+              )
+            );
+            RemoveItem(
+              GetItemOfTypeFromUnitBJ(
+                gv_aaU,
+                gv_aaj.getInt(gv_aam.getInt(gv_afn))
+              )
+            );
             DisplayTextToForce(
               bj_FORCE_ALL_PLAYERS,
               gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_aaU))] +
@@ -4807,12 +4838,12 @@ function f_awE() {
   return GetTriggerUnit() == gv_aaY[1 + GetPlayerId(GetTriggerPlayer())];
 }
 function f_awF() {
-  return gv_aaX[1 + GetPlayerId(GetTriggerPlayer())] == 1;
+  return gv_aaX.getInt(1 + GetPlayerId(GetTriggerPlayer())) == 1;
 }
 function f_awG() {
   return (
     GetOwningPlayer(GetTriggerUnit()) == Player(15) &&
-    gv_aaX[1 + GetPlayerId(GetTriggerPlayer())] == 0
+    gv_aaX.getInt(1 + GetPlayerId(GetTriggerPlayer())) == 0
   );
 }
 function f_awH() {
@@ -5182,7 +5213,7 @@ function f_axN() {
 function f_axO() {
   return (
     (IsUnitType(GetTriggerUnit(), UNIT_TYPE_HERO) &&
-      GetUnitLevel(GetTriggerUnit()) >= "x" &&
+      GetUnitLevel(GetTriggerUnit()) >= 120 &&
       GetItemTypeId(GetManipulatedItem()) == "I04H") != null
   );
 }
@@ -5244,7 +5275,7 @@ function f_axY() {
   return gv_aaZ <= 5;
 }
 function f_axZ() {
-  gv_aaZ = GetRandomInt(1, "d");
+  gv_aaZ = GetRandomInt(1, 100);
   gv_aba = GetUnitLoc(GetTriggerUnit());
   if (f_axY()) {
     CreateItemLoc("I008", gv_aba);
@@ -5278,7 +5309,7 @@ function f_aye() {
   return gv_abb <= 5;
 }
 function f_ayf() {
-  gv_abb = GetRandomInt(1, "d");
+  gv_abb = GetRandomInt(1, 100);
   gv_abc = GetUnitLoc(GetTriggerUnit());
   if (f_aye()) {
     CreateItemLoc("I00P", gv_abc);
@@ -5306,7 +5337,7 @@ function f_ayj() {
   return gv_abd <= 10;
 }
 function f_ayk() {
-  gv_abd = GetRandomInt(1, "d");
+  gv_abd = GetRandomInt(1, 100);
   gv_abe = GetUnitLoc(GetTriggerUnit());
   if (f_ayj()) {
     CreateItemLoc("I00Y", gv_abe);
@@ -5334,7 +5365,7 @@ function f_ayo() {
   return gv_abf <= 10;
 }
 function f_ayp() {
-  gv_abf = GetRandomInt(1, "d");
+  gv_abf = GetRandomInt(1, 100);
   gv_abg = GetUnitLoc(GetTriggerUnit());
   if (f_ayo()) {
     CreateItemLoc("I014", gv_abg);
@@ -5365,7 +5396,7 @@ function f_ayu() {
   return gv_abh <= 10;
 }
 function f_ayv() {
-  gv_abh = GetRandomInt(1, "d");
+  gv_abh = GetRandomInt(1, 100);
   gv_abi = GetUnitLoc(GetTriggerUnit());
   if (f_ayu()) {
     CreateItemLoc("I01B", gv_abi);
@@ -5404,7 +5435,7 @@ function f_ayA() {
   return gv_abj <= 5;
 }
 function f_ayB() {
-  gv_abj = GetRandomInt(1, "d");
+  gv_abj = GetRandomInt(1, 100);
   gv_abk = GetUnitLoc(GetTriggerUnit());
   if (f_ayA()) {
     CreateItemLoc("I01N", gv_abk);
@@ -5432,7 +5463,7 @@ function f_ayF() {
   return gv_abl <= 10;
 }
 function f_ayG() {
-  gv_abl = GetRandomInt(1, "d");
+  gv_abl = GetRandomInt(1, 100);
   gv_abm = GetUnitLoc(GetTriggerUnit());
   if (f_ayF()) {
     CreateItemLoc("I01U", gv_abm);
@@ -5467,7 +5498,7 @@ function f_ayL() {
   return gv_abn <= 5;
 }
 function f_ayM() {
-  gv_abn = GetRandomInt(1, "d");
+  gv_abn = GetRandomInt(1, 100);
   gv_abo = GetUnitLoc(GetTriggerUnit());
   if (f_ayL()) {
     CreateItemLoc("I022", gv_abo);
@@ -5502,7 +5533,7 @@ function f_ayR() {
   return gv_abp <= 5;
 }
 function f_ayS() {
-  gv_abp = GetRandomInt(1, "d");
+  gv_abp = GetRandomInt(1, 100);
   gv_abq = GetUnitLoc(GetTriggerUnit());
   if (f_ayR()) {
     CreateItemLoc("I027", gv_abq);
@@ -5524,7 +5555,7 @@ function f_ayU() {
   return gv_afB <= 7;
 }
 function f_ayV() {
-  gv_afB = GetRandomInt(1, "d");
+  gv_afB = GetRandomInt(1, 100);
   gv_afC = GetUnitLoc(GetTriggerUnit());
   if (f_ayU()) {
     CreateItemLoc("I02A", gv_afC);
@@ -5550,7 +5581,7 @@ function f_azb() {
   return gv_afD <= 10;
 }
 function f_azc() {
-  gv_afD = GetRandomInt(1, "d");
+  gv_afD = GetRandomInt(1, 100);
   gv_afE = GetUnitLoc(GetTriggerUnit());
   if (f_azb()) {
     CreateItemLoc("I02K", gv_afE);
@@ -5604,7 +5635,7 @@ function f_azk() {
   return gv_afV <= 5;
 }
 function f_azl() {
-  gv_afV = GetRandomInt(1, "d");
+  gv_afV = GetRandomInt(1, 100);
   gv_afW = GetUnitLoc(GetTriggerUnit());
   if (f_azk()) {
     CreateItemLoc("I036", gv_afW);
@@ -5660,7 +5691,7 @@ function f_azt() {
   return gv_afX <= 5;
 }
 function f_azu() {
-  gv_afX = GetRandomInt(1, "d");
+  gv_afX = GetRandomInt(1, 100);
   gv_afY = GetUnitLoc(GetTriggerUnit());
   if (f_azt()) {
     CreateItemLoc("I03K", gv_afY);
@@ -5710,7 +5741,7 @@ function f_azB() {
   return gv_agb <= 10;
 }
 function f_azC() {
-  gv_agb = GetRandomInt(1, "d");
+  gv_agb = GetRandomInt(1, 100);
   gv_agc = GetUnitLoc(GetTriggerUnit());
   if (f_azB()) {
     CreateItemLoc("I046", gv_agc);
@@ -5765,7 +5796,7 @@ function f_azK() {
   return gv_agS <= 5;
 }
 function f_azL() {
-  gv_agS = GetRandomInt(1, "d");
+  gv_agS = GetRandomInt(1, 100);
   gv_agT = GetUnitLoc(GetTriggerUnit());
   if (f_azK()) {
     CreateItemLoc("I04W", gv_agT);
@@ -5822,7 +5853,7 @@ function f_azT() {
   return gv_agX <= 5;
 }
 function f_azU() {
-  gv_agX = GetRandomInt(1, "d");
+  gv_agX = GetRandomInt(1, 100);
   gv_agY = GetUnitLoc(GetTriggerUnit());
   if (f_azT()) {
     CreateItemLoc("I054", gv_agY);
@@ -5869,7 +5900,7 @@ function f_aAa() {
   return gv_agZ <= 10;
 }
 function f_aAb() {
-  gv_agZ = GetRandomInt(1, "d");
+  gv_agZ = GetRandomInt(1, 100);
   gv_aha = GetUnitLoc(GetTriggerUnit());
   if (f_aAa()) {
     CreateItemLoc("I05H", gv_aha);
@@ -5911,7 +5942,7 @@ function f_aAh() {
   return gv_ahb <= 10;
 }
 function f_aAi() {
-  gv_ahb = GetRandomInt(1, "d");
+  gv_ahb = GetRandomInt(1, 100);
   gv_ahc = GetUnitLoc(GetTriggerUnit());
   if (f_aAh()) {
     CreateItemLoc("I05R", gv_ahc);
@@ -5963,7 +5994,7 @@ function f_aAq() {
   return gv_ahZ <= 5;
 }
 function f_aAr() {
-  gv_ahZ = GetRandomInt(1, "d");
+  gv_ahZ = GetRandomInt(1, 100);
   gv_aia = GetUnitLoc(GetTriggerUnit());
   if (f_aAq()) {
     CreateItemLoc("I007", gv_aia);
@@ -6013,7 +6044,7 @@ function f_aAy() {
   return gv_aib <= 5;
 }
 function f_aAz() {
-  gv_aib = GetRandomInt(1, "d");
+  gv_aib = GetRandomInt(1, 100);
   gv_aic = GetUnitLoc(GetTriggerUnit());
   if (f_aAy()) {
     CreateItemLoc("I062", gv_aic);
@@ -6060,7 +6091,7 @@ function f_aAF() {
   return gv_aid <= 10;
 }
 function f_aAG() {
-  gv_aid = GetRandomInt(1, "d");
+  gv_aid = GetRandomInt(1, 100);
   gv_aie = GetUnitLoc(GetTriggerUnit());
   if (f_aAF()) {
     CreateItemLoc("I067", gv_aie);
@@ -6111,7 +6142,7 @@ function f_aAO() {
   return gv_ail <= 5;
 }
 function f_aAP() {
-  gv_ail = GetRandomInt(1, "d");
+  gv_ail = GetRandomInt(1, 100);
   gv_aim = GetUnitLoc(GetTriggerUnit());
   if (f_aAO()) {
     CreateItemLoc("I06W", gv_aim);
@@ -6146,7 +6177,7 @@ function f_aAR() {
   return gv_ain <= 15;
 }
 function f_aAS() {
-  gv_ain = GetRandomInt(1, "d");
+  gv_ain = GetRandomInt(1, 100);
   gv_aio = GetUnitLoc(GetTriggerUnit());
   if (f_aAR()) {
     CreateItemLoc("I071", gv_aio);
@@ -6160,7 +6191,7 @@ function f_aAU() {
   return gv_aip <= 15;
 }
 function f_aAV() {
-  gv_aip = GetRandomInt(1, "d");
+  gv_aip = GetRandomInt(1, 100);
   gv_aiq = GetUnitLoc(GetTriggerUnit());
   if (f_aAU()) {
     CreateItemLoc("I072", gv_aiq);
@@ -6189,7 +6220,7 @@ function f_aBc() {
   return gv_air <= 10;
 }
 function f_aBd() {
-  gv_air = GetRandomInt(1, "d");
+  gv_air = GetRandomInt(1, 100);
   gv_ais = GetUnitLoc(GetTriggerUnit());
   if (f_aBc()) {
     CreateItemLoc("I073", gv_ais);
@@ -6223,7 +6254,7 @@ function f_aBf() {
   return gv_aiN <= 15;
 }
 function f_aBg() {
-  gv_aiN = GetRandomInt(1, "d");
+  gv_aiN = GetRandomInt(1, 100);
   gv_aiO = GetUnitLoc(GetTriggerUnit());
   if (f_aBf()) {
     CreateItemLoc("I07Z", gv_aiO);
@@ -6237,7 +6268,7 @@ function f_aBi() {
   return gv_aiP <= 15;
 }
 function f_aBj() {
-  gv_aiP = GetRandomInt(1, "d");
+  gv_aiP = GetRandomInt(1, 100);
   gv_aiQ = GetUnitLoc(GetTriggerUnit());
   if (f_aBi()) {
     CreateItemLoc("I080", gv_aiQ);
@@ -6251,7 +6282,7 @@ function f_aBl() {
   return gv_aiR <= 15;
 }
 function f_aBm() {
-  gv_aiR = GetRandomInt(1, "d");
+  gv_aiR = GetRandomInt(1, 100);
   gv_aiS = GetUnitLoc(GetTriggerUnit());
   if (f_aBl()) {
     CreateItemLoc("I081", gv_aiS);
@@ -6265,7 +6296,7 @@ function f_aBo() {
   return gv_aiT <= 15;
 }
 function f_aBp() {
-  gv_aiT = GetRandomInt(1, "d");
+  gv_aiT = GetRandomInt(1, 100);
   gv_aiU = GetUnitLoc(GetTriggerUnit());
   if (f_aBo()) {
     CreateItemLoc("I082", gv_aiU);
@@ -6285,7 +6316,7 @@ function f_aBt() {
   return gv_agh <= 30;
 }
 function f_aBu() {
-  gv_agh = GetRandomInt(1, "d");
+  gv_agh = GetRandomInt(1, 100);
   gv_agi = GetUnitLoc(GetTriggerUnit());
   if (f_aBt()) {
     CreateItemLoc("I04E", gv_agi);
@@ -6313,7 +6344,7 @@ function f_aBy() {
   return gv_agj <= 30;
 }
 function f_aBz() {
-  gv_agj = GetRandomInt(1, "d");
+  gv_agj = GetRandomInt(1, 100);
   gv_agk = GetUnitLoc(GetTriggerUnit());
   if (f_aBy()) {
     CreateItemLoc("I04G", gv_agk);
@@ -6335,7 +6366,7 @@ function f_aBB() {
   return gv_agd <= 30;
 }
 function f_aBC() {
-  gv_agd = GetRandomInt(1, "d");
+  gv_agd = GetRandomInt(1, 100);
   gv_age = GetUnitLoc(GetTriggerUnit());
   if (f_aBB()) {
     CreateItemLoc("I04C", gv_age);
@@ -6639,7 +6670,7 @@ function f_aCf() {
     gv_agB = GetUnitLoc(gv_agA);
     gv_agC = f_aqN(800, gv_agB, Condition(f_aCc));
     if (f_aCd()) {
-      SetUnitLifePercentBJ(gv_agA, "d");
+      SetUnitLifePercentBJ(gv_agA, 100);
       AddSpecialEffectLocBJ(
         gv_agB,
         "Abilities\\Spells\\Human\\HolyBolt\\HolyBoltSpecialArt.mdl"
@@ -6650,9 +6681,9 @@ function f_aCf() {
         gv_agA,
         0,
         12,
-        "d",
-        "d",
-        "d",
+        100,
+        100,
+        100,
         0
       );
       SetTextTagPermanentBJ(bj_lastCreatedTextTag, false);
@@ -6684,7 +6715,7 @@ function f_aCk() {
   return gv_agV <= 7;
 }
 function f_aCl() {
-  gv_agV = GetRandomInt(1, "d");
+  gv_agV = GetRandomInt(1, 100);
   if (f_aCk()) {
     IssuePointOrderByIdLoc(GetTriggerUnit(), 852125, GetUnitLoc(GetAttacker()));
   } else {
@@ -6706,7 +6737,7 @@ function f_aCo() {
   return gv_agU <= 7;
 }
 function f_aCp() {
-  gv_agU = GetRandomInt(1, "d");
+  gv_agU = GetRandomInt(1, 100);
   if (f_aCo()) {
     IssueTargetOrderById(GetTriggerUnit(), 852226, GetAttacker());
   } else {
@@ -6728,7 +6759,7 @@ function f_aCs() {
   return gv_agW <= 7;
 }
 function f_aCt() {
-  gv_agW = GetRandomInt(1, "d");
+  gv_agW = GetRandomInt(1, 100);
   if (f_aCs()) {
     IssuePointOrderByIdLoc(GetTriggerUnit(), 852218, GetUnitLoc(GetAttacker()));
   } else {
@@ -6764,7 +6795,7 @@ function f_aCy() {
   return gv_ajd <= 7;
 }
 function f_aCz() {
-  gv_ajd = GetRandomInt(1, "d");
+  gv_ajd = GetRandomInt(1, 100);
   if (f_aCy()) {
     IssueTargetOrderById(GetTriggerUnit(), 852226, GetAttacker());
     IssueTargetOrderById(GetTriggerUnit(), 852222, GetAttacker());
@@ -6823,15 +6854,17 @@ function f_aCD() {
   );
 }
 function f_aCE() {
-  return gv_abu[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 30;
+  return (
+    gv_abu.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 30
+  );
 }
 function f_aCF() {
   gv_abt = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_abu[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_abu[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_abu.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_abt,
-    I2S(gv_abu[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_abu.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/30 monsters have been killed."
   );
   if (f_aCE()) {
@@ -6895,15 +6928,17 @@ function f_aCL() {
   );
 }
 function f_aCM() {
-  return gv_aby[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 30;
+  return (
+    gv_aby.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 30
+  );
 }
 function f_aCN() {
   gv_abx = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_aby[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_aby[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_aby.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_abx,
-    I2S(gv_aby[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_aby.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/30 frogs have been killed."
   );
   if (f_aCM()) {
@@ -6971,15 +7006,17 @@ function f_aCT() {
   );
 }
 function f_aCU() {
-  return gv_abC[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= "d";
+  return (
+    gv_abC.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 100
+  );
 }
 function f_aCV() {
   gv_abB = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_abC[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_abC[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_abC.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_abB,
-    I2S(gv_abC[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_abC.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/100 monsters have been killed."
   );
   if (f_aCU()) {
@@ -7047,15 +7084,17 @@ function f_aDb() {
   );
 }
 function f_aDc() {
-  return gv_agn[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= "d";
+  return (
+    gv_agn.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 100
+  );
 }
 function f_aDd() {
   gv_ago = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_agn[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_agn[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_agn.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_ago,
-    I2S(gv_agn[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_agn.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/100 monsters have been killed."
   );
   if (f_aDc()) {
@@ -7118,15 +7157,17 @@ function f_aDj() {
   );
 }
 function f_aDk() {
-  return gv_aiD[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= "d";
+  return (
+    gv_aiD.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 100
+  );
 }
 function f_aDl() {
   gv_aiE = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_aiD[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_aiD[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_aiD.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_aiE,
-    I2S(gv_aiD[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_aiD.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/100 monsters have been killed."
   );
   if (f_aDk()) {
@@ -7194,15 +7235,17 @@ function f_aDr() {
   );
 }
 function f_aDs() {
-  return gv_aiH[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 80;
+  return (
+    gv_aiH.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 80
+  );
 }
 function f_aDt() {
   gv_aiI = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_aiH[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_aiH[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_aiH.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_aiI,
-    I2S(gv_aiH[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_aiH.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/80 monsters have been killed."
   );
   if (f_aDs()) {
@@ -7258,15 +7301,17 @@ function f_aDy() {
   );
 }
 function f_aDz() {
-  return gv_aiL[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 25;
+  return (
+    gv_aiL.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 25
+  );
 }
 function f_aDA() {
   gv_aiM = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_aiL[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_aiL[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_aiL.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_aiM,
-    I2S(gv_aiL[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_aiL.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/25 monsters have been killed."
   );
   if (f_aDz()) {
@@ -7326,15 +7371,17 @@ function f_aDG() {
   );
 }
 function f_aDH() {
-  return gv_aiX[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= "d";
+  return (
+    gv_aiX.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 100
+  );
 }
 function f_aDI() {
   gv_aiY = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_aiX[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_aiX[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_aiX.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_aiY,
-    I2S(gv_aiX[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_aiX.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/100 monsters have been killed."
   );
   if (f_aDH()) {
@@ -7399,15 +7446,17 @@ function f_aDO() {
   );
 }
 function f_aDP() {
-  return gv_ajb[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 80;
+  return (
+    gv_ajb.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 80
+  );
 }
 function f_aDQ() {
   gv_ajc = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_ajb[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_ajb[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_ajb.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_ajc,
-    I2S(gv_ajb[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_ajb.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/80 monsters have been killed."
   );
   if (f_aDP()) {
@@ -7463,15 +7512,17 @@ function f_aDV() {
   );
 }
 function f_aDW() {
-  return gv_ajg[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] >= 25;
+  return (
+    gv_ajg.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) >= 25
+  );
 }
 function f_aDX() {
   gv_ajh = f_aqW(GetOwningPlayer(GetKillingUnit()));
   gv_ajg[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] =
-    gv_ajg[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))] + 1;
+    gv_ajg.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))) + 1;
   DisplayTextToForce(
     gv_ajh,
-    I2S(gv_ajg[1 + GetPlayerId(GetOwningPlayer(GetKillingUnit()))]) +
+    I2S(gv_ajg.getInt(1 + GetPlayerId(GetOwningPlayer(GetKillingUnit())))) +
       "/25 monsters have been killed."
   );
   if (f_aDW()) {
@@ -7559,13 +7610,13 @@ function f_aEb() {
     gv_afF
   );
   GroupAddUnit(gv_afH, bj_lastCreatedUnit);
-  PlaySoundOnUnitBJ(gv_akX, "d", GetTriggerUnit());
+  PlaySoundOnUnitBJ(gv_akX, 100, GetTriggerUnit());
   gv_afI = AddLightningEx(
     "LEAS",
     true,
     GetLocationX(gv_afG[1]),
     GetLocationY(gv_afG[1]),
-    GetLocationZ(gv_afG[1]) + "d",
+    GetLocationZ(gv_afG[1]) + 100,
     GetLocationX(gv_afG[2]),
     GetLocationY(gv_afG[2]),
     GetLocationZ(gv_afG[2])
@@ -7588,7 +7639,7 @@ function f_aEb() {
   EnableTrigger(gv_aoq);
 }
 function f_aEc() {
-  return GetUnitUserData(GetEnumUnit()) >= "x";
+  return GetUnitUserData(GetEnumUnit()) >= 120;
 }
 function f_aEd() {
   SetUnitUserData(GetEnumUnit(), GetUnitUserData(GetEnumUnit()) + 3);
@@ -7625,7 +7676,7 @@ function f_aEd() {
     true,
     GetLocationX(gv_afG[7]),
     GetLocationY(gv_afG[7]),
-    GetLocationZ(gv_afG[7]) + "d",
+    GetLocationZ(gv_afG[7]) + 100,
     GetLocationX(gv_afG[4]),
     GetLocationY(gv_afG[4]),
     GetLocationZ(gv_afG[4]) + gv_afL
@@ -7720,7 +7771,7 @@ function f_aEj() {
   );
   if (f_aEi()) {
     if (f_aEh()) {
-      PlaySoundAtPointBJ(gv_akY, "d", gv_afG[9], 0);
+      PlaySoundAtPointBJ(gv_akY, 100, gv_afG[9], 0);
       AddSpecialEffectLocBJ(
         gv_afG[9],
         "Objects\\Spawnmodels\\Naga\\NagaDeath\\NagaDeath.mdl"
@@ -7738,7 +7789,7 @@ function f_aEj() {
           true,
           GetLocationX(gv_afG[8]),
           GetLocationY(gv_afG[8]),
-          GetLocationZ(gv_afG[8]) + "d",
+          GetLocationZ(gv_afG[8]) + 100,
           GetLocationX(gv_afG[9]),
           GetLocationY(gv_afG[9]),
           GetLocationZ(gv_afG[9]) - 25
@@ -7755,7 +7806,7 @@ function f_aEj() {
           true,
           GetLocationX(gv_afG[8]),
           GetLocationY(gv_afG[8]),
-          GetLocationZ(gv_afG[8]) + "d",
+          GetLocationZ(gv_afG[8]) + 100,
           GetLocationX(gv_afG[9]),
           GetLocationY(gv_afG[9]),
           GetLocationZ(gv_afG[9]) + 75
@@ -7945,16 +7996,16 @@ function f_aEz() {
   return GetUnitTypeId(GetTriggerUnit()) == "h001";
 }
 function f_aEA() {
-  return GetRandomInt(1, "d") <= 62;
+  return GetRandomInt(1, 100) <= 62;
 }
 function f_aEB() {
-  return GetRandomInt(1, "d") <= 60;
+  return GetRandomInt(1, 100) <= 60;
 }
 function f_aEC() {
-  return GetRandomInt(1, "d") <= 55;
+  return GetRandomInt(1, 100) <= 55;
 }
 function f_aED() {
-  return GetRandomInt(1, "d") <= 40;
+  return GetRandomInt(1, 100) <= 40;
 }
 function f_aEE() {
   return LoadBooleanBJ(
@@ -7967,7 +8018,10 @@ function f_aEF() {
   ResetUnitAnimation(GetEnumUnit());
   if (f_aEE()) {
     if (f_aED()) {
-      UnitAddItemByIdSwapped(gv_afU[GetRandomInt(13, 17)], GetEnumUnit());
+      UnitAddItemByIdSwapped(
+        gv_afU.getInt(GetRandomInt(13, 17)),
+        GetEnumUnit()
+      );
       DisplayTextToForce(
         bj_FORCE_ALL_PLAYERS,
         gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -7978,7 +8032,10 @@ function f_aEF() {
       );
     } else {
       if (f_aEC()) {
-        UnitAddItemByIdSwapped(gv_afU[GetRandomInt(3, 12)], GetEnumUnit());
+        UnitAddItemByIdSwapped(
+          gv_afU.getInt(GetRandomInt(3, 12)),
+          GetEnumUnit()
+        );
         DisplayTextToForce(
           bj_FORCE_ALL_PLAYERS,
           gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -7989,7 +8046,7 @@ function f_aEF() {
         );
       } else {
         if (f_aEB()) {
-          UnitAddItemByIdSwapped(gv_afU[2], GetEnumUnit());
+          UnitAddItemByIdSwapped(gv_afU.getInt(2), GetEnumUnit());
           DisplayTextToForce(
             bj_FORCE_ALL_PLAYERS,
             gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -8000,7 +8057,7 @@ function f_aEF() {
           );
         } else {
           if (f_aEA()) {
-            UnitAddItemByIdSwapped(gv_afU[1], GetEnumUnit());
+            UnitAddItemByIdSwapped(gv_afU.getInt(1), GetEnumUnit());
             DisplayTextToForce(
               bj_FORCE_ALL_PLAYERS,
               gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -8050,16 +8107,16 @@ function f_aEF() {
   FlushChildHashtableBJ(GetHandleIdBJ(GetEnumUnit()), gv_afF);
 }
 function f_aEG() {
-  return GetRandomInt(1, "d") <= 62;
+  return GetRandomInt(1, 100) <= 62;
 }
 function f_aEH() {
-  return GetRandomInt(1, "d") <= 60;
+  return GetRandomInt(1, 100) <= 60;
 }
 function f_aEI() {
-  return GetRandomInt(1, "d") <= 55;
+  return GetRandomInt(1, 100) <= 55;
 }
 function f_aEJ() {
-  return GetRandomInt(1, "d") <= 40;
+  return GetRandomInt(1, 100) <= 40;
 }
 function f_aEK() {
   return LoadBooleanBJ(StringHashBJ("deep"), GetHandleIdBJ(gv_afT), gv_afF);
@@ -8097,7 +8154,7 @@ function f_aEN() {
       ResetUnitAnimation(gv_afS);
       if (f_aEK()) {
         if (f_aEJ()) {
-          UnitAddItemByIdSwapped(gv_afU[GetRandomInt(13, 17)], gv_afS);
+          UnitAddItemByIdSwapped(gv_afU.getInt(GetRandomInt(13, 17)), gv_afS);
           DisplayTextToForce(
             bj_FORCE_ALL_PLAYERS,
             gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -8108,7 +8165,7 @@ function f_aEN() {
           );
         } else {
           if (f_aEI()) {
-            UnitAddItemByIdSwapped(gv_afU[GetRandomInt(3, 12)], gv_afS);
+            UnitAddItemByIdSwapped(gv_afU.getInt(GetRandomInt(3, 12)), gv_afS);
             DisplayTextToForce(
               bj_FORCE_ALL_PLAYERS,
               gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -8119,7 +8176,7 @@ function f_aEN() {
             );
           } else {
             if (f_aEH()) {
-              UnitAddItemByIdSwapped(gv_afU[2], gv_afS);
+              UnitAddItemByIdSwapped(gv_afU.getInt(2), gv_afS);
               DisplayTextToForce(
                 bj_FORCE_ALL_PLAYERS,
                 gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -8130,7 +8187,7 @@ function f_aEN() {
               );
             } else {
               if (f_aEG()) {
-                UnitAddItemByIdSwapped(gv_afU[1], gv_afS);
+                UnitAddItemByIdSwapped(gv_afU.getInt(1), gv_afS);
                 DisplayTextToForce(
                   bj_FORCE_ALL_PLAYERS,
                   gv_ahY[1 + GetPlayerId(GetOwningPlayer(gv_afS))] +
@@ -9500,7 +9557,7 @@ function f_aGT() {
   var lv_aHa = "chest";
   var lv_aHb = "Abilities\\Spells\\Human\\Invisibility\\InvisibilityTarget.mdl";
   UnitRemoveBuffs(lv_aGU, false, true);
-  SetUnitVertexColor(lv_aGU, 0, 0, 0, "}");
+  SetUnitVertexColor(lv_aGU, 0, 0, 0, 125);
   DestroyEffect(AddSpecialEffectTarget(lv_aHb, lv_aGU, lv_aHa));
   UnitAddAbility(lv_aGU, lv_aGX);
   SetUnitAbilityLevelSwapped(lv_aGX, lv_aGU, lv_aGW);
@@ -9601,7 +9658,7 @@ function f_aHl() {
   return CountUnitsInGroup(gv_aeI) == 0;
 }
 function f_aHm() {
-  return GetRandomInt(1, "d") < 33;
+  return GetRandomInt(1, 100) < 33;
 }
 function f_aHn() {
   UnitDamageTargetBJ(
@@ -10065,10 +10122,10 @@ function f_aHS() {
   return gv_ahl;
 }
 function f_aHT() {
-  return GetRandomInt(1, "d") <= 50;
+  return GetRandomInt(1, 100) <= 50;
 }
 function f_aHU() {
-  return GetRandomInt(1, "d") < 33;
+  return GetRandomInt(1, 100) < 33;
 }
 function f_aHV() {
   UnitDamageTargetBJ(
@@ -10097,10 +10154,10 @@ function f_aHV() {
   }
 }
 function f_aHW() {
-  return GetRandomInt(1, "d") <= 50;
+  return GetRandomInt(1, 100) <= 50;
 }
 function f_aHX() {
-  return GetRandomInt(1, "d") < 33;
+  return GetRandomInt(1, 100) < 33;
 }
 function f_aHY() {
   UnitDamageTargetBJ(
@@ -10218,7 +10275,7 @@ function f_aIe() {
             gv_ahp
           );
           UnitApplyTimedLifeBJ(0.5, "BTLF", bj_lastCreatedUnit);
-          SetUnitVertexColorBJ(bj_lastCreatedUnit, "d", "d", "d", 85);
+          SetUnitVertexColorBJ(bj_lastCreatedUnit, 100, 100, 100, 85);
           SetUnitTimeScalePercent(bj_lastCreatedUnit, 200);
           SetUnitAnimation(bj_lastCreatedUnit, "attack");
           ForGroupBJ(gv_ahw, f_aHY);
@@ -10245,7 +10302,7 @@ function f_aIe() {
         gv_ahp
       );
       UnitApplyTimedLifeBJ(0.5, "BTLF", bj_lastCreatedUnit);
-      SetUnitVertexColorBJ(bj_lastCreatedUnit, "d", "d", "d", 85);
+      SetUnitVertexColorBJ(bj_lastCreatedUnit, 100, 100, 100, 85);
       SetUnitTimeScalePercent(bj_lastCreatedUnit, 200);
       SetUnitAnimation(bj_lastCreatedUnit, "attack");
       ForGroupBJ(gv_ahw, f_aHV);
@@ -10392,13 +10449,13 @@ function f_aIs() {
   gv_ahP = 150;
   gv_ahQ = 9;
   CreateNUnitsAtLoc(1, "h00N", gv_ahB, gv_ahA, bj_UNIT_FACING);
-  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, "d");
+  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, 100);
   UnitApplyTimedLifeBJ(1.5, "BTLF", bj_lastCreatedUnit);
   CreateNUnitsAtLoc(1, "h00Q", gv_ahB, gv_ahA, bj_UNIT_FACING);
-  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, "d");
+  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, 100);
   UnitApplyTimedLifeBJ(1.5, "BTLF", bj_lastCreatedUnit);
   CreateNUnitsAtLoc(1, "h00R", gv_ahB, gv_ahA, bj_UNIT_FACING);
-  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, "d");
+  SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, 100);
   UnitApplyTimedLifeBJ(1.5, "BTLF", bj_lastCreatedUnit);
   bj_forLoopAIndex = 1;
   bj_forLoopAIndexEnd = 3;
@@ -10407,10 +10464,10 @@ function f_aIs() {
       break;
     }
     CreateNUnitsAtLoc(1, "h00P", gv_ahB, gv_ahA, bj_UNIT_FACING);
-    SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, "d");
+    SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, 100);
     KillUnit(bj_lastCreatedUnit);
     CreateNUnitsAtLoc(1, "h00O", gv_ahB, gv_ahA, bj_UNIT_FACING);
-    SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, "d");
+    SetUnitScalePercent(bj_lastCreatedUnit, gv_ahM, gv_ahM, 100);
     KillUnit(bj_lastCreatedUnit);
     bj_forLoopAIndex = bj_forLoopAIndex + 1;
   } while (true);
@@ -10722,7 +10779,7 @@ function f_aJy() {
 function f_aJz() {
   if (f_aJy()) {
     gv_ags[1] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[1], UnitItemInSlotBJ(gv_agu[1], gv_ags[1]));
+    UnitAddItem(gv_agr[1], UnitItemInSlotBJ(gv_agu[1], gv_ags.getInt(1)));
   }
 }
 function f_aJA() {
@@ -10731,7 +10788,7 @@ function f_aJA() {
 function f_aJB() {
   if (f_aJA()) {
     gv_ags[2] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[2], UnitItemInSlotBJ(gv_agu[2], gv_ags[2]));
+    UnitAddItem(gv_agr[2], UnitItemInSlotBJ(gv_agu[2], gv_ags.getInt(2)));
   }
 }
 function f_aJC() {
@@ -10740,7 +10797,7 @@ function f_aJC() {
 function f_aJD() {
   if (f_aJC()) {
     gv_ags[3] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[3], UnitItemInSlotBJ(gv_agu[3], gv_ags[3]));
+    UnitAddItem(gv_agr[3], UnitItemInSlotBJ(gv_agu[3], gv_ags.getInt(3)));
   }
 }
 function f_aJE() {
@@ -10749,7 +10806,7 @@ function f_aJE() {
 function f_aJF() {
   if (f_aJE()) {
     gv_ags[4] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[4], UnitItemInSlotBJ(gv_agu[4], gv_ags[4]));
+    UnitAddItem(gv_agr[4], UnitItemInSlotBJ(gv_agu[4], gv_ags.getInt(4)));
   }
 }
 function f_aJG() {
@@ -10758,7 +10815,7 @@ function f_aJG() {
 function f_aJH() {
   if (f_aJG()) {
     gv_ags[5] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[5], UnitItemInSlotBJ(gv_agu[5], gv_ags[5]));
+    UnitAddItem(gv_agr[5], UnitItemInSlotBJ(gv_agu[5], gv_ags.getInt(5)));
   }
 }
 function f_aJI() {
@@ -10767,7 +10824,7 @@ function f_aJI() {
 function f_aJJ() {
   if (f_aJI()) {
     gv_ags[6] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[6], UnitItemInSlotBJ(gv_agu[6], gv_ags[6]));
+    UnitAddItem(gv_agr[6], UnitItemInSlotBJ(gv_agu[6], gv_ags.getInt(6)));
   }
 }
 function f_aJK() {
@@ -10776,7 +10833,7 @@ function f_aJK() {
 function f_aJL() {
   if (f_aJK()) {
     gv_ags[7] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[7], UnitItemInSlotBJ(gv_agu[7], gv_ags[7]));
+    UnitAddItem(gv_agr[7], UnitItemInSlotBJ(gv_agu[7], gv_ags.getInt(7)));
   }
 }
 function f_aJM() {
@@ -10785,7 +10842,7 @@ function f_aJM() {
 function f_aJN() {
   if (f_aJM()) {
     gv_ags[8] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[8], UnitItemInSlotBJ(gv_agu[8], gv_ags[8]));
+    UnitAddItem(gv_agr[8], UnitItemInSlotBJ(gv_agu[8], gv_ags.getInt(8)));
   }
 }
 function f_aJO() {
@@ -10794,7 +10851,7 @@ function f_aJO() {
 function f_aJP() {
   if (f_aJO()) {
     gv_ags[9] = S2I(SubStringBJ(GetEventPlayerChatString(), 7, 7));
-    UnitAddItem(gv_agr[9], UnitItemInSlotBJ(gv_agu[9], gv_ags[9]));
+    UnitAddItem(gv_agr[9], UnitItemInSlotBJ(gv_agu[9], gv_ags.getInt(9)));
   }
 }
 function f_aJQ() {
@@ -10803,7 +10860,7 @@ function f_aJQ() {
 function f_aJR() {
   if (f_aJQ()) {
     gv_agt[1] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[1], UnitItemInSlotBJ(gv_agr[1], gv_agt[1]));
+    UnitAddItem(gv_agu[1], UnitItemInSlotBJ(gv_agr[1], gv_agt.getInt(1)));
   }
 }
 function f_aJS() {
@@ -10812,7 +10869,7 @@ function f_aJS() {
 function f_aJT() {
   if (f_aJS()) {
     gv_agt[2] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[2], UnitItemInSlotBJ(gv_agr[2], gv_agt[2]));
+    UnitAddItem(gv_agu[2], UnitItemInSlotBJ(gv_agr[2], gv_agt.getInt(2)));
   }
 }
 function f_aJU() {
@@ -10821,7 +10878,7 @@ function f_aJU() {
 function f_aJV() {
   if (f_aJU()) {
     gv_agt[3] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[3], UnitItemInSlotBJ(gv_agr[3], gv_agt[3]));
+    UnitAddItem(gv_agu[3], UnitItemInSlotBJ(gv_agr[3], gv_agt.getInt(3)));
   }
 }
 function f_aJW() {
@@ -10830,7 +10887,7 @@ function f_aJW() {
 function f_aJX() {
   if (f_aJW()) {
     gv_agt[4] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[4], UnitItemInSlotBJ(gv_agr[4], gv_agt[4]));
+    UnitAddItem(gv_agu[4], UnitItemInSlotBJ(gv_agr[4], gv_agt.getInt(4)));
   }
 }
 function f_aJY() {
@@ -10839,7 +10896,7 @@ function f_aJY() {
 function f_aJZ() {
   if (f_aJY()) {
     gv_agt[5] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[5], UnitItemInSlotBJ(gv_agr[5], gv_agt[5]));
+    UnitAddItem(gv_agu[5], UnitItemInSlotBJ(gv_agr[5], gv_agt.getInt(5)));
   }
 }
 function f_aKa() {
@@ -10848,7 +10905,7 @@ function f_aKa() {
 function f_aKb() {
   if (f_aKa()) {
     gv_agt[6] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[6], UnitItemInSlotBJ(gv_agr[6], gv_agt[6]));
+    UnitAddItem(gv_agu[6], UnitItemInSlotBJ(gv_agr[6], gv_agt.getInt(6)));
   }
 }
 function f_aKc() {
@@ -10857,7 +10914,7 @@ function f_aKc() {
 function f_aKd() {
   if (f_aKc()) {
     gv_agt[7] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[7], UnitItemInSlotBJ(gv_agr[7], gv_agt[7]));
+    UnitAddItem(gv_agu[7], UnitItemInSlotBJ(gv_agr[7], gv_agt.getInt(7)));
   }
 }
 function f_aKe() {
@@ -10866,7 +10923,7 @@ function f_aKe() {
 function f_aKf() {
   if (f_aKe()) {
     gv_agt[8] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[8], UnitItemInSlotBJ(gv_agr[8], gv_agt[8]));
+    UnitAddItem(gv_agu[8], UnitItemInSlotBJ(gv_agr[8], gv_agt.getInt(8)));
   }
 }
 function f_aKg() {
@@ -10875,7 +10932,7 @@ function f_aKg() {
 function f_aKh() {
   if (f_aKg()) {
     gv_agt[9] = S2I(SubStringBJ(GetEventPlayerChatString(), 6, 6));
-    UnitAddItem(gv_agu[9], UnitItemInSlotBJ(gv_agr[9], gv_agt[9]));
+    UnitAddItem(gv_agu[9], UnitItemInSlotBJ(gv_agr[9], gv_agt.getInt(9)));
   }
 }
 function f_aKi() {
@@ -13312,7 +13369,7 @@ function f_aKv() {
     if (lv_aKz >= gv_apZ) {
       break;
     }
-    lv_aKB = gv_apY[lv_aKz];
+    lv_aKB = gv_apY.getInt(lv_aKz);
     lv_aKw = GetItemX(gv_aqe[lv_aKB]) - GetUnitX(gv_aqd[lv_aKB]);
     lv_aKx = GetItemY(gv_aqe[lv_aKB]) - GetUnitY(gv_aqd[lv_aKB]);
     if (

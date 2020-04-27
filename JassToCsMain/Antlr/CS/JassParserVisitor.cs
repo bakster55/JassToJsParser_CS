@@ -212,6 +212,12 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIntConst([NotNull] JassParser.IntConstContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.fourcc"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFourcc([NotNull] JassParser.FourccContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.decimal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

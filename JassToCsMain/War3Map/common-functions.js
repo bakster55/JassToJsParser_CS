@@ -18,6 +18,14 @@
     }
 })();
 
+Array.prototype.getInt = function (i) {
+    var element = this[i];
+  
+    if (element == undefined) { return 0; }
+
+    return element;
+};
+
 var player = {
     id: 1,
     name: "Baks#2542",
@@ -1660,6 +1668,8 @@ function GetTriggerDestructable() { }
 
 
 function CreateItem(itemid, x, y) {
+    if (itemid == 0) { return undefined; }
+
     return {
         itemId: itemid,
     }
@@ -1667,7 +1677,7 @@ function CreateItem(itemid, x, y) {
 function RemoveItem() { }
 function GetItemPlayer() { }
 function GetItemTypeId(i) {
-    return i ? i.itemId : undefined;
+    return i ? i.itemId : 0;
 }
 function GetItemX(i) {
 
@@ -3466,6 +3476,7 @@ function IsNoDefeatCheat() {
 }
 
 function Preload(filename) {
+    console.log("Preload: " + filename);
 }
 function PreloadEnd(timeout) {
 }

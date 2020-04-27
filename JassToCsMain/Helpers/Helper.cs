@@ -183,7 +183,7 @@ namespace JassToCsMain
                 return true;
             }
 
-            if (exprType == "fourcc" && exprContext?.constant()?.intConst()?.FOURCC() != null)
+            if (exprType == "fourcc" && exprContext?.constant()?.intConst()?.fourcc() != null)
             {
                 return true;
             }
@@ -197,7 +197,7 @@ namespace JassToCsMain
             string objectName = exprContext.id()?.GetText();
             if (objectName != null)
             {
-                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.id().ID().GetText();
+                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.id().GetText();
                 return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
                     || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
@@ -213,12 +213,23 @@ namespace JassToCsMain
             objectName = exprContext.arrayRef()?.id()?.GetText();
             if (objectName != null)
             {
-                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
+                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.id().GetText();
                 return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
                     || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
 
             return false;
+        }
+
+        public string GetVariableType(IdContext idContext)
+        {
+            var name = idContext.ID().GetText();
+
+            string type = GlobalVariableTypeByName.GetValueOrDefault(name);
+            if (type != null) { return type; }
+
+            var funcName = GetParentContext<FuncContext>(idContext)?.funcDeclr()?.id().GetText();
+            return FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(funcName).GetValueOrDefault(name);
         }
 
         public T GetParentContext<T>(ParserRuleContext context) where T : ParserRuleContext

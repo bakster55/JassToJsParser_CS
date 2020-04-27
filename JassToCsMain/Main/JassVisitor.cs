@@ -1,7 +1,9 @@
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using static JassParser;
@@ -10,7 +12,11 @@ namespace JassToCsMain
 {
     public class JassVisitor : JassParserBaseVisitor<StringBuilder>
     {
-        public static JassVisitor Instance = new JassVisitor();
+        [Inject]
+        public Helper Helper { get; set; }
+
+        [Inject]
+        public FuncHelper FuncHelper { get; set; }
 
         #region Inherited
 
@@ -320,16 +326,23 @@ namespace JassToCsMain
 
         public override StringBuilder VisitStringConst([NotNull] StringConstContext context)
         {
-            var stringConst = base.VisitStringConst(context);
+            string stringConst = base.VisitStringConst(context).ToString();
+
+            // Replace string with number
+            int bracketsLength = 2;
+            if (stringConst.Length - bracketsLength == 1)
+            {
+                return new StringBuilder(Encoding.Default.GetBytes(stringConst)[1].ToString());
+            }
 
             // JS does not allow lune breaks in string
             Regex regex = new Regex("[\r\n]");
-            if (regex.IsMatch(stringConst.ToString()))
+            if (regex.IsMatch(stringConst))
             {
-                return new StringBuilder(regex.Replace(stringConst.ToString(), string.Empty));
+                return new StringBuilder(regex.Replace(stringConst, string.Empty));
             }
 
-            return stringConst;
+            return new StringBuilder(stringConst);
         }
 
         public override StringBuilder VisitId([NotNull] IdContext context)

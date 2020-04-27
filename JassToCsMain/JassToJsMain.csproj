@@ -37,6 +37,9 @@
     <Reference Include="Antlr4.Runtime.Standard, Version=4.8.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr4.Runtime.Standard.4.8.0\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +58,7 @@
     <Compile Include="Antlr\CS\JassParserVisitor.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FuncHelper.cs" />
+    <Compile Include="Helpers\Parser.cs" />
     <Compile Include="Helpers\NumberConvertHelper.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\NameGenerator.cs" />

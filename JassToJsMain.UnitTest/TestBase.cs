@@ -1,4 +1,5 @@
 ﻿using JassToCsMain;
+using Ninject;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -21,7 +22,8 @@ namespace JassToJsMain.UnitTest
             var exampleFilePath = Path.Combine(testDirectoryPath, "Example.j");
             var expectedFilePath = Path.Combine(testDirectoryPath, "Expected.js");
 
-            var actualFileContent = Helper.Parse(exampleFilePath);
+            IKernel kernel = Program.GetKernel();
+            var actualFileContent = kernel.Get<Parser>().Parse(exampleFilePath);
             var expectedFileContent = File.ReadAllText(expectedFilePath);
 
             Assert.AreEqual(expectedFileContent, actualFileContent);

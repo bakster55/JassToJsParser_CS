@@ -4,13 +4,13 @@ using static JassParser;
 
 namespace JassToCsMain
 {
-    public static class FuncHelper
+    public class FuncHelper
     {
-        public static Dictionary<string, Dictionary<string, string>> LocalVariableTypeByNameByFuncName = new Dictionary<string, Dictionary<string, string>>();
+        public Dictionary<string, Dictionary<string, string>> LocalVariableTypeByNameByFuncName = new Dictionary<string, Dictionary<string, string>>();
 
-        public static Dictionary<string, string> FunctionTypeByName = new Dictionary<string, string>();
+        public Dictionary<string, string> FunctionTypeByName = new Dictionary<string, string>();
 
-        public static void FillLocalVariableTypes(FuncContext context)
+        public void FillLocalVariableTypes(FuncContext context)
         {
             var funcName = context.funcDeclr().id().GetText();
             if (LocalVariableTypeByNameByFuncName.ContainsKey(funcName))
@@ -49,7 +49,7 @@ namespace JassToCsMain
             }
         }
 
-        public static void FillFunctionType(FuncDeclrContext funcDeclrContext)
+        public void FillFunctionType(FuncDeclrContext funcDeclrContext)
         {
             string funcName = funcDeclrContext.id().ID().GetText();
             if (!FunctionTypeByName.ContainsKey(funcName))

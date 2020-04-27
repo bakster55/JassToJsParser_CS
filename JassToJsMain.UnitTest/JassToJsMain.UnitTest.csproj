@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -50,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NameReplacement\Test2\Expected.js" />
+    <Content Include="Operations\IntegerDivision\Test1\Expected.js" />
     <Content Include="Expressions\Hex\Test2\Expected.js" />
     <Content Include="NameReplacement\Test1\Expected.js" />
     <Content Include="Expressions\Hex\Test1\Expected.js" />
@@ -57,6 +62,8 @@
     <Content Include="Expressions\Test1\Expected.js" />
     <Content Include="Globals\Test2\Expected.js" />
     <Content Include="Globals\Test1\Expected.js" />
+    <None Include="NameReplacement\Test2\Example.j" />
+    <None Include="Operations\IntegerDivision\Test1\Example.j" />
     <None Include="Expressions\Hex\Test2\Example.j" />
     <None Include="NameReplacement\Test1\Example.j" />
     <None Include="Expressions\Hex\Test1\Example.j" />
@@ -64,6 +71,7 @@
     <None Include="Expressions\Test1\Example.j" />
     <None Include="Globals\Test2\Example.j" />
     <None Include="Globals\Test1\Example.j" />
+    <Compile Include="Operations\IntegerDivision\IntegerDivision.cs" />
     <Compile Include="NameReplacement\NameReplacementTest.cs" />
     <Compile Include="Expressions\Hex\HexTest.cs" />
     <Compile Include="Expressions\ExpressionsTest.cs" />

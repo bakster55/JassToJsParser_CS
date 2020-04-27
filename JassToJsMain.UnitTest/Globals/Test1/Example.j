@@ -1,3 +1,3 @@
 ﻿globals
-boolean udg_saveItem2Hero=false
+boolean gv_aaa=false
 endglobals

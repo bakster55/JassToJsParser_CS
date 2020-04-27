@@ -1,4 +1,4 @@
-﻿var a=658502;
-var b=658502;
-var c=658502;
+﻿var gv_aaa=658502;
+var gv_aab=658502;
+var gv_aac=658502;
 

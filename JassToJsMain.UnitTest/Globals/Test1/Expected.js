@@ -1,2 +1,2 @@
-﻿var udg_saveItem2Hero=false;
+﻿var gv_aaa=false;
 

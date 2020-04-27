@@ -1,46 +1,24 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using static JassParser;
 
 namespace JassToCsMain
 {
-    public static class Helper
+    public class Helper
     {
-        public static NameGenerator NameGenerator = new NameGenerator(3);
+        public NameGenerator NameGenerator = new NameGenerator(3);
 
-        public static Dictionary<string, string> GlobalVariableTypeByName = new Dictionary<string, string>();
+        public Dictionary<string, string> GlobalVariableTypeByName = new Dictionary<string, string>();
 
-        public static Dictionary<Tuple<string, string>, string> NewNameByOldNameByFuncName = new Dictionary<Tuple<string, string>, string>();
+        public Dictionary<Tuple<string, string>, string> NewNameByOldNameByFuncName = new Dictionary<Tuple<string, string>, string>();
 
-        public static string Parse(string path)
-        {
-            FileContext tree;
-            using (new TimeTracker("parsing"))
-            {
-                ICharStream charStream = CharStreams.fromPath(path, Encoding.Default);
+        [Inject]
+        public FuncHelper FuncHelper { get; set; }
 
-                var lexer = new JassLexer(charStream);
-                var tokens = new CommonTokenStream(lexer);
-                var parser = new JassParser(tokens);
-                parser.BuildParseTree = true;
-
-                tree = parser.file();
-            }
-
-            string content;
-            using (new TimeTracker("visiting"))
-            {
-                content = JassVisitor.Instance.Visit(tree).ToString();
-            }
-
-            return content;
-        }
-
-        public static string GetNewName(string oldName, string funcName)
+        public string GetNewName(string oldName, string funcName)
         {
             var key = Tuple.Create(funcName, oldName);
 
@@ -54,16 +32,16 @@ namespace JassToCsMain
             return newName;
         }
 
-        public static string GetNewName(IdContext idContext)
+        public string GetNewName(IdContext idContext)
         {
             string id = idContext.ID().GetText();
 
-            if (FuncHelper.FunctionTypeByName.ContainsKey(id))
+            if (FuncHelper.FunctionTypeByName.ContainsKey(id) && id != "main")
             {
                 return "f_" + GetNewName(id, null);
             }
 
-            if (Helper.GlobalVariableTypeByName.ContainsKey(id))
+            if (GlobalVariableTypeByName.ContainsKey(id))
             {
                 return "gv_" + GetNewName(id, null);
             }
@@ -78,7 +56,7 @@ namespace JassToCsMain
             return id;
         }
 
-        //public static StringBuilder ReplaceInvalidVariableName(StringBuilder id)
+        //public StringBuilder ReplaceInvalidVariableName(StringBuilder id)
         //{
         //    List<string> reservedKeywords = new List<string>()
         //    {
@@ -98,7 +76,7 @@ namespace JassToCsMain
         //    return id;
         //}
 
-        public static void ReplaceBinaryOperator(ParserRuleContext context)
+        public void ReplaceBinaryOperator(ParserRuleContext context)
         {
             Dictionary<int, string> replacableOperators = new Dictionary<int, string>()
             {
@@ -119,7 +97,7 @@ namespace JassToCsMain
             }
         }
 
-        public static void FillGlobalTypes(GlobalVarListContext context)
+        public void FillGlobalTypes(GlobalVarListContext context)
         {
             var varDeclContext = context.varDeclr();
 
@@ -153,7 +131,7 @@ namespace JassToCsMain
             }
         }
 
-        public static bool IsIntegerDivision(ExprContext context)
+        public bool IsIntegerDivision(ExprContext context)
         {
             if (context.DIV() != null)
             {
@@ -168,7 +146,7 @@ namespace JassToCsMain
             return false;
         }
 
-        public static bool IsStringConcatenation(ExprContext context)
+        public bool IsStringConcatenation(ExprContext context)
         {
             if (context.ADD() != null)
             {
@@ -183,7 +161,7 @@ namespace JassToCsMain
             return false;
         }
 
-        public static bool IsFourccConcatenation(ExprContext context)
+        public bool IsFourccConcatenation(ExprContext context)
         {
             if (context.ADD() != null)
             {
@@ -198,7 +176,7 @@ namespace JassToCsMain
             return false;
         }
 
-        public static bool IsExpressionOfType(ExprContext exprContext, string exprType)
+        public bool IsExpressionOfType(ExprContext exprContext, string exprType)
         {
             if (exprType == "integer" && exprContext?.constant()?.intConst() != null)
             {
@@ -219,7 +197,7 @@ namespace JassToCsMain
             string objectName = exprContext.id()?.GetText();
             if (objectName != null)
             {
-                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
+                var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.id().ID().GetText();
                 return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
                     || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
@@ -243,7 +221,7 @@ namespace JassToCsMain
             return false;
         }
 
-        public static T GetParentContext<T>(ParserRuleContext context) where T : ParserRuleContext
+        public T GetParentContext<T>(ParserRuleContext context) where T : ParserRuleContext
         {
             RuleContext parentContext = context;
 

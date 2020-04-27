@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Ninject;
+using System.IO;
 
 namespace JassToCsMain
 {
@@ -15,10 +16,23 @@ namespace JassToCsMain
             //string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
             string baseJassPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map\Dunia Impian RPG S1 v1.2c_ENG_Fix";
 
-            string parsed = Helper.Parse($@"{baseJassPath}\war3map.j");
+            IKernel kernel = GetKernel();
+
+            string parsed = kernel.Get<Parser>().Parse($@"{baseJassPath}\war3map.j");
             File.WriteAllText($@"{baseJassPath}\war3map.js", parsed);
 
             //Test();
+        }
+
+        public static IKernel GetKernel()
+        {
+            var kernel = new StandardKernel();
+            kernel.Bind<Parser>().ToSelf().InSingletonScope();
+            kernel.Bind<JassVisitor>().ToSelf().InSingletonScope();
+            kernel.Bind<Helper>().ToSelf().InSingletonScope();
+            kernel.Bind<FuncHelper>().ToSelf().InSingletonScope();
+
+            return kernel;
         }
 
         public static void Test()
@@ -27,11 +41,11 @@ namespace JassToCsMain
             string baseTestPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\test";
             string[] subdirectoryPathList = Directory.GetDirectories(baseWar3mapPath);
 
-            foreach(string subdirectoryPath in subdirectoryPathList)
+            foreach (string subdirectoryPath in subdirectoryPathList)
             {
                 string subdirectoryName = subdirectoryPath.Remove(0, baseWar3mapPath.Length);
                 string fileName = subdirectoryPath + "\\war3map.j";
-                string content = Helper.Parse(fileName);
+                string content = new Parser().Parse(fileName);
 
                 string baseTestFilePath = baseTestPath + subdirectoryName + ".js";
                 File.WriteAllText(baseTestFilePath, content);

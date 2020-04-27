@@ -20,9 +20,9 @@
 
 var player = {
     id: 1,
-    name: "bakster",
+    name: "Baks#2542",
     nameHash: 1350,
-    loadCode: `-load PPMM-L4Db-LAYo-myfT-xyru-qtsm-EfRB-gNYp-a`,
+    loadCode: `-load uvsbk0dnvUA00brMdEtpJsXbkt7YabmEbmEn8`,
     state: {},
     units: [
 
@@ -903,7 +903,11 @@ function GetHandleId(h) {
     return h ? Object.__id(h) : h;
 }
 function SubString(source, start, end) {
-    return source ? source.substring(start, end) : source;
+    if (!source) return source;
+
+    if (end < start) return source.substring(start);
+
+    return source.substring(start, end);
 }
 function StringLength(source) {
     return source ? source.length : 0;
@@ -1511,7 +1515,7 @@ function TriggerRegisterPlayerChatEvent(whichTrigger, whichPlayer, chatMessageTo
 
 
 function GetEventPlayerChatString() {
-    return prompt();
+    //return prompt();
     return player.loadCode;
 }
 

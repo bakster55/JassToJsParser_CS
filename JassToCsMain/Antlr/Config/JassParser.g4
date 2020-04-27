@@ -75,7 +75,7 @@ statement
 
 set
  : K_SET id ASSIGN expr
- | K_SET id O_BRACK expr C_BRACK ASSIGN expr
+ | K_SET arrayRef ASSIGN expr
  ;
 
 call

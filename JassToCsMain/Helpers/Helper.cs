@@ -12,13 +12,9 @@ namespace JassToCsMain
     {
         public static NameGenerator NameGenerator = new NameGenerator(3);
 
-        public static Dictionary<string, string> FunctionTypeByName = new Dictionary<string, string>();
-
         public static Dictionary<string, string> GlobalVariableTypeByName = new Dictionary<string, string>();
 
-        public static Dictionary<string, Dictionary<string, string>> LocalVariableTypeByName = new Dictionary<string, Dictionary<string, string>>();
-
-        public static Dictionary<string, string> NewNameByOldName = new Dictionary<string, string>();
+        public static Dictionary<Tuple<string, string>, string> NewNameByOldNameByFuncName = new Dictionary<Tuple<string, string>, string>();
 
         public static string Parse(string path)
         {
@@ -38,23 +34,48 @@ namespace JassToCsMain
             string content;
             using (new TimeTracker("visiting"))
             {
-                var visitor = new JassVisitor();
-                content = visitor.Visit(tree).ToString();
+                content = JassVisitor.Instance.Visit(tree).ToString();
             }
 
             return content;
         }
 
-        public static string GetNewName(string oldName)
+        public static string GetNewName(string oldName, string funcName)
         {
-            string newName = GetValueOrDefault(NewNameByOldName, oldName);
+            var key = Tuple.Create(funcName, oldName);
+
+            string newName = NewNameByOldNameByFuncName.GetValueOrDefault(key);
             if (newName == null)
             {
                 newName = NameGenerator.GetNext();
-                NewNameByOldName.Add(oldName, newName);
+                NewNameByOldNameByFuncName.Add(key, newName);
             }
 
             return newName;
+        }
+
+        public static string GetNewName(IdContext idContext)
+        {
+            string id = idContext.ID().GetText();
+
+            if (FuncHelper.FunctionTypeByName.ContainsKey(id))
+            {
+                return "f_" + GetNewName(id, null);
+            }
+
+            if (Helper.GlobalVariableTypeByName.ContainsKey(id))
+            {
+                return "gv_" + GetNewName(id, null);
+            }
+
+
+            string funcName = GetParentContext<FuncContext>(idContext)?.funcDeclr()?.id()?.ID()?.GetText();
+            if (funcName != null && FuncHelper.LocalVariableTypeByNameByFuncName[funcName].ContainsKey(id))
+            {
+                return "lv_" + GetNewName(id, funcName);
+            }
+
+            return id;
         }
 
         //public static StringBuilder ReplaceInvalidVariableName(StringBuilder id)
@@ -132,46 +153,6 @@ namespace JassToCsMain
             }
         }
 
-        public static void FillLocalTypes(FuncContext context)
-        {
-            var funcName = context.funcDeclr().id().GetText();
-            if (LocalVariableTypeByName.ContainsKey(funcName))
-            {
-                return;
-            }
-
-            LocalVariableTypeByName.Add(funcName, new Dictionary<string, string>());
-
-            var varDeclContext = context.localVarList()?.varDeclr();
-
-            if (varDeclContext != null)
-            {
-                // Fill function body variables
-                foreach (var varDecl in varDeclContext)
-                {
-                    var type = varDecl.type().GetText();
-                    var name = varDecl.id().GetText();
-
-                    LocalVariableTypeByName[funcName].Add(name, type);
-                }
-            }
-
-            var paramNamesList = context.funcDeclr()?.paramList()?.id();
-
-            if (paramNamesList != null && paramNamesList.Length > 0)
-            {
-                // Fill function parameters
-                var paramTypesList = context.funcDeclr()?.paramList()?.type();
-                for (int i = 0; i < paramNamesList.Length; i++)
-                {
-                    var type = paramTypesList[i].GetText();
-                    var name = paramNamesList[i].GetText();
-
-                    LocalVariableTypeByName[funcName].Add(name, type);
-                }
-            }
-        }
-
         public static bool IsIntegerDivision(ExprContext context)
         {
             if (context.DIV() != null)
@@ -239,14 +220,15 @@ namespace JassToCsMain
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
-                return GetValueOrDefault(GlobalVariableTypeByName, objectName) == exprType || GetValueOrDefault(GetValueOrDefault(LocalVariableTypeByName, localFuncName), objectName) == exprType;
+                return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
+                    || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
 
             // If expression is function call, get func type
             objectName = exprContext.funcCall()?.id()?.GetText();
             if (objectName != null)
             {
-                return GetValueOrDefault(FunctionTypeByName, objectName) == exprType;
+                return FuncHelper.FunctionTypeByName.GetValueOrDefault(objectName) == exprType;
             }
 
             // If expession is array. get its type
@@ -254,7 +236,8 @@ namespace JassToCsMain
             if (objectName != null)
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.GetToken(JassLexer.ID, 0)?.GetText();
-                return GetValueOrDefault(GlobalVariableTypeByName, objectName) == exprType || GetValueOrDefault(GetValueOrDefault(LocalVariableTypeByName, localFuncName), objectName) == exprType;
+                return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
+                    || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
 
             return false;
@@ -270,12 +253,6 @@ namespace JassToCsMain
             }
 
             return parentContext as T;
-        }
-
-        public static TValue GetValueOrDefault<TKey, TValue>(Dictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue = default(TValue))
-        {
-            return dictionary != null && key != null
-                && dictionary.TryGetValue(key, out TValue value) ? value : defaultValue;
         }
     }
 }

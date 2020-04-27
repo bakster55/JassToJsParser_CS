@@ -53,11 +53,13 @@
     <Compile Include="Antlr\CS\JassParserBaseVisitor.cs" />
     <Compile Include="Antlr\CS\JassParserListener.cs" />
     <Compile Include="Antlr\CS\JassParserVisitor.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\FuncHelper.cs" />
     <Compile Include="Helpers\NumberConvertHelper.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\NameGenerator.cs" />
-    <Compile Include="JassVisitor.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Main\JassVisitor.cs" />
+    <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\TimeTracker.cs" />
   </ItemGroup>

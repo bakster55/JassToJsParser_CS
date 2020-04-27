@@ -8,8 +8,10 @@ using static JassParser;
 
 namespace JassToCsMain
 {
-    class JassVisitor : JassParserBaseVisitor<StringBuilder>
+    public class JassVisitor : JassParserBaseVisitor<StringBuilder>
     {
+        public static JassVisitor Instance = new JassVisitor();
+
         #region Inherited
 
         public override StringBuilder Visit(IParseTree tree)
@@ -182,7 +184,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitFunc([NotNull] JassParser.FuncContext context)
         {
-            Helper.FillLocalTypes(context);
+            FuncHelper.FillLocalVariableTypes(context);
 
             var funcDeclr = this.Visit(context.funcDeclr());
             var localVarList = this.Visit(context.localVarList());
@@ -198,13 +200,19 @@ namespace JassToCsMain
 
         public override StringBuilder VisitFuncDeclr([NotNull] JassParser.FuncDeclrContext context)
         {
-            string funcName = this.Visit(context.id()).ToString();
-            if (!Helper.FunctionTypeByName.ContainsKey(funcName))
-            {
-                Helper.FunctionTypeByName.Add(funcName, context.type()?.GetText());
-            }
+            FuncHelper.FillFunctionType(context);
 
-            return new StringBuilder($"{funcName}({this.Visit(context.paramList())}) {{{Environment.NewLine}");
+            return new StringBuilder($"{this.Visit(context.id())}({this.Visit(context.paramList())}) {{{Environment.NewLine}");
+        }
+
+        public override StringBuilder VisitParamList([NotNull] JassParser.ParamListContext context)
+        {
+            return this.VisitChildrens(context.paramDeclr(), ",");
+        }
+
+        public override StringBuilder VisitParamDeclr([NotNull] ParamDeclrContext context)
+        {
+            return base.Visit(context.id());
         }
 
         public override StringBuilder VisitFuncRef([NotNull] JassParser.FuncRefContext context)
@@ -257,11 +265,6 @@ namespace JassToCsMain
         public override StringBuilder VisitNativeFunc([NotNull] JassParser.NativeFuncContext context)
         {
             return new StringBuilder($"function {this.Visit(context.funcDeclr())}}}");
-        }
-
-        public override StringBuilder VisitParamList([NotNull] JassParser.ParamListContext context)
-        {
-            return this.VisitChildrens(context.id(), ",");
         }
 
         public override StringBuilder VisitParens([NotNull] JassParser.ParensContext context)
@@ -331,9 +334,7 @@ namespace JassToCsMain
 
         public override StringBuilder VisitId([NotNull] IdContext context)
         {
-            var id = base.VisitId(context).ToString();
-
-            return new StringBuilder(Helper.GetNewName(id));
+            return new StringBuilder(Helper.GetNewName(context));
         }
 
         public override StringBuilder VisitDecimal([NotNull] DecimalContext context)

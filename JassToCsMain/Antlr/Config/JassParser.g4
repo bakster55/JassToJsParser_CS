@@ -39,7 +39,11 @@ funcDeclr
  ;
 
 paramList
- : type id (COMMA type id)*
+ : paramDeclr (COMMA paramDeclr)*
+ ;
+
+paramDeclr
+ : type id
  ;
 
 func

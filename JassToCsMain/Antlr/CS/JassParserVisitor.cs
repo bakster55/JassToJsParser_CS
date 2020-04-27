@@ -86,6 +86,12 @@ public interface IJassParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitParamList([NotNull] JassParser.ParamListContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="JassParser.paramDeclr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParamDeclr([NotNull] JassParser.ParamDeclrContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="JassParser.func"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

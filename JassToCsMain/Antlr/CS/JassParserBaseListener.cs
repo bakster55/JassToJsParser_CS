@@ -143,6 +143,18 @@ public partial class JassParserBaseListener : IJassParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitParamList([NotNull] JassParser.ParamListContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.paramDeclr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterParamDeclr([NotNull] JassParser.ParamDeclrContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.paramDeclr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitParamDeclr([NotNull] JassParser.ParamDeclrContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.func"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

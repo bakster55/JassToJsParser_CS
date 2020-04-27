@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 var CommonParser = require('./common-parser.js');
-var mapBasePath = "./war3map/TheBlackRoadv1.38d2";
+var mapBasePath = "./war3map/Dunia Impian RPG S1 v1.2c_ENG_Fix";
 
 (function () {
 

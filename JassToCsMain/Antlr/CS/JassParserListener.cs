@@ -121,6 +121,16 @@ public interface IJassParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitParamList([NotNull] JassParser.ParamListContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="JassParser.paramDeclr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterParamDeclr([NotNull] JassParser.ParamDeclrContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="JassParser.paramDeclr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitParamDeclr([NotNull] JassParser.ParamDeclrContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="JassParser.func"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

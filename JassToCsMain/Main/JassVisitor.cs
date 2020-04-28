@@ -10,54 +10,13 @@ using static JassParser;
 
 namespace JassToCsMain
 {
-    public class JassVisitor : JassParserBaseVisitor<StringBuilder>
+    public class JassVisitor : JassParserVisitor
     {
         [Inject]
         public Helper Helper { get; set; }
 
         [Inject]
         public FuncHelper FuncHelper { get; set; }
-
-        #region Inherited
-
-        public override StringBuilder Visit(IParseTree tree)
-        {
-            if (tree != null)
-            {
-                return tree.Accept(this);
-            }
-
-            return new StringBuilder(string.Empty);
-        }
-
-        public override StringBuilder VisitChildren(IRuleNode node)
-        {
-            if (node != null)
-            {
-                return base.VisitChildren(node);
-            }
-
-            return new StringBuilder(string.Empty);
-        }
-
-        public override StringBuilder VisitTerminal(ITerminalNode node)
-        {
-            return new StringBuilder(node.Symbol.Text);
-        }
-
-        protected override StringBuilder AggregateResult(StringBuilder aggregate, StringBuilder nextResult)
-        {
-            return aggregate != null
-                ? aggregate.Append(nextResult)
-                : nextResult;
-        }
-
-        public override StringBuilder VisitErrorNode(IErrorNode node)
-        {
-            throw new Exception();
-        }
-
-        #endregion
 
         #region Custom code
 
@@ -107,10 +66,15 @@ namespace JassToCsMain
 
         public override StringBuilder VisitCall([NotNull] JassParser.CallContext context)
         {
-            // Remove call keyword
-            context.children?.RemoveAt(0);
+            string args = this.Visit(context.args()).ToString();
+            if (context.id().GetText() == "ExecuteFunc")
+            {
+                args = args.Replace("\"", "");
+                // args is the name of the function and its a string
+                args = $"\"{Helper.GetNewFuncName(args)}\"";
+            }
 
-            return base.VisitCall(context);
+            return new StringBuilder($"{this.Visit(context.id())}({args})");
         }
 
         public override StringBuilder VisitConstant([NotNull] JassParser.ConstantContext context)

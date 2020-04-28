@@ -18,5 +18,11 @@ namespace JassToJsMain.UnitTest.NameReplacement
         {
             base.Execute();
         }
+
+        [Test]
+        public void Test3()
+        {
+            base.Execute();
+        }
     }
 }

@@ -26,17 +26,13 @@ Array.prototype.getInt = function (i) {
     return element;
 };
 
-var player = {
-    id: 1,
-    name: "Baks#2542",
-    nameHash: 1350,
-    loadCode: `-load swsbmXdrGHxbkmbkmbt4dEAVPwbkpbktbkobkqbmEbmEbmEn8`,
-    state: {},
-    units: [
+var player = new PlayerInternal(1);
+player.name = "Baks#2542";
+player.nameHash = 1350;
+player.loadCode = `-load 2eSV%-wxNzG-EAg3A-ypqHk-8J9YF-64PY6-#F<Ek-xwfa&-vUwDK-y69Bk`;
+player.state = {};
+player.playerSlotState = ConvertPlayerSlotState(1);
 
-    ],
-    playerSlotState: ConvertPlayerSlotState(1)
-}
 
 var players = [
     player
@@ -49,6 +45,12 @@ var units = [];
 var groups = [];
 
 var currentEnumUnit;
+
+function PlayerInternal(id) {
+    this.id = id,
+    this.units = [],
+    this.state = {}
+}
 
 function Unit(player, unitId, location) {
     this.player = player;
@@ -1281,6 +1283,9 @@ function GetTriggerExecCount(whichTrigger) {
 }
 
 function ExecuteFunc(funcName) {
+    var func = window[funcName];
+
+    if (func) { func(); }
 }
 
 
@@ -1746,7 +1751,7 @@ function SetItemDropID(whichItem, unitId) {
 
 }
 function GetItemName(whichItem) {
-
+    return whichItem ? whichItem.itemId : undefined;
 }
 function GetItemCharges(whichItem) {
     return whichItem ? R2I(whichItem.charges) : 0;
@@ -1766,16 +1771,18 @@ function SetItemUserData(whichItem, data) {
 
 
 
-function CreateUnit(id, unitid, x, y, face) {
-    var unit = new Unit(id, unitid, new LocationInternal(x, y));
+function CreateUnit(player, unitid, x, y, face) {
+    var unit = new Unit(player, unitid, new LocationInternal(x, y));
     units.push(unit);
+    player.units.push(unit);
 
     return unit;
 }
 function CreateUnitByName() { }
-function CreateUnitAtLoc(id, unitid, loc, face) {
-    var unit = new Unit(id, unitid, loc);
+function CreateUnitAtLoc(player, unitid, loc, face) {
+    var unit = new Unit(player, unitid, loc);
     units.push(unit);
+    player.units.push(unit);
 
     return unit;
 }
@@ -2102,9 +2109,16 @@ function SetUnitUserData(whichUnit, data) { }
 
 
 function Player(number) {
-    return players.find(function (p) {
+    var player = players.find(function (p) {
         return p.id == number;
     });
+
+    if (!player) {
+        player = new PlayerInternal(number);
+        players.push(player);
+    }
+
+    return player;
 }
 function GetLocalPlayer() {
     return player;

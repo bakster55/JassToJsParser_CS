@@ -3,12 +3,15 @@ using Ninject;
 using NUnit.Framework;
 using System;
 using System.IO;
+using static JassParser;
 
 namespace JassToJsMain.UnitTest
 {
     public abstract class TestBase
     {
         protected abstract string FolderName { get; }
+
+        private static bool isInited = false;
 
         public void Execute()
         {
@@ -23,7 +26,16 @@ namespace JassToJsMain.UnitTest
             var expectedFilePath = Path.Combine(testDirectoryPath, "Expected.js");
 
             IKernel kernel = Program.GetKernel();
-            var actualFileContent = kernel.Get<Parser>().Parse(exampleFilePath);
+            var parser = kernel.Get<Parser>();
+
+            if (!isInited)
+            {
+                isInited = true;
+
+                parser.ParseNativeFiles();
+            }
+
+            var actualFileContent = parser.ParseInternal(exampleFilePath, kernel.Get<JassVisitor>());
             var expectedFileContent = File.ReadAllText(expectedFilePath);
 
             Assert.AreEqual(expectedFileContent, actualFileContent);

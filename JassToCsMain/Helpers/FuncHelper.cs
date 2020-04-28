@@ -10,6 +10,8 @@ namespace JassToCsMain
 
         public Dictionary<string, string> FunctionTypeByName = new Dictionary<string, string>();
 
+        public Dictionary<string, string> NativeFunctionTypeByName = new Dictionary<string, string>();
+
         public void FillLocalVariableTypes(FuncContext context)
         {
             var funcName = context.funcDeclr().id().GetText();
@@ -55,6 +57,15 @@ namespace JassToCsMain
             if (!FunctionTypeByName.ContainsKey(funcName))
             {
                 FunctionTypeByName.Add(funcName, funcDeclrContext.type()?.GetText());
+            }
+        }
+
+        public void FillNativeFunctionType(FuncDeclrContext funcDeclrContext)
+        {
+            string funcName = funcDeclrContext.id().ID().GetText();
+            if (!NativeFunctionTypeByName.ContainsKey(funcName))
+            {
+                NativeFunctionTypeByName.Add(funcName, funcDeclrContext.type()?.GetText());
             }
         }
     }

@@ -13,6 +13,8 @@ namespace JassToCsMain
 
         public Dictionary<string, string> GlobalVariableTypeByName = new Dictionary<string, string>();
 
+        public Dictionary<string, string> NativeGlobalVariableTypeByName = new Dictionary<string, string>();
+
         public Dictionary<Tuple<string, string>, string> NewNameByOldNameByFuncName = new Dictionary<Tuple<string, string>, string>();
 
         [Inject]
@@ -38,7 +40,7 @@ namespace JassToCsMain
 
             if (FuncHelper.FunctionTypeByName.ContainsKey(id) && id != "main")
             {
-                return "f_" + GetNewName(id, null);
+                return GetNewFuncName(id);
             }
 
             if (GlobalVariableTypeByName.ContainsKey(id))
@@ -54,6 +56,11 @@ namespace JassToCsMain
             }
 
             return id;
+        }
+
+        public string GetNewFuncName(string id)
+        {
+            return "f_" + GetNewName(id, null);
         }
 
         //public StringBuilder ReplaceInvalidVariableName(StringBuilder id)
@@ -99,6 +106,16 @@ namespace JassToCsMain
 
         public void FillGlobalTypes(GlobalVarListContext context)
         {
+            FillGlobalTypesInternal(context, GlobalVariableTypeByName);
+        }
+
+        public void FillNativeGlobalTypes(GlobalVarListContext context)
+        {
+            FillGlobalTypesInternal(context, NativeGlobalVariableTypeByName);
+        }
+
+        public void FillGlobalTypesInternal(GlobalVarListContext context, IDictionary<string, string> dictionary)
+        {
             var varDeclContext = context.varDeclr();
 
             if (varDeclContext != null)
@@ -108,25 +125,23 @@ namespace JassToCsMain
                     var type = varDecl.type().GetText();
                     var name = varDecl.id().ID().Symbol.Text;
 
-                    if (!GlobalVariableTypeByName.ContainsKey(name))
+                    if (!dictionary.ContainsKey(name))
                     {
-                        GlobalVariableTypeByName.Add(name, type);
+                        dictionary.Add(name, type);
                     }
                 }
             }
-            else
+
+            var constDeclContext = context.constDeclr();
+
+            if (constDeclContext != null)
             {
-                var constDeclContext = context.constDeclr();
-
-                if (constDeclContext != null)
+                foreach (var constDecl in constDeclContext)
                 {
-                    foreach (var constDecl in constDeclContext)
-                    {
-                        var type = constDecl.type().GetText();
-                        var name = constDecl.id().ID().Symbol.Text;
+                    var type = constDecl.type().GetText();
+                    var name = constDecl.id().ID().Symbol.Text;
 
-                        GlobalVariableTypeByName.Add(name, type);
-                    }
+                    dictionary.Add(name, type);
                 }
             }
         }
@@ -199,6 +214,7 @@ namespace JassToCsMain
             {
                 var localFuncName = GetParentContext<FuncContext>(exprContext)?.funcDeclr()?.id().GetText();
                 return GlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
+                    || NativeGlobalVariableTypeByName.GetValueOrDefault(objectName) == exprType
                     || FuncHelper.LocalVariableTypeByNameByFuncName.GetValueOrDefault(localFuncName).GetValueOrDefault(objectName) == exprType;
             }
 
@@ -206,7 +222,8 @@ namespace JassToCsMain
             objectName = exprContext.funcCall()?.id()?.GetText();
             if (objectName != null)
             {
-                return FuncHelper.FunctionTypeByName.GetValueOrDefault(objectName) == exprType;
+                return FuncHelper.FunctionTypeByName.GetValueOrDefault(objectName) == exprType
+                    || FuncHelper.NativeFunctionTypeByName.GetValueOrDefault(objectName) == exprType;
             }
 
             // If expession is array. get its type

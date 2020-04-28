@@ -40,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr4.Runtime.Standard, Version=4.8.0.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f" />
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -54,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Array\Test1\Expected.js" />
+    <Content Include="NameReplacement\Test3\Expected.js" />
     <Content Include="NameReplacement\Test2\Expected.js" />
+    <Content Include="Operations\IntegerDivision\Test2\Expected.js" />
     <Content Include="Operations\IntegerDivision\Test1\Expected.js" />
     <Content Include="Expressions\Hex\Test2\Expected.js" />
     <Content Include="NameReplacement\Test1\Expected.js" />
@@ -64,7 +67,9 @@
     <Content Include="Globals\Test2\Expected.js" />
     <Content Include="Globals\Test1\Expected.js" />
     <None Include="Array\Test1\Example.j" />
+    <None Include="NameReplacement\Test3\Example.j" />
     <None Include="NameReplacement\Test2\Example.j" />
+    <None Include="Operations\IntegerDivision\Test2\Example.j" />
     <None Include="Operations\IntegerDivision\Test1\Example.j" />
     <None Include="Expressions\Hex\Test2\Example.j" />
     <None Include="NameReplacement\Test1\Example.j" />

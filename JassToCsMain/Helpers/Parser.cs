@@ -1,8 +1,5 @@
 using Antlr4.Runtime;
-using Antlr4.Runtime.Tree;
 using Ninject;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using static JassParser;
 
@@ -13,7 +10,30 @@ namespace JassToCsMain
         [Inject]
         public JassVisitor JassVisitor { get; set; }
 
+        [Inject]
+        public JassNativeParserVisitor JassNativeParserVisitor { get; set; }
+
         public string Parse(string path)
+        {
+            ParseNativeFiles();
+
+            return ParseInternal(path, JassVisitor);
+        }
+
+        public void ParseNativeFiles()
+        {
+            string baseJassNativePath = @"F:\JassToCsMain\JassToCsMain\War3Map";
+
+            ParseNativeFile($@"{baseJassNativePath}\common.j");
+            ParseNativeFile($@"{baseJassNativePath}\blizzard.j");
+        }
+
+        public string ParseNativeFile(string path)
+        {
+            return ParseInternal(path, JassNativeParserVisitor);
+        }
+
+        public FileContext GetFileContext(string path)
         {
             FileContext tree;
             using (new TimeTracker("parsing"))
@@ -28,10 +48,22 @@ namespace JassToCsMain
                 tree = parser.file();
             }
 
+            return tree;
+        }
+
+        public string ParseInternal(string path, JassParserVisitor jassParserVisitor)
+        {
+            FileContext tree = GetFileContext(path);
+
+            return ParseInternal(tree, jassParserVisitor);
+        }
+
+        public string ParseInternal(FileContext fileContext, JassParserVisitor jassParserVisitor)
+        {
             string content;
             using (new TimeTracker("visiting"))
             {
-                content = JassVisitor.Visit(tree).ToString();
+                content = jassParserVisitor.Visit(fileContext).ToString();
             }
 
             return content;

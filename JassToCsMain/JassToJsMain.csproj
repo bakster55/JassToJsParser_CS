@@ -62,6 +62,8 @@
     <Compile Include="Helpers\NumberConvertHelper.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\NameGenerator.cs" />
+    <Compile Include="Main\JassParserVisitor.cs" />
+    <Compile Include="Main\JassNativeParserVisitor.cs" />
     <Compile Include="Main\JassVisitor.cs" />
     <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 
 namespace JassToCsMain
@@ -25,7 +26,11 @@ namespace JassToCsMain
         {
             if (number >= 256 * 256 * 256)
             {
-                return NumToFourcc(number);
+                string fourcc = NumToFourcc(number);
+                if (fourcc.All(b => char.IsLetterOrDigit(b)))
+                {
+                    return $"\"{fourcc}\"";
+                }
             }
 
             return number.ToString();
@@ -56,7 +61,10 @@ namespace JassToCsMain
                 throw new Exception();
             }
 
-            return $"\"{Encoding.Default.GetString(new byte[4] { x, y, z, d })}\"";
+            byte[] bytes = new byte[4] { x, y, z, d };
+            string fourcc = Encoding.Default.GetString(bytes);
+
+            return fourcc;
         }
     }
 }

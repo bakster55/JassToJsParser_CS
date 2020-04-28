@@ -30,7 +30,7 @@ var player = {
     id: 1,
     name: "Baks#2542",
     nameHash: 1350,
-    loadCode: `-load uvsbk0dnvUA00brMdEtpJsXbkt7YabmEbmEn8`,
+    loadCode: `-load swsbmXdrGHxbkmbkmbt4dEAVPwbkpbktbkobkqbmEbmEbmEn8`,
     state: {},
     units: [
 

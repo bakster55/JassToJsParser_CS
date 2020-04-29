@@ -18,6 +18,22 @@
     }
 })();
 
+var xpTableInternal = window["War3mapMisc"].NeedHeroXP.toString().split(",");
+xpTableInternal.unshift(0);
+xpTableInternal.unshift(0);
+(function() { 
+    var a = window["War3mapMisc"].NeedHeroXPFormulaA;
+    var b = window["War3mapMisc"].NeedHeroXPFormulaB;
+    var c = window["War3mapMisc"].NeedHeroXPFormulaC;
+    var maxHeroLevel = window["War3mapMisc"].MaxHeroLevel;
+    
+    for (var i = 0; i <= maxHeroLevel; i++) {
+        if (xpTableInternal[i] == undefined) {
+            xpTableInternal[i] = a * xpTableInternal[i - 1] + b * i + c
+        }
+    }
+})();
+
 Array.prototype.getInt = function (i) {
     var element = this[i];
   
@@ -37,13 +53,8 @@ player.playerSlotState = ConvertPlayerSlotState(1);
 var players = [
     player
 ]
-
-
-
 var units = [];
-
 var groups = [];
-
 var currentEnumUnit;
 
 function PlayerInternal(id) {
@@ -61,6 +72,7 @@ function Unit(player, unitId, location) {
     this.unitId = unitId || 0;
     this.lvl = 0;
     this.items = [];
+    this.abilities = [];
     this.location = location;
 }
 
@@ -71,6 +83,15 @@ function Group() {
 function LocationInternal(x, y) {
     this.x = x;
     this.y = y;
+}
+
+function AbilityInternal(code, level) {
+    this.code = code;
+    this.level = level;
+}
+
+function ItemInternal(itemId) {
+    this.itemId = itemId;
 }
 
 
@@ -1675,9 +1696,7 @@ function GetTriggerDestructable() { }
 function CreateItem(itemid, x, y) {
     if (itemid == 0) { return undefined; }
 
-    return {
-        itemId: itemid,
-    }
+    return new ItemInternal(itemid);
 }
 function RemoveItem() { }
 function GetItemPlayer() { }
@@ -1874,6 +1893,7 @@ function GetHeroXP(whichHero) {
 function SetHeroXP(whichHero, newXpVal, showEyeCandy) {
     if (whichHero) {
         whichHero.xp = newXpVal;
+        whichHero.lvl = Math.floor(xpTableInternal.findIndex(requiredXp => whichHero.xp <= requiredXp) - 1);
     }
 }
 
@@ -1887,6 +1907,7 @@ function AddHeroXP(whichHero, xpToAdd, showEyeCandy) {
 function SetHeroLevel(whichHero, level, showEyeCandy) {
     if (whichHero) {
         whichHero.lvl = level;
+        whichHero.xp = Math.floor(xpTableInternal[level]);
     }
 }
 function GetHeroLevel(whichHero) {
@@ -1903,12 +1924,21 @@ function IsSuspendedXP(whichHero) {
 function SelectHeroSkill(whichHero, abilcode) {
 }
 function GetUnitAbilityLevel(whichUnit, abilcode) {
+    var ability = whichUnit.abilities.find(a => a.code == abilcode);
+    return ability ? ability.level : 0;
 }
 function DecUnitAbilityLevel(whichUnit, abilcode) {
 }
 function IncUnitAbilityLevel(whichUnit, abilcode) {
 }
 function SetUnitAbilityLevel(whichUnit, abilcode, level) {
+    var ability = whichUnit.abilities.find(a => a.code == abilcode);
+    if (ability) {
+        ability.level = level;
+    }
+    else {
+        whichUnit.abilities.push(new AbilityInternal(abilcode, level));
+    };
 }
 function ReviveHero(whichHero, x, y, doEyecandy) {
 }
@@ -1931,6 +1961,10 @@ function SelectUnit(whichUnit, flag) {
 }
 
 function GetUnitPointValue(whichUnit) {
+    var unitData = window["war3map.w3u"].original[whichUnit.unitId] 
+        || window["war3map.w3u"].custom[whichUnit.unitId];
+    var unitPointValue = unitData.find(a => a.id == "upoi").value;
+    return unitPointValue;
 }
 function GetUnitPointValueByType(unitType) {
 }
@@ -1940,7 +1974,9 @@ function UnitAddItem(whichUnit, whichItem) {
     whichUnit && whichUnit.items.push(whichItem);
 }
 function UnitAddItemById() { }
-function UnitAddItemToSlotById() { }
+function UnitAddItemToSlotById(whichUnit, itemId, itemSlot) {
+    whichUnit.items[itemSlot] = CreateItem(itemId);
+}
 function UnitRemoveItem() { }
 function UnitRemoveItemFromSlot() { }
 function UnitHasItem() { }

@@ -22,7 +22,7 @@ namespace JassToCsMain
 
         public void ParseNativeFiles()
         {
-            string baseJassNativePath = @"F:\JassToCsMain\JassToCsMain\War3Map";
+            string baseJassNativePath = @"E:\JassToCsMain\JassToCsMain\War3Map";
 
             ParseNativeFile($@"{baseJassNativePath}\common.j");
             ParseNativeFile($@"{baseJassNativePath}\blizzard.j");

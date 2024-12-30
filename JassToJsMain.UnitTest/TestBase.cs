@@ -25,7 +25,7 @@ namespace JassToJsMain.UnitTest
             var exampleFilePath = Path.Combine(testDirectoryPath, "Example.j");
             var expectedFilePath = Path.Combine(testDirectoryPath, "Expected.js");
 
-            IKernel kernel = Program.GetKernel();
+            IKernel kernel = Program.GetKernel(new object());
             var parser = kernel.Get<Parser>();
 
             if (!isInited)

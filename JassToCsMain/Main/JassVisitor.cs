@@ -18,6 +18,8 @@ namespace JassToCsMain
         [Inject]
         public FuncHelper FuncHelper { get; set; }
 
+        public bool ReplaceNames { get; set; } = false;
+
         #region Custom code
 
         public StringBuilder VisitChildrens(IList<IParseTree> nodes, string separator = "")
@@ -324,7 +326,14 @@ namespace JassToCsMain
 
         public override StringBuilder VisitId([NotNull] IdContext context)
         {
-            return new StringBuilder(Helper.GetNewName(context));
+            if (ReplaceNames)
+            {
+                return new StringBuilder(Helper.GetNewName(context));
+            }
+            else
+            {
+                return base.VisitId(context);
+            }
         }
 
         public override StringBuilder VisitDecimal([NotNull] DecimalContext context)

@@ -18,16 +18,17 @@
     }
 })();
 
-var xpTableInternal = window["War3mapMisc"].NeedHeroXP.toString().split(",");
+var needHeroXP = window["War3mapMisc"].NeedHeroXP || 200;
+var xpTableInternal = needHeroXP.toString().split(",").map(e => Number(e));
 xpTableInternal.unshift(0);
 xpTableInternal.unshift(0);
-(function() { 
-    var a = window["War3mapMisc"].NeedHeroXPFormulaA;
-    var b = window["War3mapMisc"].NeedHeroXPFormulaB;
-    var c = window["War3mapMisc"].NeedHeroXPFormulaC;
-    var maxHeroLevel = window["War3mapMisc"].MaxHeroLevel;
-    
-    for (var i = 0; i <= maxHeroLevel; i++) {
+(function () {
+    var a = window["War3mapMisc"].NeedHeroXPFormulaA || 1;
+    var b = window["War3mapMisc"].NeedHeroXPFormulaB || 100;
+    var c = window["War3mapMisc"].NeedHeroXPFormulaC || 0;
+    var maxHeroLevel = window["War3mapMisc"].MaxHeroLevel || 0;
+
+    for (var i = 2; i <= maxHeroLevel; i++) {
         if (xpTableInternal[i] == undefined) {
             xpTableInternal[i] = a * xpTableInternal[i - 1] + b * i + c
         }
@@ -36,7 +37,7 @@ xpTableInternal.unshift(0);
 
 Array.prototype.getInt = function (i) {
     var element = this[i];
-  
+
     if (element == undefined) { return 0; }
 
     return element;
@@ -45,7 +46,7 @@ Array.prototype.getInt = function (i) {
 var player = new PlayerInternal(1);
 player.name = "Baks#2542";
 player.nameHash = 1350;
-player.loadCode = `-load 2eSV%-wxNzG-EAg3A-ypqHk-8J9YF-64PY6-#F<Ek-xwfa&-vUwDK-y69Bk`;
+player.loadCode = `-load unsbmWdrGF9bkmbkmbt4dEDDSwbkJbkNbkwbkubmE0bmEn8`;
 player.state = {};
 player.playerSlotState = ConvertPlayerSlotState(1);
 
@@ -56,11 +57,12 @@ var players = [
 var units = [];
 var groups = [];
 var currentEnumUnit;
+var currentEnumPlayer;
 
 function PlayerInternal(id) {
     this.id = id,
-    this.units = [],
-    this.state = {}
+        this.units = [],
+        this.state = {}
 }
 
 function Unit(player, unitId, location) {
@@ -247,7 +249,20 @@ function AbilityId2String(abilityId) {
 function GetObjectName(objectId) {
 }
 
-
+function GetBJMaxPlayers() {
+    return players.length;
+}
+function GetBJPlayerNeutralVictim() {
+}
+function GetBJPlayerNeutralExtra() {
+}
+function GetBJMaxPlayerSlots() {
+    return players.length;
+}
+function GetPlayerNeutralPassive() {
+}
+function GetPlayerNeutralAggressive() {
+}
 
 
 var FALSE = false
@@ -1089,12 +1104,20 @@ function GroupEnumUnitsOfPlayer(whichGroup, whichPlayer, filter) {
                 whichGroup.units.push(unit);
             }
         })
-
     }
 }
 function GroupEnumUnitsOfTypeCounted(whichGroup, unitname, filter, countLimit) {
 }
 function GroupEnumUnitsInRect(whichGroup, r, filter) {
+    if (whichGroup) {
+        units.forEach(unit => {
+            currentEnumUnit = unit;
+
+            if (!filter || filter()) {
+                whichGroup.units.push(unit);
+            }
+        })
+    }
 }
 function GroupEnumUnitsInRectCounted(whichGroup, r, filter, countLimit) {
 }
@@ -1146,6 +1169,7 @@ function FirstOfGroup(whichGroup) {
 
 
 function CreateForce() {
+    return {};
 }
 function DestroyForce(whichForce) {
 }
@@ -1156,6 +1180,7 @@ function ForceRemovePlayer(whichForce, whichPlayer) {
 function ForceClear(whichForce) {
 }
 function ForceEnumPlayers(whichForce, filter) {
+    whichForce.players = players;
 }
 function ForceEnumPlayersCounted(whichForce, filter, countLimit) {
 }
@@ -1164,6 +1189,13 @@ function ForceEnumAllies(whichForce, whichPlayer, filter) {
 function ForceEnumEnemies(whichForce, whichPlayer, filter) {
 }
 function ForForce(whichForce, callback) {
+    if (whichForce && callback) {
+        whichForce.players.forEach(function (player) {
+            currentEnumPlayer = player;
+
+            callback();
+        });
+    }
 }
 
 
@@ -1292,6 +1324,7 @@ function GetEnumItem() {
 function GetFilterPlayer() {
 }
 function GetEnumPlayer() {
+    return currentEnumPlayer;
 }
 
 function GetTriggeringTrigger() {
@@ -1737,7 +1770,8 @@ function IsItemVisible(whichItem) {
 
 }
 function IsItemOwned(whichItem) {
-
+    if (whichItem) return true;
+    return false;
 }
 function IsItemPowerup(whichItem) {
 
@@ -1922,6 +1956,10 @@ function SuspendHeroXP(whichHero, flag) {
 function IsSuspendedXP(whichHero) {
 }
 function SelectHeroSkill(whichHero, abilcode) {
+    var ability = whichHero.abilities.find(a => a.code == abilcode);
+    if (!ability) {
+        whichHero.abilities.push(new AbilityInternal(abilcode, 1));
+    }
 }
 function GetUnitAbilityLevel(whichUnit, abilcode) {
     var ability = whichUnit.abilities.find(a => a.code == abilcode);
@@ -1961,7 +1999,7 @@ function SelectUnit(whichUnit, flag) {
 }
 
 function GetUnitPointValue(whichUnit) {
-    var unitData = window["war3map.w3u"].original[whichUnit.unitId] 
+    var unitData = window["war3map.w3u"].original[whichUnit.unitId]
         || window["war3map.w3u"].custom[whichUnit.unitId];
     var unitPointValue = unitData.find(a => a.id == "upoi").value;
     return unitPointValue;
@@ -2016,7 +2054,7 @@ function GetUnitTypeId(whichUnit) {
     return whichUnit ? whichUnit.unitId : undefined;
 }
 function GetUnitRace(whichUnit) { }
-function GetUnitName(whichUnit) { 
+function GetUnitName(whichUnit) {
     return whichUnit ? whichUnit.id : undefined;
 }
 function GetUnitFoodUsed(whichUnit) { }
@@ -3545,4 +3583,568 @@ function PreloadGenStart() {
 function PreloadGenEnd(filename) {
 }
 function Preloader(filename) {
+}
+function BlzHideCinematicPanels(enable) {
+}
+function AutomationSetTestType(testType) {
+}
+function AutomationTestStart(testName) {
+}
+function AutomationTestEnd() {
+}
+function AutomationTestingFinished() {
+}
+function BlzGetTriggerPlayerMouseX() {
+}
+function BlzGetTriggerPlayerMouseY() {
+}
+function BlzGetTriggerPlayerMousePosition() {
+}
+function BlzGetTriggerPlayerMouseButton() {
+}
+function BlzSetAbilityTooltip(abilCode, tooltip, level) {
+}
+function BlzSetAbilityActivatedTooltip(abilCode, tooltip, level) {
+}
+function BlzSetAbilityExtendedTooltip(abilCode, extendedTooltip, level) {
+}
+function BlzSetAbilityActivatedExtendedTooltip(abilCode, extendedTooltip, level) {
+}
+function BlzSetAbilityResearchTooltip(abilCode, researchTooltip, level) {
+}
+function BlzSetAbilityResearchExtendedTooltip(abilCode, researchExtendedTooltip, level) {
+}
+function BlzGetAbilityTooltip(abilCode, level) {
+    return abilCode;
+}
+function BlzGetAbilityActivatedTooltip(abilCode, level) {
+}
+function BlzGetAbilityExtendedTooltip(abilCode, level) {
+}
+function BlzGetAbilityActivatedExtendedTooltip(abilCode, level) {
+}
+function BlzGetAbilityResearchTooltip(abilCode, level) {
+}
+function BlzGetAbilityResearchExtendedTooltip(abilCode, level) {
+}
+function BlzSetAbilityIcon(abilCode, iconPath) {
+}
+function BlzGetAbilityIcon(abilCode) {
+}
+function BlzSetAbilityActivatedIcon(abilCode, iconPath) {
+}
+function BlzGetAbilityActivatedIcon(abilCode) {
+}
+function BlzGetAbilityPosX(abilCode) {
+}
+function BlzGetAbilityPosY(abilCode) {
+}
+function BlzSetAbilityPosX(abilCode, x) {
+}
+function BlzSetAbilityPosY(abilCode, y) {
+}
+function BlzGetAbilityActivatedPosX(abilCode) {
+}
+function BlzGetAbilityActivatedPosY(abilCode) {
+}
+function BlzSetAbilityActivatedPosX(abilCode, x) {
+}
+function BlzSetAbilityActivatedPosY(abilCode, y) {
+}
+function BlzGetUnitMaxHP(whichUnit) {
+}
+function BlzSetUnitMaxHP(whichUnit, hp) {
+}
+function BlzGetUnitMaxMana(whichUnit) {
+}
+function BlzSetUnitMaxMana(whichUnit, mana) {
+}
+function BlzSetItemName(whichItem, name) {
+}
+function BlzSetItemDescription(whichItem, description) {
+}
+function BlzGetItemDescription(whichItem) {
+}
+function BlzSetItemTooltip(whichItem, tooltip) {
+}
+function BlzGetItemTooltip(whichItem) {
+}
+function BlzSetItemExtendedTooltip(whichItem, extendedTooltip) {
+}
+function BlzGetItemExtendedTooltip(whichItem) {
+}
+function BlzSetItemIconPath(whichItem, iconPath) {
+}
+function BlzGetItemIconPath(whichItem) {
+}
+function BlzSetUnitName(whichUnit, name) {
+}
+function BlzSetHeroProperName(whichUnit, heroProperName) {
+}
+function BlzGetUnitBaseDamage(whichUnit, weaponIndex) {
+}
+function BlzSetUnitBaseDamage(whichUnit, baseDamage, weaponIndex) {
+}
+function BlzGetUnitDiceNumber(whichUnit, weaponIndex) {
+}
+function BlzSetUnitDiceNumber(whichUnit, diceNumber, weaponIndex) {
+}
+function BlzGetUnitDiceSides(whichUnit, weaponIndex) {
+}
+function BlzSetUnitDiceSides(whichUnit, diceSides, weaponIndex) {
+}
+function BlzGetUnitAttackCooldown(whichUnit, weaponIndex) {
+}
+function BlzSetUnitAttackCooldown(whichUnit, cooldown, weaponIndex) {
+}
+function BlzSetSpecialEffectColorByPlayer(whichEffect, whichPlayer) {
+}
+function BlzSetSpecialEffectColor(whichEffect, r, g, b) {
+}
+function BlzSetSpecialEffectAlpha(whichEffect, alpha) {
+}
+function BlzSetSpecialEffectScale(whichEffect, scale) {
+}
+function BlzSetSpecialEffectPosition(whichEffect, x, y, z) {
+}
+function BlzSetSpecialEffectHeight(whichEffect, height) {
+}
+function BlzSetSpecialEffectTimeScale(whichEffect, timeScale) {
+}
+function BlzSetSpecialEffectTime(whichEffect, time) {
+}
+function BlzSetSpecialEffectOrientation(whichEffect, yaw, pitch, roll) {
+}
+function BlzSetSpecialEffectYaw(whichEffect, yaw) {
+}
+function BlzSetSpecialEffectPitch(whichEffect, pitch) {
+}
+function BlzSetSpecialEffectRoll(whichEffect, roll) {
+}
+function BlzSetSpecialEffectX(whichEffect, x) {
+}
+function BlzSetSpecialEffectY(whichEffect, y) {
+}
+function BlzSetSpecialEffectZ(whichEffect, z) {
+}
+function BlzSetSpecialEffectPositionLoc(whichEffect, loc) {
+}
+function BlzGetLocalSpecialEffectX(whichEffect) {
+}
+function BlzGetLocalSpecialEffectY(whichEffect) {
+}
+function BlzGetLocalSpecialEffectZ(whichEffect) {
+}
+function BlzSpecialEffectClearSubAnimations(whichEffect) {
+}
+function BlzSpecialEffectRemoveSubAnimation(whichEffect, whichSubAnim) {
+}
+function BlzSpecialEffectAddSubAnimation(whichEffect, whichSubAnim) {
+}
+function BlzPlaySpecialEffect(whichEffect, whichAnim) {
+}
+function BlzPlaySpecialEffectWithTimeScale(whichEffect, whichAnim, timeScale) {
+}
+function BlzGetAnimName(whichAnim) {
+}
+function BlzGetUnitArmor(whichUnit) {
+}
+function BlzSetUnitArmor(whichUnit, armorAmount) {
+}
+function BlzUnitHideAbility(whichUnit, abilId, flag) {
+}
+function BlzUnitDisableAbility(whichUnit, abilId, flag, hideUI) {
+}
+function BlzUnitCancelTimedLife(whichUnit) {
+}
+function BlzIsUnitSelectable(whichUnit) {
+}
+function BlzIsUnitInvulnerable(whichUnit) {
+}
+function BlzUnitInterruptAttack(whichUnit) {
+}
+function BlzGetUnitCollisionSize(whichUnit) {
+}
+function BlzGetAbilityManaCost(abilId, level) {
+}
+function BlzGetAbilityCooldown(abilId, level) {
+}
+function BlzSetUnitAbilityCooldown(whichUnit, abilId, level, cooldown) {
+}
+function BlzGetUnitAbilityCooldown(whichUnit, abilId, level) {
+}
+function BlzGetUnitAbilityCooldownRemaining(whichUnit, abilId) {
+}
+function BlzEndUnitAbilityCooldown(whichUnit, abilCode) {
+}
+function BlzStartUnitAbilityCooldown(whichUnit, abilCode, cooldown) {
+}
+function BlzGetUnitAbilityManaCost(whichUnit, abilId, level) {
+}
+function BlzSetUnitAbilityManaCost(whichUnit, abilId, level, manaCost) {
+}
+function BlzGetLocalUnitZ(whichUnit) {
+}
+function BlzDecPlayerTechResearched(whichPlayer, techid, levels) {
+}
+function BlzSetEventDamage(damage) {
+}
+function BlzGetEventDamageTarget() {
+}
+function BlzGetEventAttackType() {
+}
+function BlzGetEventDamageType() {
+}
+function BlzGetEventWeaponType() {
+}
+function BlzSetEventAttackType(attackType) {
+}
+function BlzSetEventDamageType(damageType) {
+}
+function BlzSetEventWeaponType(weaponType) {
+}
+function BlzGetEventIsAttack() {
+}
+function RequestExtraIntegerData(dataType, whichPlayer, param1, param2, param3, param4, param5, param6) {
+}
+function RequestExtraBooleanData(dataType, whichPlayer, param1, param2, param3, param4, param5, param6) {
+}
+function RequestExtraStringData(dataType, whichPlayer, param1, param2, param3, param4, param5, param6) {
+}
+function RequestExtraRealData(dataType, whichPlayer, param1, param2, param3, param4, param5, param6) {
+}
+function BlzGetUnitZ(whichUnit) {
+}
+function BlzEnableSelections(enableSelection, enableSelectionCircle) {
+}
+function BlzIsSelectionEnabled() {
+}
+function BlzIsSelectionCircleEnabled() {
+}
+function BlzCameraSetupApplyForceDurationSmooth(whichSetup, doPan, forcedDuration, easeInDuration, easeOutDuration, smoothFactor) {
+}
+function BlzEnableTargetIndicator(enable) {
+}
+function BlzIsTargetIndicatorEnabled() {
+}
+function BlzShowTerrain(show) {
+}
+function BlzShowSkyBox(show) {
+}
+function BlzStartRecording(fps) {
+}
+function BlzEndRecording() {
+}
+function BlzShowUnitTeamGlow(whichUnit, show) {
+}
+function BlzGetOriginFrame(frameType, index) {
+}
+function BlzEnableUIAutoPosition(enable) {
+}
+function BlzHideOriginFrames(enable) {
+}
+function BlzConvertColor(a, r, g, b) {
+}
+function BlzLoadTOCFile(TOCFile) {
+}
+function BlzCreateFrame(name, owner, priority, createContext) {
+}
+function BlzCreateSimpleFrame(name, owner, createContext) {
+}
+function BlzCreateFrameByType(typeName, name, owner, inherits, createContext) {
+}
+function BlzDestroyFrame(frame) {
+}
+function BlzFrameSetPoint(frame, point, relative, relativePoint, x, y) {
+}
+function BlzFrameSetAbsPoint(frame, point, x, y) {
+}
+function BlzFrameClearAllPoints(frame) {
+}
+function BlzFrameSetAllPoints(frame, relative) {
+}
+function BlzFrameSetVisible(frame, visible) {
+}
+function BlzFrameIsVisible(frame) {
+}
+function BlzGetFrameByName(name, createContext) {
+}
+function BlzFrameGetName(frame) {
+}
+function BlzFrameClick(frame) {
+}
+function BlzFrameSetText(frame, text) {
+}
+function BlzFrameGetText(frame) {
+}
+function BlzFrameAddText(frame, text) {
+}
+function BlzFrameSetTextSizeLimit(frame, size) {
+}
+function BlzFrameGetTextSizeLimit(frame) {
+}
+function BlzFrameSetTextColor(frame, color) {
+}
+function BlzFrameSetFocus(frame, flag) {
+}
+function BlzFrameSetModel(frame, modelFile, cameraIndex) {
+}
+function BlzFrameSetEnable(frame, enabled) {
+}
+function BlzFrameGetEnable(frame) {
+}
+function BlzFrameSetAlpha(frame, alpha) {
+}
+function BlzFrameGetAlpha(frame) {
+}
+function BlzFrameSetSpriteAnimate(frame, primaryProp, flags) {
+}
+function BlzFrameSetTexture(frame, texFile, flag, blend) {
+}
+function BlzFrameSetScale(frame, scale) {
+}
+function BlzFrameSetTooltip(frame, tooltip) {
+}
+function BlzFrameCageMouse(frame, enable) {
+}
+function BlzFrameSetValue(frame, value) {
+}
+function BlzFrameGetValue(frame) {
+}
+function BlzFrameSetMinMaxValue(frame, minValue, maxValue) {
+}
+function BlzFrameSetStepSize(frame, stepSize) {
+}
+function BlzFrameSetSize(frame, width, height) {
+}
+function BlzFrameSetVertexColor(frame, color) {
+}
+function BlzFrameSetLevel(frame, level) {
+}
+function BlzFrameSetParent(frame, parent) {
+}
+function BlzFrameGetParent(frame) {
+}
+function BlzFrameGetHeight(frame) {
+}
+function BlzFrameGetWidth(frame) {
+}
+function BlzFrameSetFont(frame, fileName, height, flags) {
+}
+function BlzFrameSetTextAlignment(frame, vert, horz) {
+}
+function BlzTriggerRegisterFrameEvent(whichTrigger, frame, eventId) {
+}
+function BlzGetTriggerFrame() {
+}
+function BlzGetTriggerFrameEvent() {
+}
+function BlzGetTriggerFrameValue() {
+}
+function BlzGetTriggerFrameText() {
+}
+function BlzTriggerRegisterPlayerSyncEvent(whichTrigger, whichPlayer, prefix, fromServer) {
+}
+function BlzSendSyncData(prefix, data) {
+}
+function BlzGetTriggerSyncPrefix() {
+}
+function BlzGetTriggerSyncData() {
+}
+function BlzTriggerRegisterPlayerKeyEvent(whichTrigger, whichPlayer, key, metaKey, keyDown) {
+}
+function BlzGetTriggerPlayerKey() {
+}
+function BlzGetTriggerPlayerMetaKey() {
+}
+function BlzGetTriggerPlayerIsKeyDown() {
+}
+function BlzEnableCursor(enable) {
+}
+function BlzSetMousePos(x, y) {
+}
+function BlzGetLocalClientWidth() {
+}
+function BlzGetLocalClientHeight() {
+}
+function BlzIsLocalClientActive() {
+}
+function BlzGetMouseFocusUnit() {
+}
+function BlzChangeMinimapTerrainTex(texFile) {
+}
+function BlzGetLocale() {
+}
+function BlzGetSpecialEffectScale(whichEffect) {
+}
+function BlzSetSpecialEffectMatrixScale(whichEffect, x, y, z) {
+}
+function BlzResetSpecialEffectMatrix(whichEffect) {
+}
+function BlzGetUnitAbility(whichUnit, abilId) {
+}
+function BlzGetUnitAbilityByIndex(whichUnit, index) {
+}
+function BlzDisplayChatMessage(whichPlayer, recipient, message) {
+}
+function BlzPauseUnitEx(whichUnit, flag) {
+}
+function BlzSetUnitFacingEx(whichUnit, facingAngle) {
+}
+function CreateCommandButtonEffect(abilityId, order) {
+}
+function CreateUpgradeCommandButtonEffect(whichUprgade) {
+}
+function CreateLearnCommandButtonEffect(abilityId) {
+}
+function DestroyCommandButtonEffect(whichEffect) {
+}
+function BlzBitOr(x, y) {
+}
+function BlzBitAnd(x, y) {
+}
+function BlzBitXor(x, y) {
+}
+function BlzGetAbilityBooleanField(whichAbility, whichField) {
+}
+function BlzGetAbilityIntegerField(whichAbility, whichField) {
+}
+function BlzGetAbilityRealField(whichAbility, whichField) {
+}
+function BlzGetAbilityStringField(whichAbility, whichField) {
+}
+function BlzGetAbilityBooleanLevelField(whichAbility, whichField, level) {
+}
+function BlzGetAbilityIntegerLevelField(whichAbility, whichField, level) {
+}
+function BlzGetAbilityRealLevelField(whichAbility, whichField, level) {
+}
+function BlzGetAbilityStringLevelField(whichAbility, whichField, level) {
+}
+function BlzGetAbilityBooleanLevelArrayField(whichAbility, whichField, level, index) {
+}
+function BlzGetAbilityIntegerLevelArrayField(whichAbility, whichField, level, index) {
+}
+function BlzGetAbilityRealLevelArrayField(whichAbility, whichField, level, index) {
+}
+function BlzGetAbilityStringLevelArrayField(whichAbility, whichField, level, index) {
+}
+function BlzSetAbilityBooleanField(whichAbility, whichField, value) {
+}
+function BlzSetAbilityIntegerField(whichAbility, whichField, value) {
+}
+function BlzSetAbilityRealField(whichAbility, whichField, value) {
+}
+function BlzSetAbilityStringField(whichAbility, whichField, value) {
+}
+function BlzSetAbilityBooleanLevelField(whichAbility, whichField, level, value) {
+}
+function BlzSetAbilityIntegerLevelField(whichAbility, whichField, level, value) {
+}
+function BlzSetAbilityRealLevelField(whichAbility, whichField, level, value) {
+}
+function BlzSetAbilityStringLevelField(whichAbility, whichField, level, value) {
+}
+function BlzSetAbilityBooleanLevelArrayField(whichAbility, whichField, level, index, value) {
+}
+function BlzSetAbilityIntegerLevelArrayField(whichAbility, whichField, level, index, value) {
+}
+function BlzSetAbilityRealLevelArrayField(whichAbility, whichField, level, index, value) {
+}
+function BlzSetAbilityStringLevelArrayField(whichAbility, whichField, level, index, value) {
+}
+function BlzAddAbilityBooleanLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzAddAbilityIntegerLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzAddAbilityRealLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzAddAbilityStringLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzRemoveAbilityBooleanLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzRemoveAbilityIntegerLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzRemoveAbilityRealLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzRemoveAbilityStringLevelArrayField(whichAbility, whichField, level, value) {
+}
+function BlzGetItemAbilityByIndex(whichItem, index) {
+}
+function BlzGetItemAbility(whichItem, abilCode) {
+}
+function BlzItemAddAbility(whichItem, abilCode) {
+}
+function BlzGetItemBooleanField(whichItem, whichField) {
+}
+function BlzGetItemIntegerField(whichItem, whichField) {
+}
+function BlzGetItemRealField(whichItem, whichField) {
+}
+function BlzGetItemStringField(whichItem, whichField) {
+}
+function BlzSetItemBooleanField(whichItem, whichField, value) {
+}
+function BlzSetItemIntegerField(whichItem, whichField, value) {
+}
+function BlzSetItemRealField(whichItem, whichField, value) {
+}
+function BlzSetItemStringField(whichItem, whichField, value) {
+}
+function BlzItemRemoveAbility(whichItem, abilCode) {
+}
+function BlzGetUnitBooleanField(whichUnit, whichField) {
+}
+function BlzGetUnitIntegerField(whichUnit, whichField) {
+}
+function BlzGetUnitRealField(whichUnit, whichField) {
+}
+function BlzGetUnitStringField(whichUnit, whichField) {
+}
+function BlzSetUnitBooleanField(whichUnit, whichField, value) {
+}
+function BlzSetUnitIntegerField(whichUnit, whichField, value) {
+}
+function BlzSetUnitRealField(whichUnit, whichField, value) {
+}
+function BlzSetUnitStringField(whichUnit, whichField, value) {
+}
+function BlzGetUnitWeaponBooleanField(whichUnit, whichField, index) {
+}
+function BlzGetUnitWeaponIntegerField(whichUnit, whichField, index) {
+}
+function BlzGetUnitWeaponRealField(whichUnit, whichField, index) {
+}
+function BlzGetUnitWeaponStringField(whichUnit, whichField, index) {
+}
+function BlzSetUnitWeaponBooleanField(whichUnit, whichField, index, value) {
+}
+function BlzSetUnitWeaponIntegerField(whichUnit, whichField, index, value) {
+}
+function BlzSetUnitWeaponRealField(whichUnit, whichField, index, value) {
+}
+function BlzSetUnitWeaponStringField(whichUnit, whichField, index, value) {
+}
+function BlzGetUnitSkin(whichUnit) {
+}
+function BlzGetItemSkin(whichItem) {
+}
+function BlzSetUnitSkin(whichUnit, skinId) {
+}
+function BlzSetItemSkin(whichItem, skinId) {
+}
+function BlzCreateItemWithSkin(itemid, x, y, skinId) {
+}
+function BlzCreateUnitWithSkin(id, unitid, x, y, face, skinId) {
+    return CreateUnit(id, unitid, x, y, face);
+}
+function BlzCreateDestructableWithSkin(objectid, x, y, face, scale, variation, skinId) {
+}
+function BlzCreateDestructableZWithSkin(objectid, x, y, z, face, scale, variation, skinId) {
+}
+function BlzCreateDeadDestructableWithSkin(objectid, x, y, face, scale, variation, skinId) {
+}
+function BlzCreateDeadDestructableZWithSkin(objectid, x, y, z, face, scale, variation, skinId) {
+}
+function BlzGetPlayerTownHallCount(whichPlayer) {
 }

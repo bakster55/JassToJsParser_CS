@@ -7,30 +7,26 @@ namespace JassToCsMain
     {
         public static void Main(string[] args)
         {
-            string basePath = @"F:\JassToCsParser\JassToCsMain\JassToCsMain\War3Map";
+            IKernel kernel = GetKernel(new object());
 
-            //File.WriteAllText($@"{basePath}\common.js", Helper.Parse($@"{basePath}\common.j"));
+            string basePath = @"E:\JassToCsMain\JassToCsMain\War3Map";
+            //File.WriteAllText($@"{basePath}\common.js", kernel.Get<Parser>().Parse($@"{basePath}\common.j"));
+            File.WriteAllText($@"{basePath}\blizzard.js", kernel.Get<Parser>().Parse($@"{basePath}\blizzard.j"));
 
-            //File.WriteAllText($@"{basePath}\blizzard.js", Helper.Parse($@"{basePath}\blizzard.j"));
-
-            //string baseJassPath = @"F:\JASS_TO_JS_PARSER\war3map\Dacia_Orpg_v1.38D[SPMOD-0.9]";
-            string baseJassPath = @"F:\JassToCsMain\JASS_TO_JS_PARSER\war3map\TBR_2.0.83";
-
-            IKernel kernel = GetKernel();
-
-            string parsed = kernel.Get<Parser>().Parse($@"{baseJassPath}\war3map.j");
-            File.WriteAllText($@"{baseJassPath}\war3map.js", parsed);
+            //string baseJassPath = @"E:\JassToCsMain\JASS_TO_JS_PARSER\war3map\LOM_RPG_2.38A_translated";
+            //string parsed = kernel.Get<Parser>().Parse($@"{baseJassPath}\war3map.j");
+            //File.WriteAllText($@"{baseJassPath}\war3map.js", parsed);
 
             //Test();
         }
 
-        public static IKernel GetKernel()
+        public static IKernel GetKernel(object scope)
         {
             var kernel = new StandardKernel();
-            kernel.Bind<Parser>().ToSelf().InSingletonScope();
-            kernel.Bind<JassVisitor>().ToSelf().InSingletonScope();
-            kernel.Bind<Helper>().ToSelf().InSingletonScope();
-            kernel.Bind<FuncHelper>().ToSelf().InSingletonScope();
+            kernel.Bind<Parser>().ToSelf().InScope((c) => scope);
+            kernel.Bind<JassVisitor>().ToSelf().InScope((c) => scope);
+            kernel.Bind<Helper>().ToSelf().InScope((c) => scope);
+            kernel.Bind<FuncHelper>().ToSelf().InScope((c) => scope);
 
             return kernel;
         }

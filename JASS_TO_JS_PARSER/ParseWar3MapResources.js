@@ -2,7 +2,8 @@ var fs = require("fs");
 var path = require("path");
 
 var CommonParser = require("./common-parser.js");
-var mapBasePath = "./war3map/TBR_2.0.83";
+var mapBasePath = "./war3map/LOM_RPG_2.38A_translated";
+var recreatedAndDeoptimized = false;
 
 (function () {
   //var jassFilePath = path.resolve(mapBasePath + '/war3map.j');
@@ -59,24 +60,26 @@ function ParseMapResources() {
     if (err) return;
 
     // Parsed
-    var jsonResult = new Translator.Objects.warToJson("items", data);
+    var jsonResult = Translator.ObjectsTranslator.warToJson("items", data);
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.w3t.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
 
-    // Recreated
-    var warResult = new Translator.Objects.jsonToWar("items", jsonResult.json);
-    const warPath = path.resolve(mapBasePath + "/recreated/war3map.w3t");
-    fs.writeFileSync(warPath, warResult);
+    if (recreatedAndDeoptimized) {
+      // Recreated
+      var warResult = new Translator.Objects.jsonToWar("items", jsonResult.json);
+      const warPath = path.resolve(mapBasePath + "/recreated/war3map.w3t");
+      fs.writeFileSync(warPath, warResult);
 
-    // Deoptimized
-    var deoptimizedJson = Deoptimize(jsonResult.json);
-    const deoptimizedJsonPath = path.resolve(
-      mapBasePath + "/deoptimized/war3map.w3t.json"
-    );
-    fs.writeFileSync(
-      deoptimizedJsonPath,
-      JSON.stringify(deoptimizedJson, null, 4)
-    );
+      // Deoptimized
+      var deoptimizedJson = Deoptimize(jsonResult.json);
+      const deoptimizedJsonPath = path.resolve(
+        mapBasePath + "/deoptimized/war3map.w3t.json"
+      );
+      fs.writeFileSync(
+        deoptimizedJsonPath,
+        JSON.stringify(deoptimizedJson, null, 4)
+      );
+    }
   });
 
   // Abilities - Objects
@@ -85,27 +88,29 @@ function ParseMapResources() {
   fs.readFile(w3aFilePath, function (err, data) {
     if (err) return;
 
-    var jsonResult = new Translator.Objects.warToJson("abilities", data);
+    var jsonResult = Translator.ObjectsTranslator.warToJson("abilities", data);
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.w3a.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
 
-    // Recreated
-    var warResult = new Translator.Objects.jsonToWar(
-      "abilities",
-      jsonResult.json
-    );
-    const warPath = path.resolve(mapBasePath + "/recreated/war3map.w3a");
-    fs.writeFileSync(warPath, warResult.buffer);
+    if (recreatedAndDeoptimized) {
+      // Recreated
+      var warResult = new Translator.Objects.jsonToWar(
+        "abilities",
+        jsonResult.json
+      );
+      const warPath = path.resolve(mapBasePath + "/recreated/war3map.w3a");
+      fs.writeFileSync(warPath, warResult.buffer);
 
-    // Deoptimized
-    var deoptimizedJson = Deoptimize(jsonResult.json);
-    const deoptimizedJsonPath = path.resolve(
-      mapBasePath + "/deoptimized/war3map.w3a.json"
-    );
-    fs.writeFileSync(
-      deoptimizedJsonPath,
-      JSON.stringify(deoptimizedJson, null, 4)
-    );
+      // Deoptimized
+      var deoptimizedJson = Deoptimize(jsonResult.json);
+      const deoptimizedJsonPath = path.resolve(
+        mapBasePath + "/deoptimized/war3map.w3a.json"
+      );
+      fs.writeFileSync(
+        deoptimizedJsonPath,
+        JSON.stringify(deoptimizedJson, null, 4)
+      );
+    }
   });
 
   // Units - Objects
@@ -114,20 +119,22 @@ function ParseMapResources() {
   fs.readFile(w3uFilePath, function (err, data) {
     if (err) return;
 
-    var jsonResult = new Translator.Objects.warToJson("units", data);
+    var jsonResult = Translator.ObjectsTranslator.warToJson("units", data);
 
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.w3u.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
 
-    // Deoptimized
-    var deoptimizedJson = Deoptimize(jsonResult.json);
-    const deoptimizedJsonPath = path.resolve(
-      mapBasePath + "/deoptimized/war3map.w3u.json"
-    );
-    fs.writeFileSync(
-      deoptimizedJsonPath,
-      JSON.stringify(deoptimizedJson, null, 4)
-    );
+    if (recreatedAndDeoptimized) {
+      // Deoptimized
+      var deoptimizedJson = Deoptimize(jsonResult.json);
+      const deoptimizedJsonPath = path.resolve(
+        mapBasePath + "/deoptimized/war3map.w3u.json"
+      );
+      fs.writeFileSync(
+        deoptimizedJsonPath,
+        JSON.stringify(deoptimizedJson, null, 4)
+      );
+    }
   });
 
   // Upgrades - Objects
@@ -136,7 +143,7 @@ function ParseMapResources() {
   fs.readFile(w3qFilePath, function (err, data) {
     if (err) return;
 
-    var jsonResult = new Translator.Objects.warToJson("upgrades", data);
+    var jsonResult = Translator.ObjectsTranslator.warToJson("upgrades", data);
 
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.w3q.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
@@ -148,7 +155,7 @@ function ParseMapResources() {
   fs.readFile(w3bFilePath, function (err, data) {
     if (err) return;
 
-    var jsonResult = new Translator.Objects.warToJson("destructables", data);
+    var jsonResult = Translator.ObjectsTranslator.warToJson("destructables", data);
 
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.w3b.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
@@ -160,7 +167,7 @@ function ParseMapResources() {
   fs.readFile(wtsFilePath, function (err, data) {
     if (err) return;
 
-    var jsonResult = new Translator.Strings.warToJson(data);
+    var jsonResult = Translator.StringsTranslator.warToJson(data);
 
     const jsonPath = path.resolve(mapBasePath + "/parsed/war3map.wts.json");
     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
@@ -170,28 +177,54 @@ function ParseMapResources() {
   // war3mapUnits.doo
   // const war3mapUnitsFilePath = path.resolve(mapBasePath + '/war3mapUnits.doo');
   // fs.readFile(war3mapUnitsFilePath, function (err, data) {
-  //     if (err) return;
+  //   if (err) return;
 
-  //     var jsonResult = new Translator.Units.warToJson(data);
+  //   var jsonResult = Translator.DoodadsTranslator.warToJson(data);
 
-  //     const jsonPath = path.resolve(mapBasePath + '/parsed/war3mapUnits.doo.json');
-  //     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
+  //   const jsonPath = path.resolve(mapBasePath + '/parsed/war3mapUnits.doo.json');
+  //   fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
   // });
+
+  //Doodads
+  //war3map.doo
+  // const war3mapDooFilePath = path.resolve(mapBasePath + '/war3map.doo');
+  // fs.readFile(war3mapDooFilePath, function (err, data) {
+  //   if (err) return;
+
+  //   var jsonResult = Translator.DoodadsTranslator.warToJson(data);
+
+  //   const jsonPath = path.resolve(mapBasePath + '/parsed/war3map.doo.json');
+  //   fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
+  // });
+
+  //Doodads
+  //war3map.w3d
+  const w3dFilePath = path.resolve(mapBasePath + '/war3map.w3d');
+  fs.readFile(w3dFilePath, function (err, data) {
+    if (err) return;
+
+    var jsonResult = Translator.ObjectsTranslator.warToJson("doodads", data);
+
+    const jsonPath = path.resolve(mapBasePath + '/parsed/war3map.w3d.json');
+    fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
+  });
 
   // Info File
   // war3map.w3i
   // const w3iFilePath = path.resolve(mapBasePath + '/war3map.w3i');
-  // fs.readFile(w3aFilePath, function(err, data) {
-  //     if(err) return;
+  // fs.readFile(w3aFilePath, function (err, data) {
+  //   if (err) return;
 
-  //     var jsonResult = new Translator.Info.warToJson(data);
-  //     const jsonPath = path.resolve(mapBasePath + '/parsed/war3map.w3i.json');
-  //     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
+  //   var jsonResult = Translator.InfoTranslator.warToJson(data);
+  //   const jsonPath = path.resolve(mapBasePath + '/parsed/war3map.w3i.json');
+  //   fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
 
+  //   if (recreatedAndDeoptimized) {
   //     // Recreated
   //     var warResult = new Translator.Info.jsonToWar(jsonResult.json);
   //     const warPath = path.resolve(mapBasePath + '/recreated/war3map.w3i');
   //     fs.writeFileSync(warPath, warResult.buffer);
+  //   }
   // });
 
   // Regions
@@ -200,7 +233,7 @@ function ParseMapResources() {
   // fs.readFile(w3rFilePath, function(err, data) {
   //     if(err) return;
 
-  //     var jsonResult = new Translator.Regions.warToJson(data);
+  //     var jsonResult = Translator.RegionsTranslator.warToJson(data);
 
   //     const jsonPath = path.resolve(mapBasePath + '/parsed/war3map.w3r.json');
   //     fs.writeFileSync(jsonPath, JSON.stringify(jsonResult.json, null, 4));
